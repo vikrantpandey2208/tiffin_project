@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "apollo-server-express": "^3.10.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "mongodb": "^4.11.0",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon -e js,graphql -w . -w .env server.js"
+  },
+  "name": "api",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "server.js",
+  "author": "Vikrant Pandey",
+  "license": "ISC"
+}

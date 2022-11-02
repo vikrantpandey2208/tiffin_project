@@ -1,0 +1,7 @@
+ npm install graphql
+ npm install apollo-server-express
+ npm install express
+ npm install nodemon
+ npm install dotenv
+ npm install graphql
+ npm install mongodb
