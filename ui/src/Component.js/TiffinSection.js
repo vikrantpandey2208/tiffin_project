@@ -82,12 +82,12 @@ const TiffinSection = () => {
              {
                  tiffin.map(product=>{
                      return(
-                        <Card sx={{ maxWidth: "350px",mb:2 }}>
+                        <Card sx={{ maxWidth: "300px", mb:2 }}>
                         <CardMedia
                             component="img"
                             height="250"
                             image={product.image}
-                            alt="green iguana"                            
+                            alt="Tiffin images"                            
                         />
                         <Rating 
                         mt={4}
@@ -107,7 +107,6 @@ const TiffinSection = () => {
                      )
                  })
              }
-       
       
          </Stack>
         
