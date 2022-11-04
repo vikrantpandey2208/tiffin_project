@@ -15,6 +15,10 @@ type Tiffin {
   created: GraphQLDate
   details: String
   image: String
+  price: Int
+  one_day: Int
+  cat: String
+  discount: Int
 }
 
 input TiffinInputs {
