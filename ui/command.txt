@@ -1,9 +1,15 @@
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/material @mui/styled-engine-sc styled-components
 npm install @mui/icons-material
+<<<<<<< HEAD
 npm install react-yup --save
 npm install formik --save
  
+=======
+npm install react
+
+
+>>>>>>> 6a67b191ed57cdb7853e33051ac51a474f0f00ee
 
 
   // const tiffin = [
