@@ -57,7 +57,7 @@ class TiffinSection extends React.Component {
                             component="img"
                             height="250"
                             image={product.image}
-                            alt="green iguana"                            
+                            alt="Tiffin img"                            
                         />
                         <Rating 
                         mt={4}

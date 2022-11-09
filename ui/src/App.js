@@ -4,29 +4,32 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import  Login  from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Navbar from './Component.js/Navbar';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ff386a',
-    },
-  },
-});
+import AddYourTiffin from './Pages/AddYourTiffin';
+import AfterLoginNavbar from './Component.js/AfterLoginNavbar';
+import TiffinAdminLogin from './AddYourTiffin/Login';
+import TiffinAdminSignup from './AddYourTiffin/Signup';
+
+
 
 
 function App() {
   return (
     <> 
      <Router>
-     <ThemeProvider theme={theme}> 
-     <Navbar/>
-     </ThemeProvider>
+    
      <Routes>      
-        <Route exact path='/login' element={<Login/>} >
+        <Route exact path='/login' element={<Login/>}>         
         </Route> 
+        <Route exact path='/logged' element={<AfterLoginNavbar/>} />
         <Route exact path='/signup' element={<SignUp/>} />
-        <Route exact path='/' element={<HomeComponent/>} />       
+        <Route exact path='/' element={<HomeComponent/>} />  
+        <Route exact path='/addyourtiffin' element={<AddYourTiffin/>}/>
+        <Route exact path='/loginadmin' element={<TiffinAdminLogin/>} />
+        <Route exact path='/signupadmin' element={<TiffinAdminSignup/>} />
+        
+
+             
      </Routes>
      </Router>      
     </>    

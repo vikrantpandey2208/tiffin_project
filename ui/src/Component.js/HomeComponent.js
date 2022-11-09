@@ -19,7 +19,8 @@ export default class HomeComponent extends React.Component {
     render(){
         return(
             <>
-            <ThemeProvider theme={theme}>                 
+            <ThemeProvider theme={theme}>   
+            <Navbar/>              
                  <Container>
                  <BodySection/> 
                  <TiffinSection/>

@@ -3,6 +3,7 @@ import { Typography,Grid, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import logo from '../Logo/justdabba.png';
 import SearchIcon from '@mui/icons-material/Search';
+import Autocomplete from '@mui/material';
 const BodySection = () => {
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" mt={5}>
@@ -15,7 +16,8 @@ const BodySection = () => {
                 </Typography>
             </Grid>
             <Grid sm={6} order={{xs:2,sm:1}}  xs={12} >
-            <img src={logo} width="400px" height="100px" style={{marginLeft:'50px', marginBottom:'100px',}} />             
+            <img src={logo} width="400px" height="100px" style={{marginLeft:'50px', marginBottom:'100px',}} />
+                 
                      
             </Grid>            
         </Grid>

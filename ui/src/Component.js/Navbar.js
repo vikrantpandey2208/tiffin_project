@@ -17,7 +17,7 @@ export default function Navbar(){
                Just Dabba
              </Typography>
             <Link underline="none"  color="inherit" variant="outline" component={Button} startIcon={<HomeIcon/>}><NavLink to='/'  style={{textDecoration:'none', color:'inherit'}}>Home</NavLink></Link>  
-            <Link underline="none"  color="inherit" variant="text" component={Button} startIcon={<AddBusinessIcon/>}>AddYourTiffin</Link>  
+            <Link underline="none"  color="inherit" variant="text" component={Button} startIcon={<AddBusinessIcon/>}><NavLink to='/addyourtiffin'  style={{textDecoration:'none', color:'inherit'}}>AddYourTiffin</NavLink></Link>  
            <Link underline="none"  color="inherit" variant="text" component={Button} startIcon={<LoginIcon />}><NavLink to='/login'  style={{textDecoration:'none', color:'inherit'}}>Login</NavLink></Link> 
             <Link underline="none" color="inherit" variant="text" component={Button} startIcon={<FollowTheSignsIcon/>}><NavLink to='/signup' style={{textDecoration:'none', color:'inherit'}}>SignUp</NavLink></Link>             
             </Toolbar>

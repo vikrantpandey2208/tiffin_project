@@ -3,6 +3,16 @@ import { Typography, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
+import Navbar from '../Component.js/Navbar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ff386a',
+      },
+    },
+  });
 
 const SignUp = () => {
 
@@ -29,6 +39,10 @@ const SignUp = () => {
 
     return (
        <>
+
+       <ThemeProvider theme={theme}> 
+         <Navbar/>
+        </ThemeProvider>
         
         <Box
         component="form"
