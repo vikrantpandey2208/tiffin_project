@@ -1,10 +1,13 @@
 import React from 'react'
-import { Typography, TextField, Button } from '@mui/material';
-import { Box } from '@mui/system';
-import {useFormik} from 'formik'
-import * as Yup from 'yup'
-import Navbar from '../Component.js/Navbar';
+import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Navbar from '../Component.js/Navbar';
+import {useFormik} from 'formik';
+import * as yup from 'yup';
+import { AddCircleOutlineOutlined } from '@mui/icons-material';
+
 
 const theme = createTheme({
     palette: {
@@ -14,22 +17,29 @@ const theme = createTheme({
     },
   });
 
+
 const SignUp = () => {
 
+    const paperStyle={padding :20,height:'80vh',width:'500px', margin:"20px auto",}
+    const avatarStyle={backgroundColor:'#1bbd7e'}
+    const btnstyle={margin:'8px 0'}
 
-    const formik = useFormik({
+
+        const formik = useFormik({
         initialValues:{
-            fullName:"",            
-            phone:"",
-            email:"",
-            password:"",
-            
+               initialValues:{
+                  fullName:"",            
+                  phone:"",
+                  email:"",
+                  password:"", 
+               }          
         },
-        validationSchema:Yup.object({
-            fullName:Yup.string().required("This is Required"),
-            phone:Yup.number().required("This is Required"),
-            email:Yup.string().required("This is Required").email("Invalid email"), 
-            password:Yup.string().required("This is Required")           
+
+         validationSchema:yup.object({
+            fullName:yup.string().required("required"),
+            phone:yup.number().required("required"),
+            email:yup.string().required("required").email("Invalid email"), 
+            password:yup.string().required("required")           
             
         }),
         onSubmit:(values)=>{
@@ -37,67 +47,71 @@ const SignUp = () => {
         }
     })
 
-    return (
-       <>
 
-       <ThemeProvider theme={theme}> 
-         <Navbar/>
+    return(
+        <>
+        <ThemeProvider theme={theme}>
+        <Navbar/> 
+        <Grid container>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                     <Avatar style={avatarStyle}><AddCircleOutlineOutlined /></Avatar>
+                    <h1 style={{color:'#ff386a'}}>Signup</h1>
+                </Grid>
+                <TextField 
+                    label="Full Name"
+                    type="text"                    
+                    fullWidth                    
+                    name="fullName"
+                    onChange={formik.handleChange}
+                    error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+                    onBlur={formik.handleBlur}
+                    helperText={formik.touched.fullName && formik.errors.fullName}
+                /><br/><br/>
+
+                 <TextField 
+                    label="Phone Number"
+                    type="text"                   
+                    name="phone"
+                    fullWidth 
+                    onChange={formik.handleChange}
+                    error={formik.touched.phone && Boolean(formik.errors.phone)}
+                    helperText={formik.touched.phone && formik.errors.phone}
+                    onBlur={formik.handleBlur}
+                 /><br/><br/>    
+        
+                <TextField 
+                    label="Email"
+                    type="text"                   
+                    fullWidth                    
+                    name="email"
+                    onChange={formik.handleChange}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    onBlur={formik.handleBlur}
+                    helperText={formik.touched.email && formik.errors.email}
+                /><br/><br/> 
+                <TextField 
+                    label="Password"
+                    type="password"                   
+                    fullWidth                    
+                    name="password"
+                    onChange={formik.handleChange}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    onBlur={formik.handleBlur}
+                    helperText={formik.touched.password && formik.errors.password}
+                    /> <br/><br/>
+               
+                <Button type='submit'  variant="contained" style={btnstyle}  fullWidth>Signup</Button><br/><br/>
+                
+                <Typography > Already have an account ?
+                     <Link href="login" >
+                        Login 
+                </Link>
+                </Typography>
+            </Paper>
+        </Grid>
         </ThemeProvider>
-        
-        <Box
-        component="form"
-        onSubmit={formik.handleSubmit}
-        ml={50}
-        >
-        <Typography variant="h4" mt={6} sx={{color:'#ff386a', fontWeight:'bold'}} >SignUp</Typography>
-        <TextField 
-         label="Full Name"
-         type="text"
-         variant="outlined"
-         sx={{width:"300px",m:1}}
-         name="fullName"
-         onChange={formik.handleChange}
-         error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-         onBlur={formik.handleBlur}
-         helperText={formik.touched.fullName && formik.errors.fullName}
-        /><br/>  
-        <TextField 
-         label="Phone Number"
-         type="text"
-         variant="outlined"
-         sx={{width:"300px",m:1}}
-         name="phone"
-         onChange={formik.handleChange}
-         error={formik.touched.phone && Boolean(formik.errors.phone)}
-         helperText={formik.touched.phone && formik.errors.phone}
-         onBlur={formik.handleBlur}
-        /><br/>  
-        <TextField 
-         label="Email"
-         type="text"
-         variant="outlined"
-         sx={{width:"300px",m:1}}
-         name="email"
-         onChange={formik.handleChange}
-         error={formik.touched.email && Boolean(formik.errors.email)}
-         onBlur={formik.handleBlur}
-         helperText={formik.touched.email && formik.errors.email}
-        /><br/> 
-       <TextField 
-         label="Password"
-         type="password"
-         variant="outlined"
-         sx={{width:"300px",m:1}}
-         name="password"
-         onChange={formik.handleChange}
-         error={formik.touched.password && Boolean(formik.errors.password)}
-         onBlur={formik.handleBlur}
-         helperText={formik.touched.password && formik.errors.password}
-        /> <br/>         
-        
-        <Button size="large" variant="contained" type="sumbit" sx={{m:1, backgroundColor:'#ff386a'}}>Signup</Button>
-        </Box>
-       </>
+        </>
     )
 }
 

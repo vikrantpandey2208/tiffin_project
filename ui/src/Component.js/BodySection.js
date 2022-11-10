@@ -7,7 +7,7 @@ import Autocomplete from '@mui/material';
 const BodySection = () => {
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" mt={5}>
-            <Grid sm={6}>
+            <Grid sm={6} >
                 <Typography variant="h1"  order={{xs:1,sm:2}} xs={12} >
                    <span  style={{color:'#ff386a', fontWeight:'bold', textShadow:'2px 2px solid black'}}>Home<br/> Food</span> 
                 </Typography>
@@ -16,7 +16,7 @@ const BodySection = () => {
                 </Typography>
             </Grid>
             <Grid sm={6} order={{xs:2,sm:1}}  xs={12} >
-            <img src={logo} width="400px" height="100px" style={{marginLeft:'50px', marginBottom:'100px',}} />
+            <img src={logo} width="400px" height="100px" align='center' />
                  
                      
             </Grid>            
