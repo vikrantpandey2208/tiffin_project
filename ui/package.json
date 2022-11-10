@@ -20,7 +20,8 @@
     "react-yup": "^1.24.1",
     "save": "^2.9.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
