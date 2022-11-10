@@ -1,14 +1,23 @@
-const { MongoClient } = require("mongodb");
-require("dotenv").config();
+// const { MongoClient } = require("mongodb");
+// require("dotenv").config();
 
-let db;
+// mongoose part
+const mongoose = require("mongoose");
+const config = require("config");
+const dbURI = config.get("mongoURI");
+
+// async function connectToDb() {
+//   const url = process.env.DB_URL || "mongodb://localhost/JDB";
+//   const client = new MongoClient(url, { useNewUrlParser: true });
+//   await client.connect();
+//   console.log("Connected to MongoDB");
+//   db = client.db();
+// }
 
 async function connectToDb() {
-  const url = process.env.DB_URL || "mongodb://localhost/JDB";
-  const client = new MongoClient(url, { useNewUrlParser: true });
-  await client.connect();
-  console.log("Connected to MongoDB");
-  db = client.db();
+  mongoose.connect(dbURI, (err) => {
+    console.log(err ? err : " connection true");
+  });
 }
 
 async function getNextSequence(name) {
