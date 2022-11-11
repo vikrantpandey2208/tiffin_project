@@ -48,11 +48,11 @@ class TiffinSection extends React.Component {
     const { tiffins } = this.state;
     return (
         <>         
-         <Stack direction="row" justifyContent="space-evenly" sx={{flexWrap:"wrap"}} mt={10} >
+         <Stack>
              {
                  tiffins.map(product=>{
                      return(
-                        <Card sx={{ maxWidth: "350px",mb:2 }}>
+                        <Card sx={{ maxWidth: "350px",mb:2 }}  key={product.id}>
                         <CardMedia
                             component="img"
                             height="250"
