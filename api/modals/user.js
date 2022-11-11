@@ -18,16 +18,26 @@ const UserSchema = new mongoose.Schema({
       "Please Enter mail",
     ],
   },
+  password: {
+    type: String,
+    require: true,
+    minLength: 5,
+  },
   dateofentry: {
     type: Date,
     default: Date.now(),
   },
-  roles: [
-    {
-      type: String,
-    },
-  ],
-  versionKey: Number,
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+UserSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+UserSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model("User", UserSchema);
