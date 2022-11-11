@@ -1,10 +1,12 @@
 const User = require("./modals/User");
+const UserSession = require("./modals/UserSession");
 
 module.exports = (app) => {
   app.post("/api/signin", (req, res, next) => {
     const { body } = req;
-    const { password } = body;
-    let { email } = body;
+    const { data } = body;
+    const { password } = data;
+    let { email } = data;
 
     if (!email) {
       return res.send({
@@ -23,6 +25,7 @@ module.exports = (app) => {
     // Steps:
     // 1. Verify email doesn't exist
     // 2. Save
+
     User.find(
       {
         email: email,
@@ -34,6 +37,7 @@ module.exports = (app) => {
             message: "Error: Server error",
           });
         } else if (previousUsers.length > 0) {
+          console.log("User duplicate");
           return res.send({
             success: false,
             message: "Error: Account already exist.",
@@ -42,14 +46,22 @@ module.exports = (app) => {
         // Save the new user
         const newUser = new User();
         newUser.email = email;
+        newUser.firstname = data.firstName;
+        newUser.lastname = data.lastName;
+        newUser.phone = data.phone;
         newUser.password = newUser.generateHash(password);
         newUser.save((err, user) => {
           if (err) {
+            console.log("error", err);
+
+            console.log(newUser, data);
             return res.send({
               success: false,
               message: "Error: Server error",
             });
           }
+
+          console.log("User saved sucees");
           return res.send({
             success: true,
             message: "Signed up",
@@ -62,8 +74,10 @@ module.exports = (app) => {
   // sign in module
   app.post("/api/login", (req, res, next) => {
     const { body } = req;
-    const { password } = body;
-    let { email } = body;
+    const { data } = body;
+    const { password } = data;
+    let { email } = data;
+
     if (!email) {
       return res.send({
         success: false,

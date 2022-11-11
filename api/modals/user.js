@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
   firstname: {
@@ -22,6 +23,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: true,
     minLength: 5,
+  },
+  phone: {
+    type: Number,
+    require: true,
+    minLength: 10,
   },
   dateofentry: {
     type: Date,

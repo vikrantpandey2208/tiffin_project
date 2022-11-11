@@ -1,4 +1,6 @@
 import React from "react";
+import { Fetch, Get } from "../dbFetch.js";
+import { setInStorage, getFromStorage } from "../storage";
 import {
   Grid,
   Paper,
@@ -35,17 +37,46 @@ const btnstyle = { margin: "8px 0" };
 const Login = () => {
   const formik = useFormik({
     initialValues: {
-      userId: "",
+      email: "",
       password: "",
     },
     validationSchema: yup.object({
-      userId: yup.string().required("required"),
+      email: yup.string().required("required"),
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      console.log(JSON.stringify(values));
+      // logInVerify();
+      logInApi(values);
     },
   });
+
+  async function logInApi(data) {
+    const path = "/api/login";
+    delete data.initialValues;
+    const response = await Fetch(path, data);
+    if (response.success) {
+      setInStorage("tiffin_app", { token: response.token });
+      console.log("login successful", response.token);
+    } else {
+      console.log("login failed", response.message);
+    }
+  }
+  async function logInVerify() {
+    const obj = getFromStorage("tiffin_app");
+    if (obj && obj.token) {
+      const { token } = obj;
+
+      const response = await Get("/api/verify?token=" + token);
+      if (response.success) {
+        console.log("Already loggedin user");
+      } else {
+        console.log("logged out user go to login");
+      }
+    } else {
+      console.log("logged out user go to login");
+    }
+  }
+
   //    const navigate = useNavigate();
 
   return (
@@ -64,10 +95,10 @@ const Login = () => {
             <form onSubmit={formik.handleSubmit}>
               <TextField
                 label="Username"
-                name="userId"
+                name="email"
                 placeholder="Enter username"
                 fullWidth
-                value={formik.values.userId}
+                value={formik.values.email}
                 onChange={formik.handleChange}
                 error={
                   formik.touched.password && Boolean(formik.errors.password)

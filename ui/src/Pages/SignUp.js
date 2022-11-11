@@ -1,4 +1,6 @@
 import React from "react";
+import { Fetch } from "../dbFetch.js";
+
 import {
   Grid,
   Paper,
@@ -52,9 +54,20 @@ const SignUp = () => {
     }),
 
     onSubmit: (values) => {
-      console.log("form submitted", values);
+      signUpApi(values);
     },
   });
+
+  async function signUpApi(data) {
+    const path = "/api/signin";
+    delete data.initialValues;
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Sign up successful");
+    } else {
+      console.log("Sign up failed", response.message);
+    }
+  }
 
   return (
     <>

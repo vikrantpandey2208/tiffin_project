@@ -10,7 +10,6 @@ onSignUp() {
       isLoading: true,
     });
 
-    const data = Fetch('/api/signin', )
 
     // Post request to backend
     fetch('/api/signin', {
@@ -40,3 +39,5 @@ onSignUp() {
         }
       });
   }
+
+  
