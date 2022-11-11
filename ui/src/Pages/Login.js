@@ -8,14 +8,12 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { LockOutlined } from "@mui/icons-material";
-import Checkbox from "@mui/material/Checkbox";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Component.js/Navbar";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { NavLink, useNavigate } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -25,16 +23,16 @@ const theme = createTheme({
   },
 });
 
-const Login = () => {
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: "400px",
-    margin: "20px auto",
-  };
-  const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const btnstyle = { margin: "8px 0" };
+const paperStyle = {
+  padding: 20,
+  height: "70vh",
+  width: "400px",
+  margin: "20px auto",
+};
+const avatarStyle = { backgroundColor: "#1bbd7e" };
+const btnstyle = { margin: "8px 0" };
 
+const Login = () => {
   const formik = useFormik({
     initialValues: {
       userId: "",
@@ -45,15 +43,10 @@ const Login = () => {
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      console.log("form submitted", values);
+      console.log(JSON.stringify(values));
     },
   });
-
-  const navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/logged");
-  }
+  //    const navigate = useNavigate();
 
   return (
     <>
@@ -67,44 +60,50 @@ const Login = () => {
               </Avatar>
               <h1 style={{ color: "#ff386a" }}>Login</h1>
             </Grid>
-            <TextField
-              label="Username"
-              name="userId"
-              placeholder="Enter username"
-              fullWidth
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              onBlur={formik.handleBlur}
-              helperText={formik.touched.userId && formik.errors.userId}
-            />
-            <br />
-            <br />
 
-            <TextField
-              label="Password"
-              name="password"
-              placeholder="Enter password"
-              type="password"
-              fullWidth
-              onChange={formik.handleChange}
-              error={formik.touched.userId && Boolean(formik.errors.userId)}
-              onBlur={formik.handleBlur}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-            <br />
-            <br />
+            <form onSubmit={formik.handleSubmit}>
+              <TextField
+                label="Username"
+                name="userId"
+                placeholder="Enter username"
+                fullWidth
+                value={formik.values.userId}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                onBlur={formik.handleBlur}
+                helperText={formik.touched.userId && formik.errors.userId}
+              />
+              <br />
+              <br />
 
-            <Button
-              type="submit"
-              variant="contained"
-              style={btnstyle}
-              onClick={handleClick}
-              fullWidth
-            >
-              Login
-            </Button>
-            <br />
-            <br />
+              <TextField
+                label="Password"
+                name="password"
+                placeholder="Enter password"
+                type="password"
+                fullWidth
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={formik.touched.userId && Boolean(formik.errors.userId)}
+                onBlur={formik.handleBlur}
+                helperText={formik.touched.password && formik.errors.password}
+              />
+              <br />
+              <br />
+
+              <Button
+                type="submit"
+                variant="contained"
+                style={btnstyle}
+                fullWidth
+              >
+                Login
+              </Button>
+              <br />
+              <br />
+            </form>
             <Typography>
               <Link href="#">Forgot password ?</Link>
             </Typography>

@@ -11,7 +11,7 @@ export default function Navbar(){
         <>
         <Grid container>
          <AppBar position="static" color='primary'>
-            <Toolbar justifyContent="space-evenly">
+            <Toolbar >
               <Typography variant="h5" flexGrow={1} >
                Just Dabba
              </Typography>

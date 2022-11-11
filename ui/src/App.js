@@ -3,8 +3,6 @@ import HomeComponent from './Component.js/HomeComponent';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import  Login  from './Pages/Login';
 import SignUp from './Pages/SignUp';
-import Navbar from './Component.js/Navbar';
-
 import AddYourTiffin from './Pages/AddYourTiffin';
 import AfterLoginNavbar from './Component.js/AfterLoginNavbar';
 import TiffinAdminLogin from './AddYourTiffin/Login';
