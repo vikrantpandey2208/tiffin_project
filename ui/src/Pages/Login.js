@@ -47,6 +47,7 @@ const Login = () => {
     onSubmit: (values) => {
       // logInVerify();
       logInApi(values);
+      // logoutApi();
     },
   });
 
@@ -74,6 +75,21 @@ const Login = () => {
       }
     } else {
       console.log("logged out user go to login");
+    }
+  }
+  async function logoutApi() {
+    const obj = getFromStorage("tiffin_app");
+    if (obj && obj.token) {
+      const { token } = obj;
+
+      const response = await Get("/api/logout?token=" + token);
+      if (response.success) {
+        console.log("Logged out");
+      } else {
+        console.log("Error", response.message);
+      }
+    } else {
+      console.log("Internal Server Error");
     }
   }
 
