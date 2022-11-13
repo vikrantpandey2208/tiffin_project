@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
+import AddYourTiffin from "../Pages/AddYourTiffin";
 
 const theme = createTheme({
   palette: {
@@ -52,13 +53,15 @@ const TiffinAdminSignup = () => {
     }),
 
     onSubmit: (values) => {
+
+      console.log(values) 
       
     },
   });
   return (
     <>
       <ThemeProvider theme={theme}>
-        
+        <AddYourTiffin/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
