@@ -1,5 +1,5 @@
-import { AppBar, Typography,Button, Toolbar, Link, Grid} from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { AppBar, Typography,Button, Toolbar,  Grid} from '@mui/material';
+import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 
 import LoginIcon from '@mui/icons-material/Login';
@@ -17,11 +17,10 @@ export default function AddYourTiffin(){
               <Typography variant="h5" flexGrow={1} >
                Just Dabba
              </Typography>
-             <Link underline="none"  color="inherit" variant="outline" component={Button} startIcon={<HomeIcon/>}><NavLink to='/'  style={{textDecoration:'none', color:'inherit'}}>Home</NavLink></Link>  
-           <Link underline="none"  color="inherit" variant="text" component={Button} startIcon={<LoginIcon/>} ><NavLink to='/loginadmin'  style={{textDecoration:'none', color:'inherit'}}>Login</NavLink></Link> 
-            <Link underline="none" color="inherit" variant="text" component={Button} startIcon={<ControlPointIcon/>}><NavLink to='/signupadmin' style={{textDecoration:'none', color:'inherit'}}>Signup</NavLink></Link>             
-            </Toolbar>
-            
+                <Button component={Link} to='/' color="inherit" startIcon={<HomeIcon/>}>Home</Button>
+                <Button component={Link} to='/loginadmin' color="inherit" startIcon={<LoginIcon/>}>Login</Button>
+                <Button component={Link} to='/signupadmin' color="inherit" startIcon={<ControlPointIcon/>}>Signup</Button>                
+            </Toolbar>            
         </AppBar>
         </Grid>
         </>

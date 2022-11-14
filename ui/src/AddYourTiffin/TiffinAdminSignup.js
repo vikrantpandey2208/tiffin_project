@@ -25,9 +25,9 @@ const theme = createTheme({
 
 const TiffinAdminSignup = () => {
   const paperStyle = {
-    padding: 20,
+    padding: 10,
     height: "80vh",
-    width: "500px",
+    width: "400px",
     margin: "20px auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
@@ -64,11 +64,11 @@ const TiffinAdminSignup = () => {
         <AddYourTiffin/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
-            <Grid align="center">
+            <Grid align="center" >
               <Avatar style={avatarStyle}>
                 <AddCircleOutlineOutlined />
               </Avatar>
-              <h1 style={{ color: "#ff386a" }}>Signup</h1>
+              <Typography variant="h6" color="inherit" >Signup</Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit}>
               <TextField
@@ -141,7 +141,7 @@ const TiffinAdminSignup = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
-              <br />
+              
               <Button
                 type="submit"
                 variant="contained"
@@ -151,7 +151,7 @@ const TiffinAdminSignup = () => {
                 Signup
               </Button>
               <br />
-              <br />
+              
             </form>
             <Typography>
               {" "}

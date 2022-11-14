@@ -79,7 +79,7 @@ const SignUp = () => {
               <Avatar style={avatarStyle}>
                 <AddCircleOutlineOutlined />
               </Avatar>
-              <h1 style={{ color: "#ff386a" }}>Signup</h1>
+              <Typography variant="h6" color="inherit" >Signup</Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit}>
               <TextField
@@ -151,8 +151,7 @@ const SignUp = () => {
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
-              <br />
-              <br />
+              <br />              
               <Button
                 type="submit"
                 variant="contained"
@@ -161,8 +160,7 @@ const SignUp = () => {
               >
                 Signup
               </Button>
-              <br />
-              <br />
+              <br />              
             </form>
             <Typography>
               {" "}
