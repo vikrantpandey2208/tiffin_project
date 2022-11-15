@@ -1,6 +1,4 @@
 import React from "react";
-import { Fetch, Get } from "../dbFetch.js";
-import { setInStorage, getFromStorage } from "../storage";
 import {
   Grid,
   Paper,
@@ -15,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
+import AddYourTiffin from "../Pages/AddYourTiffin";
 // import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
@@ -45,14 +44,15 @@ const TiffinAdminLogin = () => {
       email: yup.string().required("required"),
       password: yup.string().required("required"),
     }),
-    onSubmit: (values) => {     
+    onSubmit: (values) => { 
+      console.log(values)    
     },
   });   
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        
+        <AddYourTiffin/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -100,7 +100,7 @@ const TiffinAdminLogin = () => {
                 style={btnstyle}
                 fullWidth
               >
-                TiffinAdminLogin
+                Login
               </Button>
               <br />
               <br />

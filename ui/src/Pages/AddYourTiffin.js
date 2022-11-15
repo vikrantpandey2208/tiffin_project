@@ -1,58 +1,28 @@
-import React from 'react';
-import { useState } from 'react';
-import TiffinAdminLogin from '../AddYourTiffin/TiffinAdminLogin';
-import TiffinAdminSignup from '../AddYourTiffin/TiffinAdminSignup';
-import Navbar from '../Component.js/Navbar';
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Tab from '@mui/material/Tab';
-import TabPanel from '@mui/lab/TabPanel';
-import { Paper } from '@mui/material';
-import { TabList } from '@mui/lab';
+import { AppBar, Typography,Button, Toolbar,  Grid} from '@mui/material';
+import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
-const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#ff386a",
-      },
-    },
-  });
-
-  const paperStyle={width:340,margin:"20px auto"}
+import LoginIcon from '@mui/icons-material/Login';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 
-function AddYourTiffin(){
 
-    const [value, setValue] = useState();
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-      };
+export default function AddYourTiffin(){
     return(
         <>
-        <ThemeProvider theme={theme}>
-            <Navbar/>
-        <Paper elevation={20} style={paperStyle}>
-            <TabList
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-            >
-            <Tab label="Sign In" />
-            
-            <Tab label="Sign Up" />
-            </TabList>
-            <TabPanel value={value} index={0}>
-            <TiffinAdminLogin handleChange={handleChange}/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-            <TiffinAdminSignup/>
-            </TabPanel>
-        </Paper>
-        </ThemeProvider>
+        <Grid container>
+         <AppBar position="static" color='primary'>
+            <Toolbar >
+              <Typography variant="h5" flexGrow={1} >
+               Just Dabba
+             </Typography>
+                <Button component={Link} to='/' color="inherit" startIcon={<HomeIcon/>}>Home</Button>
+                <Button component={Link} to='/loginadmin' color="inherit" startIcon={<LoginIcon/>}>Login</Button>
+                <Button component={Link} to='/signupadmin' color="inherit" startIcon={<ControlPointIcon/>}>Signup</Button>                
+            </Toolbar>            
+        </AppBar>
+        </Grid>
         </>
-    )
+    );
 }
-
-export default AddYourTiffin;

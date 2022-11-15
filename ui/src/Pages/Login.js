@@ -45,8 +45,8 @@ const Login = () => {
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      // logInVerify();
-      // logInApi(values);
+      logInVerify();
+      logInApi(values);
       logoutApi();
     },
   });
