@@ -1,12 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Grid,
   Paper,
   Avatar,
   TextField,
   Button,
-  Typography,
-  Link,
+  Typography,  
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -155,7 +155,7 @@ const TiffinAdminSignup = () => {
             </form>
             <Typography>
               {" "}
-              Already have an account ?<Link href="login">Login</Link>
+              Already have an account ?<Link to="/loginadmin" style={{color:'#ff386a', textDecoration:'none'}}>Login</Link>
             </Typography>
           </Paper>
         </Grid>
