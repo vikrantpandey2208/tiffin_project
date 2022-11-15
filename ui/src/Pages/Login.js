@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Fetch, Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
 import {
@@ -8,7 +9,7 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
+  
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -152,12 +153,12 @@ const Login = () => {
               <br />
             </form>
             <Typography>
-              <Link href="#">Forgot password ?</Link>
+              <Link to='' style={{color:'#ff386a', textDecoration:'none'}}>Forgot password ?</Link>
             </Typography>
             <br />
             <Typography>
               {" "}
-              Do you have an account ?<Link href="signup">Sign Up</Link>
+              Do you have an account ?<Link to="/signup"  style={{color:'#ff386a', textDecoration:'none'}}>Sign Up</Link>
             </Typography>
           </Paper>
         </Grid>

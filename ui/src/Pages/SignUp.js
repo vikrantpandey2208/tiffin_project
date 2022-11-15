@@ -1,5 +1,6 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
+import { Link } from "react-router-dom";
 
 import {
   Grid,
@@ -7,8 +8,7 @@ import {
   Avatar,
   TextField,
   Button,
-  Typography,
-  Link,
+  Typography,  
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Component.js/Navbar";
@@ -164,7 +164,7 @@ const SignUp = () => {
             </form>
             <Typography>
               {" "}
-              Already have an account ?<Link href="login">Login</Link>
+              Already have an account ?<Link to="/login" style={{color:'#ff386a', textDecoration:'none'}}>Login</Link>
             </Typography>
           </Paper>
         </Grid>

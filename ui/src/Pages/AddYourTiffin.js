@@ -1,9 +1,10 @@
 import { AppBar, Typography,Button, Toolbar,  Grid} from '@mui/material';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-
 import LoginIcon from '@mui/icons-material/Login';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+
+
 
 
 
@@ -11,6 +12,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 export default function AddYourTiffin(){
     return(
         <>
+        
         <Grid container>
          <AppBar position="static" color='primary'>
             <Toolbar >
@@ -21,8 +23,11 @@ export default function AddYourTiffin(){
                 <Button component={Link} to='/loginadmin' color="inherit" startIcon={<LoginIcon/>}>Login</Button>
                 <Button component={Link} to='/signupadmin' color="inherit" startIcon={<ControlPointIcon/>}>Signup</Button>                
             </Toolbar>            
-        </AppBar>
+        </AppBar>        
         </Grid>
+        
+      
+               
         </>
     );
 }

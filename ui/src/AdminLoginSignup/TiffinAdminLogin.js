@@ -1,5 +1,7 @@
 import React from "react";
 import { Fetch, Get } from "../dbFetch.js";
+import { useNavigate, Link } from "react-router-dom";
+
 import {
   Grid,
   Paper,
@@ -7,7 +9,6 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -111,6 +112,8 @@ const TiffinAdminLogin = () => {
                 variant="contained"
                 style={btnstyle}
                 fullWidth
+                component={Link}
+                to="/adminlogged"
               >
                 Login
               </Button>
@@ -118,12 +121,20 @@ const TiffinAdminLogin = () => {
               <br />
             </form>
             <Typography>
-              <Link href="#">Forgot password ?</Link>
+              <Link to="" style={{ color: "#ff386a", textDecoration: "none" }}>
+                Forgot password ?
+              </Link>
             </Typography>
             <br />
             <Typography>
               {" "}
-              Do you have an account ?<Link href="signup">Sign Up</Link>
+              Do you have an account ?
+              <Link
+                to="/signupadmin"
+                style={{ color: "#ff386a", textDecoration: "none" }}
+              >
+                Sign Up
+              </Link>
             </Typography>
           </Paper>
         </Grid>
