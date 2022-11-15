@@ -1,4 +1,5 @@
 import React from "react";
+import { Fetch } from "../dbFetch.js";
 import {
   Grid,
   Paper,
@@ -53,22 +54,34 @@ const TiffinAdminSignup = () => {
     }),
 
     onSubmit: (values) => {
-
-      console.log(values) 
-      
+      signUpApi(values);
+      console.log(values);
     },
   });
+
+  async function signUpApi(data) {
+    const path = "/api/seller-signin";
+    delete data.initialValues;
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Seller Sign up successful");
+    } else {
+      console.log("Sign up failed", response.message);
+    }
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AddYourTiffin/>
+        <AddYourTiffin />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
-            <Grid align="center" >
+            <Grid align="center">
               <Avatar style={avatarStyle}>
                 <AddCircleOutlineOutlined />
               </Avatar>
-              <Typography variant="h6" color="inherit" >Signup</Typography>
+              <Typography variant="h6" color="inherit">
+                Signup
+              </Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit}>
               <TextField
@@ -141,7 +154,6 @@ const TiffinAdminSignup = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
-              
               <Button
                 type="submit"
                 variant="contained"
@@ -151,7 +163,6 @@ const TiffinAdminSignup = () => {
                 Signup
               </Button>
               <br />
-              
             </form>
             <Typography>
               {" "}

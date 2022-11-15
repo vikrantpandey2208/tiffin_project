@@ -8,3 +8,5 @@
  npm i mongoose config
  npm i bcrypt
 npm install cors --save
+// for session
+npm i jsonwebtoken --save

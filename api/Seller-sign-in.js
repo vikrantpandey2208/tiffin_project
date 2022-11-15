@@ -1,8 +1,9 @@
-const User = require("./modals/User");
-const UserSession = require("./modals/UserSession");
+const Seller = require("./modals/Seller");
+const SellerSession = require("./modals/SellerSession");
+const jwt = require("jsonwebtoken");
 
 module.exports = (app) => {
-  app.post("/api/signin", (req, res, next) => {
+  app.post("/api/seller-signin", (req, res, next) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -26,7 +27,7 @@ module.exports = (app) => {
     // 1. Verify email doesn't exist
     // 2. Save
 
-    User.find(
+    Seller.find(
       {
         email: email,
       },
@@ -43,7 +44,7 @@ module.exports = (app) => {
           });
         }
         // Save the new user
-        const newUser = new User();
+        const newUser = new Seller();
         newUser.email = email;
         newUser.firstname = data.firstName;
         newUser.lastname = data.lastName;
@@ -67,7 +68,7 @@ module.exports = (app) => {
   }); // end of sign up endpoint
 
   // sign in module
-  app.post("/api/login", (req, res, next) => {
+  app.post("/api/seller-login", (req, res, next) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -87,7 +88,7 @@ module.exports = (app) => {
     }
     email = email.toLowerCase();
     email = email.trim();
-    User.find(
+    Seller.find(
       {
         email: email,
       },
@@ -112,8 +113,8 @@ module.exports = (app) => {
           });
         }
         // Otherwise correct user
-        const userSession = new UserSession();
-        userSession.userId = user._id;
+        const userSession = new SellerSession();
+        userSession.sellerId = user._id;
         userSession.save((err, doc) => {
           if (err) {
             return res.send({
@@ -121,10 +122,16 @@ module.exports = (app) => {
               message: "Error: server error",
             });
           }
+          // create token
+          const token = jwt.sign(
+            { email: user.email, userId: user._id },
+            "secret_this_should_be_longer",
+            { expiresIn: "1h" },
+          );
           return res.send({
             success: true,
             message: "Valid sign in",
-            token: doc._id,
+            token: token,
           });
         });
       },
@@ -138,7 +145,7 @@ module.exports = (app) => {
     const { token } = query;
     // ?token=test
     // Verify the token is one of a kind and it's not deleted.
-    UserSession.findOneAndUpdate(
+    SellerSession.findOneAndUpdate(
       {
         _id: token,
         isDeleted: false,
@@ -171,7 +178,7 @@ module.exports = (app) => {
     const { token } = query;
     // ?token=test
     // Verify the token is one of a kind and it's not deleted.
-    UserSession.find(
+    SellerSession.find(
       {
         _id: token,
         isDeleted: false,

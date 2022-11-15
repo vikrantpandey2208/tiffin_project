@@ -1,4 +1,5 @@
 import React from "react";
+import { Fetch, Get } from "../dbFetch.js";
 import {
   Grid,
   Paper,
@@ -34,7 +35,6 @@ const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
 const TiffinAdminLogin = () => {
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -44,15 +44,27 @@ const TiffinAdminLogin = () => {
       email: yup.string().required("required"),
       password: yup.string().required("required"),
     }),
-    onSubmit: (values) => { 
-      console.log(values)    
+    onSubmit: (values) => {
+      console.log(values, "Onsubmit");
+      logInApi(values);
     },
-  });   
+  });
+
+  async function logInApi(data) {
+    const path = "/api/seller-login";
+    delete data.initialValues;
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Seller login successful", response.token);
+    } else {
+      console.log("login failed", response.message);
+    }
+  }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AddYourTiffin/>
+        <AddYourTiffin />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
