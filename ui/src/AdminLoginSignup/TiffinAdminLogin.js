@@ -1,7 +1,6 @@
 import React from "react";
 import { Fetch, Get } from "../dbFetch.js";
 import { useNavigate, Link } from "react-router-dom";
-import { setInStorage, getFromStorage } from "../storage";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
 import {
