@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
-
+import TiffinAdminLogin from '../AdminLoginSignup/TiffinAdminLogin';
 
 
 
@@ -24,10 +24,7 @@ export default function AddYourTiffin(){
                 <Button component={Link} to='/signupadmin' color="inherit" startIcon={<ControlPointIcon/>}>Signup</Button>                
             </Toolbar>            
         </AppBar>        
-        </Grid>
-        
-      
-               
+        </Grid>                    
         </>
     );
 }

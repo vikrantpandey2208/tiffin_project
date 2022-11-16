@@ -5,6 +5,7 @@ import { Container } from '@mui/system';
 import TiffinSection from './TiffinSection';
 
 import Navbar from './Navbar';
+import { Footer } from "./Footer";
 
 const theme = createTheme({
     palette: {
@@ -23,8 +24,10 @@ export default class HomeComponent extends React.Component {
                  <Container>
                  <BodySection/> 
                  <TiffinSection/>
-                 </Container>                 
+                 </Container>
+             <Footer/>                            
            </ThemeProvider>
+           
             </>
         )
     }

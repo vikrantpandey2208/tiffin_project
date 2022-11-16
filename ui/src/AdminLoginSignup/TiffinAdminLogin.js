@@ -1,6 +1,6 @@
 import React from "react";
-import { Fetch, Get } from "../dbFetch.js";
-import { useNavigate, Link } from "react-router-dom";
+import { Fetch } from "../dbFetch.js";
+import { useNavigate,Link } from "react-router-dom";
 
 import {
   Grid,
@@ -35,7 +35,9 @@ const paperStyle = {
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
+
 const TiffinAdminLogin = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -56,7 +58,9 @@ const TiffinAdminLogin = () => {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
+      navigate("/adminlogged")
       console.log("Seller login successful", response.token);
+
     } else {
       console.log("login failed", response.message);
     }
@@ -111,9 +115,8 @@ const TiffinAdminLogin = () => {
                 type="submit"
                 variant="contained"
                 style={btnstyle}
-                fullWidth
-                component={Link}
-                to="/adminlogged"
+                fullWidth   
+                
               >
                 Login
               </Button>
