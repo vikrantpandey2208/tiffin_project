@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Component.js/Navbar";
 import { useFormik } from "formik";
 import * as yup from "yup";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -35,6 +35,7 @@ const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
 const Login = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -61,6 +62,7 @@ const Login = () => {
         setupTime: new Date().getTime(),
       });
       console.log("login successful", response.token);
+      navigate('/logged')
     } else {
       console.log("login failed", response.message);
     }
@@ -96,7 +98,7 @@ const Login = () => {
     }
   }
 
-  //    const navigate = useNavigate();
+     
 
   return (
     <>
