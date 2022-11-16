@@ -50,9 +50,6 @@ const TiffinAdminLogin = () => {
     onSubmit: (values) => {
       console.log(values, "Onsubmit");
       logInApi(values);
-      setInterval(() => {
-        console.log("Calling ", GetLoggedSeller());
-      }, 10000);
     },
   });
 
@@ -118,8 +115,6 @@ const TiffinAdminLogin = () => {
                 variant="contained"
                 style={btnstyle}
                 fullWidth
-                component={Link}
-                to="/adminlogged"
               >
                 Login
               </Button>
