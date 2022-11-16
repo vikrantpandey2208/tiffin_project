@@ -14,7 +14,8 @@ export async function Fetch(path, data) {
     const result = JSON.parse(body);
     return result;
   } catch (e) {
-    alert(`Error in sending data to server: ${e.message}`);
+    console.log(e);
+    alert(`Error in sending data to server: ${e}`);
   }
 
   return null;

@@ -13,6 +13,10 @@ const pointSchema = new mongoose.Schema({
 });
 
 const SellerTiffinSchema = new mongoose.Schema({
+  sellerId: {
+    type: String,
+    require: true,
+  },
   brandName: {
     type: String,
     required: true,
@@ -23,14 +27,13 @@ const SellerTiffinSchema = new mongoose.Schema({
   },
   dishWithCount: {
     type: String,
-    unique: true,
   },
   detailsOfTiffin: {
     type: String,
     require: true,
   },
   additionalDetail: {
-    type: Number,
+    type: String,
   },
   dateofentry: {
     type: Date,
@@ -42,19 +45,16 @@ const SellerTiffinSchema = new mongoose.Schema({
   },
   photo2: {
     type: String,
-    require: true,
   },
   photo3: {
     type: String,
-    require: true,
   },
   photo4: {
     type: String,
-    require: true,
   },
   location: {
     name: String,
-    location: {
+    coordinates: {
       type: pointSchema,
       required: true,
     },
@@ -67,4 +67,6 @@ const SellerTiffinSchema = new mongoose.Schema({
   feedback: [{ body: String, date: Date }],
 });
 
-module.exports = mongoose.model("SellerTiffin", SellerTiffinSchema);
+const Point = mongoose.model("point", pointSchema);
+const Tiffin = mongoose.model("Tiffin", SellerTiffinSchema);
+module.exports = { Point, Tiffin };

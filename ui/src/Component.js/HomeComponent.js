@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import BodySection from "./BodySection";
 import { Container } from "@mui/system";
 import TiffinSection from "./TiffinSection";
+import SellerAddTiffin from "../SellerData/HandleSellerData";
 import {
   hasLocationAccess,
   getCurrentLocation,
@@ -25,6 +26,7 @@ export default class HomeComponent extends React.Component {
     super();
     // hasLocationAccess();
     // getCurrentLocation();
+    SellerAddTiffin();
   }
   render() {
     return (
