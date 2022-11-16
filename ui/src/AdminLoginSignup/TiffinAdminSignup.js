@@ -67,7 +67,7 @@ const TiffinAdminSignup = () => {
     const photo = data;
     console.log("SIGN ", photo);
 
-    if (photo) {
+    if (false) {
       const formData = new FormData();
       formData.append("file", photo);
       formData.append("upload_preset", "default-preset");
@@ -81,13 +81,12 @@ const TiffinAdminSignup = () => {
       data.photo = imageUrl;
     }
 
-    // const response = await Fetch(path, data);
-    // const response = await Fetch(path, data);
-    // if (response.success) {
-    //   console.log("Seller Sign up successful");
-    // } else {
-    //   console.log("Sign up failed", response.message);
-    // }
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Seller Sign up successful");
+    } else {
+      console.log("Sign up failed", response.message);
+    }
   }
   return (
     <>

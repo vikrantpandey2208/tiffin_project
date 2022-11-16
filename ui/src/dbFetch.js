@@ -1,4 +1,25 @@
-export async function Fetch(path, data, isFullUrl = false) {
+export async function Fetch(path, data) {
+  try {
+    const endpoint = "http://localhost:8000";
+    const response = await fetch(endpoint.concat(path), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+    });
+    const body = await response.text();
+    const result = JSON.parse(body);
+    return result;
+  } catch (e) {
+    alert(`Error in sending data to server: ${e.message}`);
+  }
+
+  return null;
+}
+export async function UploadImage(path, data, isFullUrl = false) {
   try {
     let url = path;
     if (!isFullUrl) {
