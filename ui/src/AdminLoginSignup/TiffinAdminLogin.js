@@ -1,6 +1,8 @@
 import React from "react";
 import { Fetch, Get } from "../dbFetch.js";
 import { useNavigate, Link } from "react-router-dom";
+import { setInStorage, getFromStorage } from "../storage";
+import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
 import {
   Grid,
@@ -48,6 +50,9 @@ const TiffinAdminLogin = () => {
     onSubmit: (values) => {
       console.log(values, "Onsubmit");
       logInApi(values);
+      setInterval(() => {
+        console.log("Calling ", GetLoggedSeller());
+      }, 10000);
     },
   });
 
@@ -57,6 +62,10 @@ const TiffinAdminLogin = () => {
     const response = await Fetch(path, data);
     if (response.success) {
       console.log("Seller login successful", response.token);
+      setInStorage("tiffin_app_seller", {
+        token: response.token,
+        setupTime: new Date().getTime(),
+      });
     } else {
       console.log("login failed", response.message);
     }
@@ -112,8 +121,6 @@ const TiffinAdminLogin = () => {
                 variant="contained"
                 style={btnstyle}
                 fullWidth
-                component={Link}
-                to="/adminlogged"
               >
                 Login
               </Button>

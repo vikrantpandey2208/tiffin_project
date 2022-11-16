@@ -37,6 +37,10 @@ const SellerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  photo: {
+    type: String,
+    require: true,
+  },
 });
 
 SellerSchema.methods.generateHash = function (password) {

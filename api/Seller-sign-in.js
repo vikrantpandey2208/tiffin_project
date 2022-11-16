@@ -1,13 +1,35 @@
 const Seller = require("./modals/Seller");
 const SellerSession = require("./modals/SellerSession");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, "photo" + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter });
 
 module.exports = (app) => {
-  app.post("/api/seller-signin", (req, res, next) => {
+  app.post("/api/seller-signin", upload.single("photo"), (req, res, next) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
     let { email } = data;
+    const { photo } = data;
 
     if (!email) {
       return res.send({
@@ -50,6 +72,7 @@ module.exports = (app) => {
         newUser.lastname = data.lastName;
         newUser.phone = data.phone;
         newUser.password = newUser.generateHash(password);
+        newUser.photo = photo;
         newUser.save((err, user) => {
           if (err) {
             return res.send({
@@ -123,14 +146,11 @@ module.exports = (app) => {
             });
           }
           // create token
-          const token = jwt.sign(
-            { email: user.email, userId: user._id },
-            "secret_this_should_be_longer",
-            { expiresIn: "1h" },
-          );
+          const token = user._id;
           return res.send({
             success: true,
             message: "Valid sign in",
+            expiresIn: 3600,
             token: token,
           });
         });
@@ -139,7 +159,7 @@ module.exports = (app) => {
   });
 
   // logout
-  app.get("/api/logout", (req, res, next) => {
+  app.get("/api/seller-logout", (req, res, next) => {
     // Get the token
     const { query } = req;
     const { token } = query;
@@ -147,7 +167,7 @@ module.exports = (app) => {
     // Verify the token is one of a kind and it's not deleted.
     SellerSession.findOneAndUpdate(
       {
-        _id: token,
+        sellerId: token,
         isDeleted: false,
       },
       {

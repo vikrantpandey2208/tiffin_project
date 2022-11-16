@@ -9,7 +9,6 @@ import {
   TextField,
   Button,
   Typography,
-  
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -57,7 +56,10 @@ const Login = () => {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      setInStorage("tiffin_app", { token: response.token });
+      setInStorage("tiffin_app", {
+        token: response.token,
+        setupTime: new Date().getTime(),
+      });
       console.log("login successful", response.token);
     } else {
       console.log("login failed", response.message);
@@ -153,12 +155,20 @@ const Login = () => {
               <br />
             </form>
             <Typography>
-              <Link to='' style={{color:'#ff386a', textDecoration:'none'}}>Forgot password ?</Link>
+              <Link to="" style={{ color: "#ff386a", textDecoration: "none" }}>
+                Forgot password ?
+              </Link>
             </Typography>
             <br />
             <Typography>
               {" "}
-              Do you have an account ?<Link to="/signup"  style={{color:'#ff386a', textDecoration:'none'}}>Sign Up</Link>
+              Do you have an account ?
+              <Link
+                to="/signup"
+                style={{ color: "#ff386a", textDecoration: "none" }}
+              >
+                Sign Up
+              </Link>
             </Typography>
           </Paper>
         </Grid>

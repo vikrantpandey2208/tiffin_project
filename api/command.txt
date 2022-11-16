@@ -10,3 +10,5 @@
 npm install cors --save
 // for session
 npm i jsonwebtoken --save
+npm i multer  --save
+npm install axios

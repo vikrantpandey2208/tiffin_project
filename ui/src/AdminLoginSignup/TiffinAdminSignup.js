@@ -62,12 +62,32 @@ const TiffinAdminSignup = () => {
   async function signUpApi(data) {
     const path = "/api/seller-signin";
     delete data.initialValues;
-    const response = await Fetch(path, data);
-    if (response.success) {
-      console.log("Seller Sign up successful");
-    } else {
-      console.log("Sign up failed", response.message);
+
+    let imageUrl = "";
+    const photo = data;
+    console.log("SIGN ", photo);
+
+    if (photo) {
+      const formData = new FormData();
+      formData.append("file", photo);
+      formData.append("upload_preset", "default-preset");
+
+      const CLOUDINARY_URL =
+        "https://api.cloudinary.com/v1_1/dqdovhtp1/image/upload";
+
+      const dataRes = await Fetch(CLOUDINARY_URL, formData, true);
+      imageUrl = dataRes.data.url;
+      console.log(imageUrl);
+      data.photo = imageUrl;
     }
+
+    // const response = await Fetch(path, data);
+    // const response = await Fetch(path, data);
+    // if (response.success) {
+    //   console.log("Seller Sign up successful");
+    // } else {
+    //   console.log("Sign up failed", response.message);
+    // }
   }
   return (
     <>
@@ -83,7 +103,7 @@ const TiffinAdminSignup = () => {
                 Signup
               </Typography>
             </Grid>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
               <TextField
                 label="First Name"
                 type="text"
@@ -154,6 +174,16 @@ const TiffinAdminSignup = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
+              <input
+                id="file"
+                name="file"
+                type="file"
+                onChange={(event) => {
+                  let data = event.target.files[0];
+                  signUpApi(data);
+                  console.log("event", event.target.files[0]);
+                }}
+              />
               <Button
                 type="submit"
                 variant="contained"
