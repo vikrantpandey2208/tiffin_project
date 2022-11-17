@@ -7,9 +7,12 @@ import AddYourTiffin from './Pages/AddYourTiffin';
 
 import TiffinAdminLogin from './AdminLoginSignup/TiffinAdminLogin';
 import TiffinAdminSignup from './AdminLoginSignup/TiffinAdminSignup';
-import { AdminAfterLogin } from './AdminLoginSignup/AdminAfterLogin';
+import  AdminAfterLogin  from './AdminLoginSignup/AdminAfterLogin';
 import { AddTiffin } from './SellerData/AddTiffin';
-import { AfterLogin } from './CostomerAfterLogin/AfterLogin';
+import  AfterLogin  from './CostomerAfterLogin/AfterLogin';
+import { AdminProfile } from './Profile/AdminProfile';
+import { CostomerProfile } from './Profile/CostomerProfile';
+
 
 
 
@@ -30,6 +33,9 @@ function App() {
         <Route exact path='/adminlogged' element={<AdminAfterLogin/>} /> 
         <Route  path='/addtiffin' element={<AddTiffin/>} />  
         <Route path='/logged' element={<AfterLogin/>}/>
+        <Route path='/adminprofile' element={<AdminProfile/>}/>
+        <Route path='/userprofile' element={<CostomerProfile/>}/>
+        
      </Routes>
      </Router>      
     </>    

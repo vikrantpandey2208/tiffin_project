@@ -40,7 +40,7 @@ export default function UserProfileMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose} component={Link} >My account</MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to='/userprofile' >My account</MenuItem>
         <MenuItem onClick={handleClose} component={Link} >My Order</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>

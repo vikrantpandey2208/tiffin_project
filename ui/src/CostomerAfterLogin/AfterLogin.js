@@ -48,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }))
 
 
-export const AfterLogin = () => {
+ const AfterLogin = () => {
   return (
     <>
       <Grid container>
@@ -74,3 +74,5 @@ export const AfterLogin = () => {
     </>
   )
 }
+
+export default AfterLogin;
