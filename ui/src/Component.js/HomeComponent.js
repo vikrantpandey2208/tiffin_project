@@ -26,7 +26,7 @@ export default class HomeComponent extends React.Component {
     super();
     // hasLocationAccess();
     // getCurrentLocation();
-    SellerAddTiffin();
+    // SellerAddTiffin();
   }
   render() {
     return (

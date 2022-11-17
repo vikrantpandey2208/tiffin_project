@@ -2,6 +2,7 @@ import React from "react";
 import { Fetch, Get } from "../dbFetch.js";
 import { useNavigate, Link } from "react-router-dom";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
+import { AuthContext } from "../context/auth-context";
 
 import {
   Grid,
@@ -38,6 +39,10 @@ const btnstyle = { margin: "8px 0" };
 
 const TiffinAdminLogin = () => {
   const navigate = useNavigate();
+  const value = React.useContext(AuthContext);
+  console.log(value);
+  value.setUserId();
+  console.log(value);
   const formik = useFormik({
     initialValues: {
       email: "",
