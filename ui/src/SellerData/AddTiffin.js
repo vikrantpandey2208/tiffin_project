@@ -19,6 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import UploadIcon from '@mui/icons-material/Upload';
 import { AdminAfterLogin } from "../AdminLoginSignup/AdminAfterLogin";
+import Checkbox from '@mui/material/Checkbox';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 
 const theme = createTheme({
@@ -46,8 +48,6 @@ export  const AddTiffin = () => {
       price: "",
       veg:"",
       nonveg:'',
-      images:null,
-
     },
     validationSchema: yup.object({
       brand: yup.string().required("required"),
@@ -69,6 +69,22 @@ export  const AddTiffin = () => {
    const [images2, setImages2] = useState([]);
    const [images3, setImages3] = useState([]);
    const [images4, setImages4] = useState([]);
+
+   const [upload, setUpload] = useState("upload");
+
+   //handle submit
+   function handleButton(){
+    const image = [images1, images2, images3, images4];
+
+    setUpload("uploaded");
+   }
+
+   //location
+   const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   return (
     <>
@@ -129,6 +145,7 @@ export  const AddTiffin = () => {
               <br /> 
               <Typography variant="h4" style={{color:'white' ,backgroundColor:"#ff386a", width:'50%',borderRadius:'20px'}}> <UploadIcon/> Upload images </Typography><br/>
               {/* image1 */}
+              
               <Grid container alignItems="center">
               <Grid mr={5}>
               {
@@ -138,15 +155,14 @@ export  const AddTiffin = () => {
                       <img
                         style={{ padding: '10px' }}
                         width={150} height={100}
-                        src={item ? URL.createObjectURL(item) : null} />
+                        src={item ? URL.createObjectURL(item) : []} />
                     </span>
                   )
                 })
-              }    
-
+              }   
               </Grid>
               <Grid>
-              <Button variant="contained" component="label">Upload
+              <Button variant="contained" component="label" >image1
               <input
                   hidden
                   required                  
@@ -173,7 +189,7 @@ export  const AddTiffin = () => {
                       <img
                         style={{ padding: '10px' }}
                         width={150} height={100}
-                        src={item ? URL.createObjectURL(item) : null} />
+                        src={item ? URL.createObjectURL(item) : []} />
                     </span>
                   )
                 })
@@ -181,7 +197,7 @@ export  const AddTiffin = () => {
              
               </Grid>
               <Grid>
-              <Button variant="contained" component="label">Upload 
+              <Button variant="contained" component="label">image2
               <input
                   hidden
                   required                  
@@ -200,7 +216,6 @@ export  const AddTiffin = () => {
               </Grid>
               <br/>
               {/* image3  */}
-
               <Grid container alignItems="center">
               <Grid mr={5}>
               {
@@ -210,14 +225,14 @@ export  const AddTiffin = () => {
                       <img
                         style={{ padding: '10px' }}
                         width={150} height={100}
-                        src={item ? URL.createObjectURL(item) : null} />
+                        src={item ? URL.createObjectURL(item) : []} />
                     </span>
                   )
                 })
               }
               </Grid>
               <Grid>
-              <Button variant="contained" component="label">Upload
+              <Button variant="contained" component="label">image3
               <input
                   hidden
                   required                  
@@ -244,7 +259,7 @@ export  const AddTiffin = () => {
                       <img
                         style={{ padding: '10px' }}
                         width={150} height={100}
-                        src={item ? URL.createObjectURL(item) : null} />
+                        src={item ? URL.createObjectURL(item) : []} />
                     </span>
                   )
                 })
@@ -252,7 +267,7 @@ export  const AddTiffin = () => {
 
               </Grid>
               <Grid>
-              <Button variant="contained" component="label">Upload
+              <Button variant="contained" component="label">image4
               <input
                   hidden
                   required                  
@@ -268,6 +283,8 @@ export  const AddTiffin = () => {
               </Button>
               </Grid> 
               </Grid>
+              <br/>
+              <Button variant="contained" component="label" onClick={handleButton}>{upload}</Button>
                   
               <br />
               <br />
@@ -309,7 +326,13 @@ export  const AddTiffin = () => {
                 helperText={formik.touched.about && formik.errors.about}
               />
               <br />
-              <br />              
+              <br /> 
+              <Typography  variant="h5"><AddLocationAltIcon style={{color:'green'}}/>  <span style={{color:'#ff386a'}}>Allow location</span></Typography>
+              <Checkbox
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+              />             
               <Button
                 type="submit"
                 variant="contained"
