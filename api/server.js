@@ -16,6 +16,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 require("./sign-in.js")(app);
 require("./Seller-sign-in.js")(app);
+require("./middleware/SellerData")(app);
 
 const port = process.env.API_SERVER_PORT || 8000;
 
