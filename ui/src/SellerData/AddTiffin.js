@@ -18,7 +18,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import UploadIcon from '@mui/icons-material/Upload';
-import { AdminAfterLogin } from "../AdminLoginSignup/AdminAfterLogin";
+import  AdminAfterLogin  from "../AdminLoginSignup/AdminAfterLogin";
 import Checkbox from '@mui/material/Checkbox';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 

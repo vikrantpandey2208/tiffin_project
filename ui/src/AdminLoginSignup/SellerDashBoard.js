@@ -39,7 +39,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose} component={Link} >My account</MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to='/adminprofile'>My account</MenuItem>
         <MenuItem onClick={handleClose} component={Link} to='/addtiffin' >Add Tiffin</MenuItem>
         <MenuItem onClick={handleClose}>Order</MenuItem>
       </Menu>

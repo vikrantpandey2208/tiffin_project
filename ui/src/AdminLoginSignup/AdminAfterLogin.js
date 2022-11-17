@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { BusinessTwoTone } from '@mui/icons-material';
 import SellerDashBoard from './SellerDashBoard'
 
-export const AdminAfterLogin = () => {
+const AdminAfterLogin = () => {
   return (
     <>
       <Grid container>
@@ -24,3 +24,5 @@ export const AdminAfterLogin = () => {
     </>
   )
 }
+
+export default AdminAfterLogin;
