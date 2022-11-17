@@ -16,10 +16,10 @@ import { CostomerProfile } from "./Profile/CostomerProfile";
 import { useState } from "react";
 
 function App() {
-  const [userId, setUserId] = useState("0");
-  console.log("State", userId);
-  setUserId("pandey");
-  console.log("updated state", userId);
+  // const [userId, setUserId] = useState("0");
+  // console.log("State", userId);
+  // setUserId("pandey");
+  // console.log("updated state", userId);
   return (
     <>
       <Router>

@@ -54,8 +54,13 @@ const SellerTiffinSchema = new mongoose.Schema({
   },
   location: {
     name: String,
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: true,
+    },
     coordinates: {
-      type: pointSchema,
+      type: [Number],
       required: true,
     },
   },

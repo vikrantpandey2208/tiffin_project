@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
 import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavBarSellerProfile } from "./NavBarSellerProfile";
 
+const paperStyle = {
+  padding: 20,
+  height: "75vh",
+  width: "400px",
+  margin: "20px auto",
+};
+const fontStyle = {
+  fontSize: "30px",
+  color: "black",
+  marginTop: "10px",
+};
+
 export const AdminProfile = () => {
+  const [firstName, setFirstName] = React.useState("Karan");
+  const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
+
+  const [lastName, setLastName] = React.useState("khatik");
+  const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
+
+  const [email, setEmail] = React.useState("this@mail.com");
+  const [isEmailFocused, setIsEmailFocused] = React.useState(false);
+
+  //Saved data
+  const [save, setSave] = React.useState("save");
+
+  function handleSave(e) {
+    setSave("saved");
+  }
+
   return (
     <>
       <NavBarSellerProfile />

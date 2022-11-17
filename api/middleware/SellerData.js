@@ -45,39 +45,39 @@ module.exports = (app) => {
 
     let tempId = "6374e8790e9772be859efcdc";
 
-    getSellersTiffin(tempId, function (result) {
-      console.log("callback", result);
-    });
-
-    const point = new Point();
-    // (point.type = "Point"), (point.coordinates = [longitude, latitude]);
+    // getSellersTiffin(tempId, function (result) {
+    //   console.log("callback", result);
+    // });
 
     // Save the new tiffin
-    // const newTiffin = new Tiffin();
-    // newTiffin.sellerId = sellerId;
-    // newTiffin.brandName = brandName;
-    // newTiffin.price = data.price;
-    // newTiffin.dishWithCount = data.dishWithCount;
-    // newTiffin.detailsOfTiffin = data.detailsOfTiffin;
-    // newTiffin.additionalDetail = data.additionalDetail;
-    // newTiffin.photo1 = data.photo1;
-    // newTiffin.photo2 = data.photo2;
-    // newTiffin.photo3 = data.photo3;
-    // newTiffin.photo4 = data.photo4;
-    // const denver = { type: "Point", coordinates: [-104.9903, 39.7392] };
-    // newTiffin.location = { name: data.addr, coordinates: denver };
-    // newTiffin.save((err, tiffin) => {
-    //   if (err) {
-    //     return res.send({
-    //       success: false,
-    //       message: err,
-    //     });
-    //   }
+    const newTiffin = new Tiffin();
+    newTiffin.sellerId = sellerId;
+    newTiffin.brandName = brandName;
+    newTiffin.price = data.price;
+    newTiffin.dishWithCount = data.dishWithCount;
+    newTiffin.detailsOfTiffin = data.detailsOfTiffin;
+    newTiffin.additionalDetail = data.additionalDetail;
+    newTiffin.photo1 = data.photo1;
+    newTiffin.photo2 = data.photo2;
+    newTiffin.photo3 = data.photo3;
+    newTiffin.photo4 = data.photo4;
+    newTiffin.location = {
+      name: data.addr,
+      type: "Point",
+      coordinates: [longitude, latitude],
+    };
+    newTiffin.save((err, tiffin) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: err,
+        });
+      }
 
-    //   return res.send({
-    //     success: true,
-    //     message: "Tiffin saved",
-    //   });
-    // });
+      return res.send({
+        success: true,
+        message: "Tiffin saved",
+      });
+    });
   }); // end of tiffin saving endpoint
 };

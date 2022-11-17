@@ -13,5 +13,28 @@ function getSellersTiffin(sellerId, callback) {
     },
   );
 }
+function searchTiffin(longitude, latitude, callback) {
+  Tiffin.aggregate(
+    [
+      {
+        $geoNear: {
+          near: { type: "Point", coordinates: [longitude, latitude] },
+          distanceField: "dist.calculated",
+          maxDistance: 5000,
+          includeLocs: "dist.location",
+          spherical: true,
+        },
+      },
+    ],
 
-module.exports = { getSellersTiffin };
+    (err, tiffins) => {
+      if (err) {
+        callback(err, false);
+      } else {
+        callback(tiffins, true);
+      }
+    },
+  );
+}
+
+module.exports = { getSellersTiffin, searchTiffin };
