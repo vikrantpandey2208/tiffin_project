@@ -8,6 +8,8 @@ import {
   Rating,
 } from "@mui/material";
 
+
+
 class TiffinSection extends React.Component {
   constructor() {
     super();
@@ -23,6 +25,7 @@ class TiffinSection extends React.Component {
         <Stack>
           {tiffins.map((product) => {
             return (
+
               <Card sx={{ maxWidth: "350px", mb: 2 }} key={product.id}>
                 <CardMedia
                   component="img"

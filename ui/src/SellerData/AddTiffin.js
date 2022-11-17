@@ -74,7 +74,7 @@ export  const AddTiffin = () => {
 
    //handle submit
    function handleButton(){
-    const image = [images1, images2, images3, images4];
+    // const image = [images1, images2, images3, images4];
 
     setUpload("uploaded");
    }
@@ -153,6 +153,7 @@ export  const AddTiffin = () => {
                   return (
                     <span>
                       <img
+                        alt="img"
                         style={{ padding: '10px' }}
                         width={150} height={100}
                         src={item ? URL.createObjectURL(item) : []} />
@@ -170,7 +171,7 @@ export  const AddTiffin = () => {
                   type="file"
                   onChange={(event) => {
                     setImages1(event.target.files)
-                    let data = event.target.files[0];
+                    // let data = event.target.files[0];
                     // signUpApi(data);
                     console.log("event", event.target.files[0]);
                 }}
@@ -187,6 +188,7 @@ export  const AddTiffin = () => {
                   return (
                     <span>
                       <img
+                        alt="img"
                         style={{ padding: '10px' }}
                         width={150} height={100}
                         src={item ? URL.createObjectURL(item) : []} />
@@ -205,7 +207,7 @@ export  const AddTiffin = () => {
                   type="file"
                   onChange={(event) => {
                     setImages2(event.target.files)
-                    let data = event.target.files[0];
+                    // let data = event.target.files[0];
                     // signUpApi(data);
                     console.log("event", event.target.files[0]);
                 }}
@@ -223,6 +225,7 @@ export  const AddTiffin = () => {
                   return (
                     <span>
                       <img
+                        alt="img"
                         style={{ padding: '10px' }}
                         width={150} height={100}
                         src={item ? URL.createObjectURL(item) : []} />
@@ -240,7 +243,7 @@ export  const AddTiffin = () => {
                   type="file"
                   onChange={(event) => {
                     setImages3(event.target.files)
-                    let data = event.target.files[0];
+                    // let data = event.target.files[0];
                     // signUpApi(data);
                     console.log("event", event.target.files[0]);
                 }}
@@ -257,6 +260,7 @@ export  const AddTiffin = () => {
                   return (
                     <span>
                       <img
+                        alt="img"
                         style={{ padding: '10px' }}
                         width={150} height={100}
                         src={item ? URL.createObjectURL(item) : []} />
@@ -275,7 +279,7 @@ export  const AddTiffin = () => {
                   type="file"
                   onChange={(event) => {
                     setImages4(event.target.files)
-                    let data = event.target.files[0];
+                    // let data = event.target.files[0];
                     // signUpApi(data);
                     console.log("event", event.target.files[0]);
                 }}

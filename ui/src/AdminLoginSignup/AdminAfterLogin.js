@@ -2,11 +2,7 @@ import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBar, Typography, Button, Toolbar, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-
-import { BusinessTwoTone } from "@mui/icons-material";
 import SellerDashBoard from "./SellerDashBoard";
-
-//name,
 
 const AdminAfterLogin = () => {
   return (
