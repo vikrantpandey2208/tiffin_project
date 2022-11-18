@@ -34,7 +34,7 @@ const theme = createTheme({
 const paperStyle = {
   padding: 20,
   height: "",
-  width: "600px",
+  width: "800px",
   margin: "20px auto",
 };
 
@@ -129,6 +129,7 @@ export  const AddTiffin = () => {
               />
               <br />
               <br />
+              <Grid container>
               <FormControl>
               <FormLabel id="demo-controlled-radio-buttons-group">Category</FormLabel>
               <RadioGroup
@@ -137,17 +138,20 @@ export  const AddTiffin = () => {
                 value={formik.values.value}               
                 onChange={formik.handleChange}
               >
+                <Grid>
                 <FormControlLabel value="veg" control={<Radio />} label="veg" />
                 <FormControlLabel value="nonveg" control={<Radio />} label="non-veg" />
+                </Grid>
               </RadioGroup>
               </FormControl>
+              </Grid>
               <br />
               <br /> 
-              <Typography variant="h4" style={{color:'white' ,backgroundColor:"#ff386a", width:'50%',borderRadius:'20px'}}> <UploadIcon/> Upload images </Typography><br/>
+              <Typography variant="h5" style={{color:'#00000099' ,}}> <UploadIcon/> Upload images </Typography><br/>
               {/* image1 */}
               
               <Grid container alignItems="center">
-              <Grid mr={5}>
+              <Grid mr={5} >
               {
                 Array.from(images1).map(item => {
                   return (

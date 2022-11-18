@@ -58,10 +58,8 @@ export const CostomerProfile = (props) => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",
+               
               }}
             >
               First name
@@ -91,10 +89,7 @@ export const CostomerProfile = (props) => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",              
               }}
             >
               Last name
@@ -124,10 +119,8 @@ export const CostomerProfile = (props) => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",
+                
               }}
             >
               Email

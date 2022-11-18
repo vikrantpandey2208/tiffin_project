@@ -1,4 +1,4 @@
-const { Point, Tiffin } = require("../modals/SellerTiffin");
+const { Point, Tiffin } = require('../modals/SellerTiffin')
 function getSellersTiffin(sellerId, callback) {
   Tiffin.find(
     {
@@ -6,22 +6,22 @@ function getSellersTiffin(sellerId, callback) {
     },
     (err, tiffins) => {
       if (err) {
-        callback(err);
+        callback(err)
       } else {
-        callback(tiffins);
+        callback(tiffins)
       }
     },
-  );
+  )
 }
 function searchTiffin(longitude, latitude, callback) {
   Tiffin.aggregate(
     [
       {
         $geoNear: {
-          near: { type: "Point", coordinates: [longitude, latitude] },
-          distanceField: "dist.calculated",
+          near: { type: 'Point', coordinates: [longitude, latitude] },
+          distanceField: 'dist.calculated',
           maxDistance: 5000,
-          includeLocs: "dist.location",
+          includeLocs: 'dist.location',
           spherical: true,
         },
       },
@@ -29,12 +29,12 @@ function searchTiffin(longitude, latitude, callback) {
 
     (err, tiffins) => {
       if (err) {
-        callback(err, false);
+        callback(err, false)
       } else {
-        callback(tiffins, true);
+        callback(tiffins, true)
       }
     },
-  );
+  )
 }
 
-module.exports = { getSellersTiffin, searchTiffin };
+module.exports = { getSellersTiffin, searchTiffin }

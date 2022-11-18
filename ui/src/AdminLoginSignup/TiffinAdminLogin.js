@@ -1,8 +1,8 @@
-import React from "react";
-import { Fetch, Get } from "../dbFetch.js";
-import { useNavigate, Link } from "react-router-dom";
-import { GetLoggedSeller } from "../Auth/Logged-Seller";
-import { AuthContext } from "../context/auth-context";
+import React from 'react'
+import { Fetch, Get } from '../dbFetch.js'
+import { useNavigate, Link } from 'react-router-dom'
+import { GetLoggedSeller } from '../Auth/Logged-Seller'
+import { AuthContext } from '../context/auth-context'
 
 import {
   Grid,
@@ -11,62 +11,62 @@ import {
   TextField,
   Button,
   Typography,
-} from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+} from '@mui/material'
+import { LockOutlined } from '@mui/icons-material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import { useFormik } from "formik";
-import * as yup from "yup";
-import AddYourTiffin from "../Pages/AddYourTiffin";
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import AddYourTiffin from '../Pages/AddYourTiffin'
 // import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#ff386a",
+      main: '#ff386a',
     },
   },
-});
+})
 
 const paperStyle = {
   padding: 20,
-  height: "70vh",
-  width: "400px",
-  margin: "20px auto",
-};
-const avatarStyle = { backgroundColor: "#1bbd7e" };
-const btnstyle = { margin: "8px 0" };
+  height: '70vh',
+  width: '400px',
+  margin: '20px auto',
+}
+const avatarStyle = { backgroundColor: '#1bbd7e' }
+const btnstyle = { margin: '8px 0' }
 
 const TiffinAdminLogin = () => {
-  const navigate = useNavigate();
-  const value = React.useContext(AuthContext);
-  console.log(value);
-  value.setUserId();
-  console.log(value);
+  const navigate = useNavigate()
+  // const value = React.useContext(AuthContext);
+  // console.log(value);
+  // value.setUserId();
+  // console.log(value);
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: yup.object({
-      email: yup.string().required("required"),
-      password: yup.string().required("required"),
+      email: yup.string().required('required'),
+      password: yup.string().required('required'),
     }),
     onSubmit: (values) => {
-      console.log(values, "Onsubmit");
-      logInApi(values);
+      console.log(values, 'Onsubmit')
+      logInApi(values)
     },
-  });
+  })
 
   async function logInApi(data) {
-    const path = "/api/seller-login";
-    delete data.initialValues;
-    const response = await Fetch(path, data);
+    const path = '/api/seller-login'
+    delete data.initialValues
+    const response = await Fetch(path, data)
     if (response.success) {
-      navigate("/adminlogged");
-      console.log("Seller login successful", response.token);
+      navigate('/adminlogged')
+      console.log('Seller login successful', response.token)
     } else {
-      console.log("login failed", response.message);
+      console.log('login failed', response.message)
     }
   }
 
@@ -80,7 +80,7 @@ const TiffinAdminLogin = () => {
               <Avatar style={avatarStyle}>
                 <LockOutlined />
               </Avatar>
-              <h1 style={{ color: "#ff386a" }}>Login</h1>
+              <h1 style={{ color: '#ff386a' }}>Login</h1>
             </Grid>
 
             <form onSubmit={formik.handleSubmit}>
@@ -127,17 +127,17 @@ const TiffinAdminLogin = () => {
               <br />
             </form>
             <Typography>
-              <Link to="" style={{ color: "#ff386a", textDecoration: "none" }}>
+              <Link to="" style={{ color: '#ff386a', textDecoration: 'none' }}>
                 Forgot password ?
               </Link>
             </Typography>
             <br />
             <Typography>
-              {" "}
+              {' '}
               Do you have an account ?
               <Link
                 to="/signupadmin"
-                style={{ color: "#ff386a", textDecoration: "none" }}
+                style={{ color: '#ff386a', textDecoration: 'none' }}
               >
                 Sign Up
               </Link>
@@ -146,7 +146,7 @@ const TiffinAdminLogin = () => {
         </Grid>
       </ThemeProvider>
     </>
-  );
-};
+  )
+}
 
-export default TiffinAdminLogin;
+export default TiffinAdminLogin

@@ -57,10 +57,8 @@ export const AdminProfile = () => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",
+                
               }}
             >
               First name
@@ -90,10 +88,8 @@ export const AdminProfile = () => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",
+                
               }}
             >
               Last name
@@ -123,10 +119,8 @@ export const AdminProfile = () => {
             <Typography
               variant="h5"
               style={{
-                color: "white",
-                backgroundColor: "#ff386a",
-                width: "40%",
-                borderRadius: "5px",
+                color: "#00000099",
+                
               }}
             >
               Email

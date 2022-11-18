@@ -12,7 +12,7 @@ export const Footer = () => {
   	 <div className="containiner">
   	 	<div className="row">
   	 		<div className="footer-col">
-  	 			<h4>company</h4>
+  	 			<h4>Just Dabba</h4>
   	 			<ul>
   	 				<li><Link href="#">about us</Link></li>
   	 				<li><Link href="#">our services</Link></li>
