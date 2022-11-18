@@ -5,8 +5,13 @@ import UserProfileMenu from "./UserProfileMenu";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { GetLoggedUser } from "../Auth/Logged-Seller";
 
 // name
+function getUserDetails() {
+  let user = GetLoggedUser();
+  return user;
+}
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -49,6 +54,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AfterLogin = () => {
+  let detail = getUserDetails();
+  if (detail != null) console.log(detail.token, "Details of user");
   return (
     <>
       <Grid container>

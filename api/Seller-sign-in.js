@@ -150,8 +150,7 @@ module.exports = (app) => {
           return res.send({
             success: true,
             message: "Valid sign in",
-            expiresIn: 3600,
-            token: token,
+            seller: user,
           });
         });
       },
@@ -165,7 +164,7 @@ module.exports = (app) => {
     const { token } = query;
     // ?token=test
     // Verify the token is one of a kind and it's not deleted.
-    SellerSession.findOneAndUpdate(
+    SellerSession.updateMany(
       {
         sellerId: token,
         isDeleted: false,

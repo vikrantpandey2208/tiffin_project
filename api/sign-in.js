@@ -124,7 +124,7 @@ module.exports = (app) => {
           return res.send({
             success: true,
             message: "Valid sign in",
-            token: doc._id,
+            user: user,
           });
         });
       },
@@ -138,9 +138,9 @@ module.exports = (app) => {
     const { token } = query;
     // ?token=test
     // Verify the token is one of a kind and it's not deleted.
-    UserSession.findOneAndUpdate(
+    UserSession.updateMany(
       {
-        _id: token,
+        userId: token,
         isDeleted: false,
       },
       {

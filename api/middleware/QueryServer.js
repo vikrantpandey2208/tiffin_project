@@ -23,7 +23,6 @@ module.exports = (app) => {
     }
 
     searchTiffin(longitude, latitude, function (result, success) {
-      console.log("callback of get tiffin", result);
       if (success) {
         return res.send({
           success: true,

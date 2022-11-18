@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Component.js/Navbar";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -46,9 +46,9 @@ const Login = () => {
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      logInVerify();
+      // logInVerify();
       logInApi(values);
-      logoutApi();
+      // logoutApi();
     },
   });
 
@@ -57,18 +57,18 @@ const Login = () => {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      setInStorage("tiffin_app", {
-        token: response.token,
+      setInStorage("tiffin_app_user", {
+        token: response.user,
         setupTime: new Date().getTime(),
       });
-      console.log("login successful", response.token);
-      navigate('/logged')
+      console.log("login successful", response.success);
+      navigate("/logged");
     } else {
       console.log("login failed", response.message);
     }
   }
   async function logInVerify() {
-    const obj = getFromStorage("tiffin_app");
+    const obj = getFromStorage("tiffin_app_user");
     if (obj && obj.token) {
       const { token } = obj;
 
@@ -97,8 +97,6 @@ const Login = () => {
       console.log("Internal Server Error");
     }
   }
-
-     
 
   return (
     <>
