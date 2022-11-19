@@ -1,7 +1,7 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -57,13 +57,15 @@ const SignUp = () => {
       signUpApi(values);
     },
   });
+  const navigate = useNavigate();
 
   async function signUpApi(data) {
     const path = "/api/signin";
     delete data.initialValues;
     const response = await Fetch(path, data);
-    if (response.success) {
+    if (response.success) {      
       console.log("Sign up successful");
+      navigate("/login")
     } else {
       console.log("Sign up failed", response.message);
     }

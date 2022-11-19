@@ -86,6 +86,10 @@ export  const AddTiffin = () => {
     setChecked(event.target.checked);
   };
 
+  const handleLocation = () => {
+    
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -149,7 +153,7 @@ export  const AddTiffin = () => {
               <br /> 
               <Typography variant="h5" style={{color:'#00000099' ,}}> <UploadIcon/> Upload images </Typography><br/>
               {/* image1 */}
-              
+              <Grid>
               <Grid container alignItems="center">
               <Grid mr={5} >
               {
@@ -215,10 +219,11 @@ export  const AddTiffin = () => {
                     // signUpApi(data);
                     console.log("event", event.target.files[0]);
                 }}
-              />
+              />              
               
-              </Button>
+              </Button>              
               </Grid> 
+              </Grid>
               </Grid>
               <br/>
               {/* image3  */}
@@ -335,12 +340,12 @@ export  const AddTiffin = () => {
               />
               <br />
               <br /> 
-              <Typography  variant="h5"><AddLocationAltIcon style={{color:'green'}}/>  <span style={{color:'#ff386a'}}>Allow location</span></Typography>
-              <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ 'aria-label': 'controlled' }}
-              />             
+              <Grid container >
+              <Typography mr={10}  variant="h5"><AddLocationAltIcon style={{color:'#00000099'}}/>  <span style={{color:'#00000099'}}>Click on Button to give your location</span></Typography>
+              <Button onClick={handleLocation}  variant="contained">Give Location</Button> 
+
+              </Grid>
+                          
               <Button
                 type="submit"
                 variant="contained"

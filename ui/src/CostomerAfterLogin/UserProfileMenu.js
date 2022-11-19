@@ -2,8 +2,8 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import { Get } from "../dbFetch.js";
@@ -19,6 +19,7 @@ export default function UserProfileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const navigate = useNavigate();
   const logout = async () => {
     console.log("fired logout");
     const obj = getFromStorage("tiffin_app_user");
@@ -28,6 +29,8 @@ export default function UserProfileMenu() {
       localStorage.removeItem("tiffin_app_user");
       if (response.success) {
         console.log("Logged out navigate to login");
+        navigate("/");
+
       } else {
         console.log("Error", response.message);
       }

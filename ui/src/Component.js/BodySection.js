@@ -13,8 +13,7 @@ const BodySection = () => {
                 </Typography>
             </Grid>
             <Grid item sm={6} order={{xs:2,sm:1}}  xs={12} >
-            <img src={logo} width="400px" height="100px" align='center' alt='img' />
-                 
+            <img src={logo} width="400px" height="100px" align='center' alt='img' />          
                      
             </Grid>            
         </Grid>

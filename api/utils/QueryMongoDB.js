@@ -20,7 +20,7 @@ function searchTiffin(longitude, latitude, callback) {
         $geoNear: {
           near: { type: 'Point', coordinates: [longitude, latitude] },
           distanceField: 'dist.calculated',
-          maxDistance: 5000,
+          // maxDistance: 5000,
           includeLocs: 'dist.location',
           spherical: true,
         },
