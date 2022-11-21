@@ -10,7 +10,8 @@ import {
   CardActionArea,
   CardActions,
   Button,
-  IconButton
+  IconButton,
+  Paper
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -52,50 +53,50 @@ class TiffinSection extends React.Component {
       <>  <Grid mt={10} container spacing={3} >     
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3} style={{}}>
-              <Card  sx={{ maxWidth: 345 }}  key={product._id} variant='contained'>
+              <Grid item sm={3} style={{}} key={product._id}>
+                <Paper elevation={24}>
+              <Card  sx={{ maxWidth: 345 }}   variant='contained'>
                 <CardActionArea>
 
                 <CardMedia
                   component="img"
                   image={product.photo2}
-                  alt="Tiffin img"
-                />             
-                
+                  alt="Tiffin img"                  
+                />    
+
                 <CardContent>
                   <Grid container>
-
                   <Typography variant='h6' style={{flexGrow:1, fontSize:'20px',fontWeight:'520' }}>{product.brandName}  </Typography>
-
-                  <div style={{backgroundColor:'green', borderRadius: "10px", width:'42px', height:'30px'}}>                    
-                  <IconButton
-                   size='small'>
+                  <div style={{backgroundColor:'green', borderRadius: "8px", width:'42px', height:'25px',textAlign:'center'}}>       
+                  
                   <Typography 
                   style={{color:'white',fontSize:'15px'}}>
-                   3.5
-                  </Typography>
-                  <StarIcon 
+                    3.5 <StarIcon 
                   size="small"
                   style={{color:'white',fontSize:'13px'}}/>
-                  </IconButton>
+                  </Typography>
+                  
+                                   
                   </div>
                   
                   </Grid> 
                   <Grid container >
                   <Typography variant="subtitle1" style={{flexGrow:1}}>veg</Typography>
                   <Typography variant="subtitle1" ><CurrencyRupeeIcon style={{color:'',fontSize:'13px'}} />{product.price}</Typography>
-                  </Grid>              
-                  
+                  </Grid> 
+
+                  {/* <Typography>{product.location.coordinates.length} km</Typography>              */}                  
                 </CardContent>
 
                 </CardActionArea>  
 
                 <CardActions>
-                  <Button size="small" variant='contained'>
+                  <Button size="small" variant='contained' style={{alignContent:'left', fontSize:'11px'}}>
                    Order
                   </Button>
                 </CardActions>
               </Card>
+              </Paper>
               </Grid>
             )
           })}
