@@ -5,12 +5,10 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Rating,
   Grid,
   CardActionArea,
   CardActions,
-  Button,
-  IconButton,
+  Button,  
   Paper
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
