@@ -18,6 +18,7 @@ require("./sign-in.js")(app);
 require("./Seller-sign-in.js")(app);
 require("./middleware/SellerData")(app);
 require("./middleware/QueryServer")(app);
+require("./middleware/OrderHandle")(app);
 
 const port = process.env.API_SERVER_PORT || 8000;
 

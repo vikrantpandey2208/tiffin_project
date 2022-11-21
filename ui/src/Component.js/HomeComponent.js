@@ -6,14 +6,9 @@ import TiffinSection from "./TiffinSection";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import SellerAddTiffin from "../SellerData/HandleSellerData";
-import {
-  hasLocationAccess,
-  getCurrentLocation,
-  watchPosition,
-} from "../Testing.js";
-
 import Navbar from "./Navbar";
 import { Footer } from "./Footer";
+import ConfirmOrder from "../Order/ConfirmOrder";
 
 const theme = createTheme({
   palette: {
@@ -42,6 +37,7 @@ function HomeComponent() {
         <Navbar />
         <Container>
           <BodySection />
+          <ConfirmOrder />
           <TiffinSection />
         </Container>
         <Footer />

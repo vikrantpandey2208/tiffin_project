@@ -55,7 +55,6 @@ const TiffinAdminSignup = () => {
 
     onSubmit: (values) => {
       signUpApi(values);
-      console.log(values);
     },
   });
 

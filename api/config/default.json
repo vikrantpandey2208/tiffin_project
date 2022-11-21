@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://vikrantpandey466:Vikrant100786@mycluster.csoyehx.mongodb.net/test"
+  "mongoURI": "mongodb+srv://vikrantpandey466:Vikrant100786@mycluster.csoyehx.mongodb.net/test",
+  "mongoURIf": "mongodb+srv://vikrantpandey466:Vikrant100786@mycluster.csoyehx.mongodb.net/?retryWrites=true&w=majority"
 }

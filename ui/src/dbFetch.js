@@ -23,12 +23,6 @@ export async function Fetch(path, data) {
 export async function UploadImage(path, data, isFullUrl = false) {
   try {
     let url = path;
-    if (!isFullUrl) {
-      const endpoint = "http://localhost:8000";
-      url = endpoint.concat(path);
-    }
-
-    console.log("URL ", url);
 
     const response = await fetch(url, {
       method: "POST",
@@ -37,7 +31,7 @@ export async function UploadImage(path, data, isFullUrl = false) {
       body: data,
     });
     const body = await response.text();
-    console.log(body);
+    // console.log(body);
     const result = JSON.parse(body);
     return result;
   } catch (e) {
