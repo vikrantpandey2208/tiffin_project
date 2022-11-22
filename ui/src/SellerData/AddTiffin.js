@@ -74,8 +74,7 @@ export  const AddTiffin = () => {
 
    //handle submit
    function handleButton(){
-    // const image = [images1, images2, images3, images4];
-
+    const image = [images1, images2, images3, images4];
     setUpload("uploaded");
    }
 
