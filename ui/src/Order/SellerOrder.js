@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Fetch } from "../dbFetch.js";
 
 const SellerOrder = () => {
-  let x = 100;
   let data = make();
 
   function make() {
