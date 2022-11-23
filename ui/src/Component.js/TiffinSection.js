@@ -11,7 +11,9 @@ import {
   CardActions,
   Button,
   Paper,
+  Dialog, DialogContent, DialogActions
 } from "@mui/material";
+import Login from '../Pages/Login.js'
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
@@ -23,7 +25,23 @@ class TiffinSection extends React.Component {
 
     this.state = {
       tiffins: [],
-    };
+      showDialogLogin:false,
+    }; 
+
+  }
+  openDialogLogin() {
+    this.setState(
+      {
+        showDialogLogin:true
+      }
+    )
+  }
+  closeDialogLogin() {
+    this.setState(
+      {
+        showDialogLogin:true
+      }
+    )
   }
   componentDidMount() {
     let data = {
@@ -119,11 +137,18 @@ class TiffinSection extends React.Component {
                         size="small"
                         variant="contained"
                         style={{ alignContent: "left", fontSize: "11px" }}
-                        component={Link}
-                        to="/login"
+                        onClick={this.openDialogLogin}
                       >
                         Order
                       </Button>
+                      <Dialog open={this.showDialogLogin} onClose={this.closeDialogLogin} >
+                      <DialogContent>
+                      <Login/>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.closeDialogLogin}>close</Button>
+                        </DialogActions>              
+                      </Dialog>
                     </CardActions>
                   </Card>
                 </Paper>
