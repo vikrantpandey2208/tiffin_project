@@ -39,7 +39,7 @@ class TiffinSection extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      console.log(response, response.data);
+      // console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
       console.log("failed in fetching tiffins", response.message);

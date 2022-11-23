@@ -9,6 +9,7 @@ import SellerAddTiffin from "../SellerData/HandleSellerData";
 import Navbar from "./Navbar";
 import { Footer } from "./Footer";
 import ConfirmOrder from "../Order/ConfirmOrder";
+import CustomerOrder from "../Order/CustomerOrder";
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,10 @@ function HomeComponent() {
         <Navbar />
         <Container>
           <BodySection />
+<<<<<<< HEAD
+=======
+          <CustomerOrder />
+>>>>>>> dbaba23f54ac8f47eda0f426d3e0866de2f9a293
           <TiffinSection />
         </Container>
         <Footer />

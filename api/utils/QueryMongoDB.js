@@ -1,4 +1,5 @@
-const { Point, Tiffin } = require('../modals/SellerTiffin')
+const { Point, Tiffin } = require("../modals/SellerTiffin");
+const { Order } = require("../modals/OrderSchema");
 function getSellersTiffin(sellerId, callback) {
   Tiffin.find(
     {
@@ -6,22 +7,22 @@ function getSellersTiffin(sellerId, callback) {
     },
     (err, tiffins) => {
       if (err) {
-        callback(err)
+        callback(err);
       } else {
-        callback(tiffins)
+        callback(tiffins);
       }
     },
-  )
+  );
 }
 function searchTiffin(longitude, latitude, callback) {
   Tiffin.aggregate(
     [
       {
         $geoNear: {
-          near: { type: 'Point', coordinates: [longitude, latitude] },
-          distanceField: 'dist.calculated',
+          near: { type: "Point", coordinates: [longitude, latitude] },
+          distanceField: "dist.calculated",
           // maxDistance: 5000,
-          includeLocs: 'dist.location',
+          includeLocs: "dist.location",
           spherical: true,
         },
       },
@@ -29,12 +30,44 @@ function searchTiffin(longitude, latitude, callback) {
 
     (err, tiffins) => {
       if (err) {
-        callback(err, false)
+        callback(err, false);
       } else {
-        callback(tiffins, true)
+        callback(tiffins, true);
       }
     },
-  )
+  );
 }
 
-module.exports = { getSellersTiffin, searchTiffin }
+function getCustomerOrders(userId, callback) {
+  // select date of order, tiffin details,
+  Order.aggregate(
+    [
+      { $match: { userId: userId } },
+      {
+        $project: {
+          _id: 1,
+          b_id: { $toObjectId: "$tiffinId" },
+        },
+      },
+      {
+        $lookup: {
+          from: "tiffins",
+          localField: "b_id",
+          foreignField: "_id",
+          as: "Tiffin",
+        },
+      },
+    ],
+
+    (err, order) => {
+      if (err) {
+        console.log(err);
+        callback(err, false);
+      } else {
+        callback(order, true);
+      }
+    },
+  );
+}
+
+module.exports = { getSellersTiffin, searchTiffin, getCustomerOrders };
