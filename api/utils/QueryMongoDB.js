@@ -71,5 +71,42 @@ function getCustomerOrders(userId, callback) {
     },
   );
 }
+function getSellerOrders(sellerId, callback) {
+  // select date of order, tiffin details,
+  Order.aggregate(
+    [
+      { $match: { sellerId: sellerId } },
+      {
+        $project: {
+          _id: 1,
+          b_id: { $toObjectId: "$tiffinId" },
+          dateofentry: 1,
+        },
+      },
+      {
+        $lookup: {
+          from: "tiffins",
+          localField: "b_id",
+          foreignField: "_id",
+          as: "Tiffin",
+        },
+      },
+    ],
 
-module.exports = { getSellersTiffin, searchTiffin, getCustomerOrders };
+    (err, order) => {
+      if (err) {
+        console.log(err);
+        callback(err, false);
+      } else {
+        callback(order, true);
+      }
+    },
+  );
+}
+
+module.exports = {
+  getSellersTiffin,
+  searchTiffin,
+  getCustomerOrders,
+  getSellerOrders,
+};

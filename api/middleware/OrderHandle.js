@@ -1,5 +1,5 @@
 const { Order } = require("../modals/OrderSchema");
-const { getCustomerOrders } = require("../utils/QueryMongoDB");
+const { getCustomerOrders, getSellerOrders } = require("../utils/QueryMongoDB");
 
 module.exports = (app) => {
   app.post("/api/order", (req, res, next) => {
@@ -41,6 +41,32 @@ module.exports = (app) => {
     });
   }); // end of order saving endpoint
 
+  app.post("/api/get-seller-orders", (req, res, next) => {
+    const { body } = req;
+    const { data } = body;
+    const { sellerId } = data;
+
+    if (!sellerId) {
+      return res.send({
+        success: false,
+        message: "Error: Session expired",
+      });
+    }
+
+    getSellerOrders(sellerId, function (result, success) {
+      if (success) {
+        return res.send({
+          success: true,
+          data: result,
+        });
+      } else {
+        return res.send({
+          success: false,
+          message: "Error: Internal Server error while searching orders",
+        });
+      }
+    });
+  });
   app.post("/api/get-customer-orders", (req, res, next) => {
     const { body } = req;
     const { data } = body;
