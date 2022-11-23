@@ -38,10 +38,7 @@ function HomeComponent() {
         <Navbar />
         <Container>
           <BodySection />
-<<<<<<< HEAD
-=======
           <CustomerOrder />
->>>>>>> dbaba23f54ac8f47eda0f426d3e0866de2f9a293
           <TiffinSection />
         </Container>
         <Footer />
