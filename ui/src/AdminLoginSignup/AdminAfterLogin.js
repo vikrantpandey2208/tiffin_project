@@ -31,7 +31,7 @@ const AdminAfterLogin = () => {
   };
 
   let detail = getSellerDetails();
-  if (detail != null) console.log(detail.token, "Details of seller");
+  // if (detail != null) console.log(detail.token, "Details of seller");
   return (
     <>
       <Grid container>
