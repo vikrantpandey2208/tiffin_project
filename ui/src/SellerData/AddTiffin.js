@@ -204,9 +204,9 @@ export const AddTiffin = () => {
                 error={formik.touched.brand && Boolean(formik.errors.brand)}
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.brand && formik.errors.brand}
+                margin="dense"
               />
-              <br />
-              <br />
+              
               <TextField
                 label="price of your Tiffin"
                 name="price"
@@ -217,19 +217,23 @@ export const AddTiffin = () => {
                 error={formik.touched.price && Boolean(formik.errors.price)}
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.price && formik.errors.price}
+                margin="dense"
               />
-              <br />
-              <br />
+              
               {/* Radio Button */}
-              <Grid container>
+              <Grid container direction="row">
                 <FormControl>
+                
                   <FormLabel
                     id="demo-controlled-radio-buttons-group"
                     style={{ color: "#00000099" }}
                   >
                     Category
                   </FormLabel>
-                  <RadioGroup
+                  
+                
+                
+                <RadioGroup
                     aria-labelledby="demo-controlled-radio-buttons-group"
                     name="category"
                     value={formik.values.category}
@@ -246,16 +250,30 @@ export const AddTiffin = () => {
                       label="non-veg"
                     />
                   </RadioGroup>
+                
                 </FormControl>
               </Grid>
-              <br />
-              <br />
+              
+              
               {/* //Upload Images  */}
               <Typography variant="h5" style={{ color: "#00000099" }}>
                 <UploadIcon /> Upload images{" "}
               </Typography>
               <br />
               {/* image1 */}
+             
+              {
+                Array.from(images1).map(item => {
+                  return (
+                    <span>
+                      <img
+                        style={{ padding: '10px' }}
+                        width={150} height={100}
+                        src={item ? URL.createObjectURL(item) : null} />
+                    </span>
+                  )
+                })
+              }
               <Button
                 onClick={() => {
                   fileRef1.current.click();
@@ -265,6 +283,7 @@ export const AddTiffin = () => {
                 <input
                   ref={fileRef1}
                   hidden
+                  required
                   type="file"
                   name="image1"
                   onChange={(event) => {
@@ -274,7 +293,7 @@ export const AddTiffin = () => {
                   }}
                   value={formik.values.image1}
                 />{" "}
-                Upload
+               Image1
               </Button>
               <br />
               <br />
@@ -287,6 +306,7 @@ export const AddTiffin = () => {
               >
                 <input
                   ref={fileRef2}
+                  required
                   hidden
                   type="file"
                   name="image2"
@@ -297,10 +317,11 @@ export const AddTiffin = () => {
                   }}
                   value={formik.values.image2}
                 />{" "}
-                Upload
+                Image2
               </Button>
               <br /> <br />
               {/* image3 */}
+              
               <Button
                 onClick={() => {
                   fileRef3.current.click();
@@ -309,6 +330,7 @@ export const AddTiffin = () => {
               >
                 <input
                   ref={fileRef3}
+                  required
                   hidden
                   type="file"
                   name="image3"
@@ -319,7 +341,7 @@ export const AddTiffin = () => {
                   }}
                   value={formik.values.image3}
                 />{" "}
-                Upload
+                Image3
               </Button>
               <br /> <br />
               {/* image4 */}
@@ -331,6 +353,7 @@ export const AddTiffin = () => {
               >
                 <input
                   ref={fileRef4}
+                  required
                   hidden
                   type="file"
                   name="image4"
@@ -341,8 +364,9 @@ export const AddTiffin = () => {
                   }}
                   value={formik.values.image4}
                 />{" "}
-                Upload
+                Image4
               </Button>
+              <br />
               <br />
               <Button
                 onClick={() => {
@@ -350,9 +374,10 @@ export const AddTiffin = () => {
                 }}
                 variant="contained"
               >
-                Upload to server That is good way to improve UX
+                Upload 
               </Button>
               <br />
+              <br/>
               <TextField
                 label="Enter Food Item "
                 name="fooditem"
@@ -406,10 +431,11 @@ export const AddTiffin = () => {
                 >
                   click here
                 </Button>
-                <span>
+                <span style={{display:'none'}}>
                   <p id="locationText"></p>
                 </span>
               </Grid>
+              <br/>
               <Button
                 type="submit"
                 variant="contained"

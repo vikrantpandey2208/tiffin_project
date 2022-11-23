@@ -101,9 +101,9 @@ const Login = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        
         <Grid container>
-          <Paper elevation={10} style={paperStyle}>
+          <Paper elevation={0} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
                 <LockOutlined />

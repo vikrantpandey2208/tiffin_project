@@ -6,8 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import TiffinAdminLogin from '../AdminLoginSignup/TiffinAdminLogin'
 import React from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Login from '../Pages/Login.js'
 
 
 
@@ -23,6 +22,7 @@ const useStyle = {
 export default function Navbar(){
 
     const [showDialog, setShowDialog] = React.useState(false);
+    const [showDialogLogin, setShowDialogLogin] = React.useState(false);
 
     const openDialog = () => {
         setShowDialog(true);
@@ -32,14 +32,16 @@ export default function Navbar(){
         setShowDialog(false)
     }
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+    
+    const openDialogLogin = () => {
+        setShowDialogLogin(true);
+    }
+
+    const closeDialogLogin = () => {
+        setShowDialogLogin(false)
+    }
+
+   
 
     return(
         <>
@@ -51,36 +53,18 @@ export default function Navbar(){
                Just Dabba
              </Typography>
              
-             <Button component={Link} to='/' color="inherit" > <HomeIcon style={{fontSize:'20px'}}/> Home</Button>
-             <Button
-                id="demo-positioned-button"
-                aria-controls={open ? 'demo-positioned-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-                color="inherit"                
-             >
-                <LoginIcon style={{fontSize:'20px'}} /> Login
-            </Button>
-            <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-                }}
-                transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-                }}
-            >
-                <MenuItem onClick={handleClose} component={Link} to='/login'>Login</MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to='/signup'>Signup</MenuItem>
-                
-            </Menu>             
+             <Button component={Link} to='/' color="inherit" > <HomeIcon style={{fontSize:'20px'}}/> Home</Button>          
+
+            <Button onClick={openDialogLogin} color="inherit"  ><LoginIcon style={{fontSize:'20px'}} />Login</Button>
+             <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
+                <DialogContent>
+                <Login/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDialogLogin}>close</Button>
+                </DialogActions>              
+             </Dialog>
+
              <Button onClick={openDialog} color="inherit"  >  AddYourTiffin</Button>
              <Dialog open={showDialog} onClose={closeDialog} >
                 <DialogContent>
