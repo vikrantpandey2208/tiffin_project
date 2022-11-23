@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import { Footer } from "./Footer";
 import ConfirmOrder from "../Order/ConfirmOrder";
 import CustomerOrder from "../Order/CustomerOrder";
+import SellerOrder from "../Order/SellerOrder";
 
 const theme = createTheme({
   palette: {
@@ -39,6 +40,7 @@ function HomeComponent() {
         <Container>
           <BodySection />
           <CustomerOrder />
+          {/* <SellerOrder /> */}
           <TiffinSection />
         </Container>
         <Footer />
