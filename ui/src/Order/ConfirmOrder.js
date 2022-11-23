@@ -24,7 +24,7 @@ const ConfirmOrder = () => {
     }
   }
 
-  return <div>ConfirmOrder</div>;
+  return <div></div>;
 };
 
 export default ConfirmOrder;

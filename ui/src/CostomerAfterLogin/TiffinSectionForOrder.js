@@ -15,7 +15,7 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
-class TiffinSection extends React.Component {
+class TiffinSectionForOrder extends React.Component {
   constructor() {
     super();
 
@@ -39,7 +39,7 @@ class TiffinSection extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      // console.log(response, response.data);
+      console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
       console.log("failed in fetching tiffins", response.message);
@@ -49,11 +49,11 @@ class TiffinSection extends React.Component {
     const { tiffins } = this.state;
     return (
       <>
-        {" "}
-        <Grid mt={10} container spacing={3}>
+        
+        <Grid mt={5}  justifyContent="center" container spacing={3}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3} style={{}} key={product._id}>
+              <Grid item sm={2} style={{}} key={product._id}>
                 <Paper elevation={24}>
                   <Card sx={{ maxWidth: 345 }} variant="contained">
                     <CardActionArea>
@@ -87,7 +87,7 @@ class TiffinSection extends React.Component {
                             <Typography
                               style={{ color: "white", fontSize: "15px" }}
                             >
-                              {product.rating}{" "}
+                              3.5{" "}
                               <StarIcon
                                 size="small"
                                 style={{ color: "white", fontSize: "13px" }}
@@ -136,4 +136,4 @@ class TiffinSection extends React.Component {
   }
 }
 
-export default TiffinSection;
+export default TiffinSectionForOrder;

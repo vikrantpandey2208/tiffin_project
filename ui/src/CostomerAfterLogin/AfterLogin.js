@@ -6,6 +6,8 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { GetLoggedUser } from "../Auth/Logged-Seller";
+import TiffinSectionForOrder from "./TiffinSectionForOrder";
+import { Footer } from "../Component.js/Footer";
 
 // name
 function getUserDetails() {
@@ -77,8 +79,12 @@ const AfterLogin = () => {
               <UserProfileMenu />
             </Button>
           </Toolbar>
-        </AppBar>
-      </Grid>
+        </AppBar>        
+        </Grid>     
+      <Grid container>
+      <TiffinSectionForOrder/>
+      </Grid>      
+      <Footer />     
     </>
   );
 };
