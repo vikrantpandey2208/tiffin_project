@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AfterLogin from "../CostomerAfterLogin/AfterLogin";
 import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavBarCostomerProfile } from "./NavBarCostomerProfile";
+import { GetLoggedUser } from "../Auth/Logged-Seller";
 
 const paperStyle = {
   padding: 20,
@@ -17,14 +18,13 @@ const fontStyle = {
 };
 
 export const CostomerProfile = (props) => {
-  
   const [firstName, setFirstName] = React.useState("Karan");
   const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
 
-  const [lastName, setLastName] = React.useState("khatik");
+  const [lastName, setLastName] = React.useState("lastname");
   const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
 
-  const [email, setEmail] = React.useState("this@mail.com");
+  const [email, setEmail] = React.useState("email");
   const [isEmailFocused, setIsEmailFocused] = React.useState(false);
 
   //Saved data
@@ -33,6 +33,21 @@ export const CostomerProfile = (props) => {
   function handleSave(e) {
     setSave("saved");
   }
+  function getUserDetails() {
+    let user = GetLoggedUser();
+
+    // console.log(user.token, "user profile");
+    if (user != null) {
+      let token = user.token;
+      setFirstName(token.firstname);
+      setLastName(token.lastname);
+      setEmail(token.email);
+    }
+  }
+
+  useEffect(() => {
+    getUserDetails();
+  });
 
   return (
     <>
@@ -60,7 +75,6 @@ export const CostomerProfile = (props) => {
               variant="h5"
               style={{
                 color: "#00000099",
-               
               }}
             >
               First name
@@ -90,7 +104,7 @@ export const CostomerProfile = (props) => {
             <Typography
               variant="h5"
               style={{
-                color: "#00000099",              
+                color: "#00000099",
               }}
             >
               Last name
@@ -121,7 +135,6 @@ export const CostomerProfile = (props) => {
               variant="h5"
               style={{
                 color: "#00000099",
-                
               }}
             >
               Email

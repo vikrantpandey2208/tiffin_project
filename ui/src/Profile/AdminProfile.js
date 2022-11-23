@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
 import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavBarSellerProfile } from "./NavBarSellerProfile";
+import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
 const paperStyle = {
   padding: 20,
@@ -17,13 +18,13 @@ const fontStyle = {
 };
 
 export const AdminProfile = () => {
-  const [firstName, setFirstName] = React.useState("Karan");
+  const [firstName, setFirstName] = React.useState("firstname");
   const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
 
-  const [lastName, setLastName] = React.useState("khatik");
+  const [lastName, setLastName] = React.useState("lastname");
   const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
 
-  const [email, setEmail] = React.useState("this@mail.com");
+  const [email, setEmail] = React.useState("email");
   const [isEmailFocused, setIsEmailFocused] = React.useState(false);
 
   //Saved data
@@ -32,6 +33,22 @@ export const AdminProfile = () => {
   function handleSave(e) {
     setSave("saved");
   }
+
+  function getSellerDetails() {
+    let user = GetLoggedSeller();
+
+    // console.log(user.token, "user profile");
+    if (user != null) {
+      let token = user.token;
+      setFirstName(token.firstname);
+      setLastName(token.lastname);
+      setEmail(token.email);
+    }
+  }
+
+  useEffect(() => {
+    getSellerDetails();
+  });
 
   return (
     <>
@@ -58,7 +75,6 @@ export const AdminProfile = () => {
               variant="h5"
               style={{
                 color: "#00000099",
-                
               }}
             >
               First name
@@ -89,7 +105,6 @@ export const AdminProfile = () => {
               variant="h5"
               style={{
                 color: "#00000099",
-                
               }}
             >
               Last name
@@ -120,7 +135,6 @@ export const AdminProfile = () => {
               variant="h5"
               style={{
                 color: "#00000099",
-                
               }}
             >
               Email
