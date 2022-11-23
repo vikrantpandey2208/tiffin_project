@@ -37,8 +37,7 @@ function HomeComponent() {
       <ThemeProvider theme={theme}>
         <Navbar />
         <Container>
-          <BodySection />
-          <CustomerOrder />
+          <BodySection />         
           <TiffinSection />
         </Container>
         <Footer />

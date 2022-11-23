@@ -1,6 +1,6 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -25,9 +25,12 @@ const theme = createTheme({
 });
 
 const TiffinAdminSignup = () => {
+
+  const navigate = useNavigate();
+
   const paperStyle = {
     padding: 10,
-    height: "80vh",
+    height: "",
     width: "400px",
     margin: "20px auto",
   };
@@ -82,7 +85,7 @@ const TiffinAdminSignup = () => {
 
     const response = await Fetch(path, data);
     if (response.success) {
-      console.log("Seller Sign up successful");
+      navigate("/")
     } else {
       console.log("Sign up failed", response.message);
     }
@@ -172,16 +175,6 @@ const TiffinAdminSignup = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
-              <input
-                id="file"
-                name="file"
-                type="file"
-                onChange={(event) => {
-                  let data = event.target.files[0];
-                  signUpApi(data);
-                  console.log("event", event.target.files[0]);
-                }}
-              />
               <Button
                 type="submit"
                 variant="contained"

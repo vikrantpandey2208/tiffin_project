@@ -15,7 +15,6 @@ export default function AddYourTiffin(){
                Just Dabba
              </Typography>
                 <Button component={Link} to='/' color="inherit" startIcon={<HomeIcon/>}>Home</Button>
-                <Button component={Link} to='/loginadmin' color="inherit" startIcon={<LoginIcon/>}>Login</Button>
                 <Button component={Link} to='/signupadmin' color="inherit" startIcon={<ControlPointIcon/>}>Signup</Button>                
             </Toolbar>            
         </AppBar>        

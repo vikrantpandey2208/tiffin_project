@@ -1,11 +1,12 @@
 import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBar, Typography, Button, Toolbar, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SellerDashBoard from "./SellerDashBoard";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
+
 
 function getSellerDetails() {
   let user = GetLoggedSeller();
@@ -13,6 +14,9 @@ function getSellerDetails() {
 }
 
 const AdminAfterLogin = () => {
+
+  const navigate = useNavigate();
+
   const logout = async () => {
     console.log("fired seller logout");
     const obj = getFromStorage("tiffin_app_seller");
@@ -21,7 +25,7 @@ const AdminAfterLogin = () => {
       const response = await Get("/api/seller-logout?token=" + token._id);
       localStorage.removeItem("tiffin_app_seller");
       if (response.success) {
-        console.log("seller Logged out navigate to login");
+        navigate("/")
       } else {
         console.log("Error", response.message);
       }

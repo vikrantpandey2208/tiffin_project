@@ -81,7 +81,7 @@ const AfterLogin = () => {
           </Toolbar>
         </AppBar>        
         </Grid>     
-      <Grid container>
+      <Grid container >
       <TiffinSectionForOrder/>
       </Grid>      
       <Footer />     
