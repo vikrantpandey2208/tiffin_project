@@ -17,6 +17,7 @@ const fontStyle = {
 };
 
 export const CostomerProfile = (props) => {
+  
   const [firstName, setFirstName] = React.useState("Karan");
   const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
 

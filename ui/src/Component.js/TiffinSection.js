@@ -26,7 +26,11 @@ class TiffinSection extends React.Component {
     this.state = {
       tiffins: [],
       showDialogLogin:false,
-    }; 
+    };
+    this.openDialogLogin = this.openDialogLogin.bind(this);
+    this.closeDialogLogin = this.closeDialogLogin.bind(this);
+     
+
 
   }
   openDialogLogin() {
