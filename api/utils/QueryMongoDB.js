@@ -30,6 +30,7 @@ function searchTiffin(longitude, latitude, callback) {
 
     (err, tiffins) => {
       if (err) {
+        console.log(err);
         callback(err, false);
       } else {
         callback(tiffins, true);
@@ -47,6 +48,7 @@ function getCustomerOrders(userId, callback) {
         $project: {
           _id: 1,
           b_id: { $toObjectId: "$tiffinId" },
+          dateofentry: 1,
         },
       },
       {

@@ -20,6 +20,7 @@ module.exports = (app) => {
       dishWithCount,
       detailsOfTiffin,
       additionalDetail,
+      category,
     } = data;
     const { longitude, latitude } = data;
 
@@ -43,12 +44,6 @@ module.exports = (app) => {
     }
     const brandName = titleCase(brand);
 
-    let tempId = "6374e8790e9772be859efcdc";
-
-    // getSellersTiffin(tempId, function (result) {
-    //   console.log("callback", result);
-    // });
-
     // Save the new tiffin
     const newTiffin = new Tiffin();
     newTiffin.sellerId = sellerId;
@@ -61,6 +56,7 @@ module.exports = (app) => {
     newTiffin.photo2 = data.photo2;
     newTiffin.photo3 = data.photo3;
     newTiffin.photo4 = data.photo4;
+    newTiffin.category = data.category;
     newTiffin.location = {
       name: data.addr,
       type: "Point",

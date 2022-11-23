@@ -1,9 +1,9 @@
 export function hasLocationAccess() {
   if ("geolocation" in navigator) {
-    console.log("Available");
+    // console.log("Available");
     return true;
   } else {
-    console.log("Not Available");
+    console.log("Location Not Available");
     return false;
   }
 }

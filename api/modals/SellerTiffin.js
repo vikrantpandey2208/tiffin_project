@@ -35,6 +35,9 @@ const SellerTiffinSchema = new mongoose.Schema({
   additionalDetail: {
     type: String,
   },
+  category: {
+    type: String,
+  },
   dateofentry: {
     type: Date,
     default: Date.now(),
@@ -66,6 +69,7 @@ const SellerTiffinSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
+    default: 3,
     min: 0,
     max: 5,
   },

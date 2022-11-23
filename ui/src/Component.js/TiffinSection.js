@@ -86,7 +86,7 @@ class TiffinSection extends React.Component {
                             <Typography
                               style={{ color: "white", fontSize: "15px" }}
                             >
-                              3.5{" "}
+                              {product.rating}{" "}
                               <StarIcon
                                 size="small"
                                 style={{ color: "white", fontSize: "13px" }}

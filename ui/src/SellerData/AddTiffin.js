@@ -1,4 +1,6 @@
-import React, {useRef} from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { Fetch } from "../dbFetch.js";
+
 import {
   Grid,
   Paper,
@@ -18,12 +20,12 @@ import FormControl from "@mui/material/FormControl";
 import UploadIcon from "@mui/icons-material/Upload";
 import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
-import FormLabel from '@mui/material/FormLabel';
+import FormLabel from "@mui/material/FormLabel";
 
-// import { UploadImage } from "../dbFetch.js";
-// import { hasLocationAccess, getCurrentLocation } from "../Location";
+import { UploadImage } from "../dbFetch.js";
+import { hasLocationAccess, getCurrentLocation } from "../Location";
 
-
+import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
 const theme = createTheme({
   palette: {
@@ -44,65 +46,155 @@ const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
 export const AddTiffin = () => {
-
-
   const fileRef1 = useRef();
   const fileRef2 = useRef();
   const fileRef3 = useRef();
   const fileRef4 = useRef();
 
-
   const formik = useFormik({
-        initialValues: {
-          brand: "",
-          price: "",
-          category:"",
-          fooditem:"",
-          about:"",
-          address:"",
-          image1:"",
-          image2:"",
-          image3:"",
-          image4:"",
-        },
-        validationSchema: yup.object({
-          brand: yup.string().required("required"),
-          price: yup.number().required("required"),
-          category: yup.string().required("required"),          
-          fooditem: yup.string().required("required"),
-          about: yup.string().required("required"),
-          address: yup.string().required("required"),
-        }),
-        onSubmit: (values) => {
-          console.log(values)     
-        },
-      });
+    initialValues: {
+      brand: "",
+      price: "",
+      category: "",
+      fooditem: "",
+      about: "",
+      address: "",
+      image1: "",
+      image2: "",
+      image3: "",
+      image4: "",
+    },
+    validationSchema: yup.object({
+      brand: yup.string().required("required"),
+      price: yup.number().required("required"),
+      category: yup.string().required("required"),
+      fooditem: yup.string().required("required"),
+      about: yup.string().required("required"),
+      address: yup.string().required("required"),
+    }),
+    onSubmit: (values) => {
+      SellerAddTiffin(values);
+    },
+  });
 
-      const [location, setLocation] = React.useState();
+  const [images1, setImages1] = useState([]);
+  const [images2, setImages2] = useState([]);
+  const [images3, setImages3] = useState([]);
+  const [images4, setImages4] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
 
-      function handleLocation(){
-        setLocation()
+  async function handleImage() {
+    var image = [images1, images2, images3, images4];
+    // console.log(image, "Image");
+
+    image = await uploadImage(image);
+    setImageUrl(image);
+
+    console.log("returned ", image);
+    // setUpload("uploaded");
+  }
+  let imageUrlCloud = [];
+  async function uploadImage(image) {
+    const CLOUDINARY_URL =
+      "https://api.cloudinary.com/v1_1/dqdovhtp1/image/upload";
+
+    for (let i = 0; i < 4; i++) {
+      if (image[i].length === 0) {
+        continue;
       }
+      const formData = new FormData();
 
-      
+      formData.append("file", image[i]);
+      formData.append("upload_preset", "default-preset");
 
+      const dataRes = await UploadImage(CLOUDINARY_URL, formData, true);
+      imageUrlCloud.push(dataRes.url);
+    }
 
+    return imageUrlCloud;
+  }
+
+  const [location, setLocation] = React.useState("");
+
+  useEffect(() => {
+    const e = document.getElementById("locationText");
+    e.innerText = location;
+  });
+
+  const handleLocation = () => {
+    if (hasLocationAccess()) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          let lt = [];
+          lt.push(position.coords.latitude);
+          lt.push(position.coords.longitude);
+          setLocation(lt);
+        },
+        function (error) {
+          console.error("Error Code = " + error.code + " - " + error.message);
+        },
+      );
+      // e.innerHTML(position);
+    } else {
+      // e.innerHTML("Allow Location access");
+    }
+  };
+
+  function getSellerDetails() {
+    let user = GetLoggedSeller();
+    return user.token._id;
+  }
+
+  async function SellerAddTiffin(value) {
+    let idOfUser = getSellerDetails();
+
+    if (idOfUser == null) {
+      console.log("Session expired redirect to login with alert");
+      return;
+    }
+
+    let data = {
+      additionalDetail: "Additional details not provided",
+      detailsOfTiffin: value.about,
+      dishWithCount: value.fooditem,
+      price: value.price,
+      brand: value.brand,
+      category: value.category,
+      sellerId: idOfUser,
+      addr: value.address,
+      longitude: location[1],
+      latitude: location[0],
+      photo1: imageUrl[0],
+      photo2: imageUrl[1],
+      photo3: imageUrl[2],
+      photo4: imageUrl[3],
+    };
+    // console.log(data, "Prepared data");
+
+    const path = "/api/seller-add-tiffin";
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Tiffin Saved");
+    } else {
+      console.log("Tiffin not saved", response.message);
+    }
+  }
 
   return (
     <>
-        <ThemeProvider theme={theme}>
-            <AdminAfterLogin />
-            <Grid container>
-              <Paper elevation={10} style={paperStyle}>
-                <Grid align="center">
-                  <Avatar style={avatarStyle}>
-                    <AddBusinessIcon />
-                  </Avatar>
-                  <h1 style={{ color: "#ff386a" }}>AddTiffin</h1>
-                </Grid>
+      <ThemeProvider theme={theme}>
+        <AdminAfterLogin />
+        <Grid container>
+          <Paper elevation={10} style={paperStyle}>
+            <Grid align="center">
+              <Avatar style={avatarStyle}>
+                <AddBusinessIcon />
+              </Avatar>
+              <h1 style={{ color: "#ff386a" }}>AddTiffin</h1>
+            </Grid>
 
-             <form onSubmit={formik.handleSubmit}>
-               <TextField
+            <form onSubmit={formik.handleSubmit}>
+              <TextField
                 label="Name of tiffin service"
                 name="brand"
                 placeholder="Enter name"
@@ -130,90 +222,136 @@ export const AddTiffin = () => {
               <br />
               {/* Radio Button */}
               <Grid container>
-              <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group" style={{color: "#00000099" }}>Category</FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="category"
-                  value={formik.values.category}
-                  onChange={formik.handleChange}
-                >
-                  <FormControlLabel value="veg" control={<Radio />} label="veg" />
-                  <FormControlLabel value="nonveg" control={<Radio />} label="non-veg" />
-                </RadioGroup>
-              </FormControl>       
+                <FormControl>
+                  <FormLabel
+                    id="demo-controlled-radio-buttons-group"
+                    style={{ color: "#00000099" }}
+                  >
+                    Category
+                  </FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-controlled-radio-buttons-group"
+                    name="category"
+                    value={formik.values.category}
+                    onChange={formik.handleChange}
+                  >
+                    <FormControlLabel
+                      value="veg"
+                      control={<Radio />}
+                      label="veg"
+                    />
+                    <FormControlLabel
+                      value="nonveg"
+                      control={<Radio />}
+                      label="non-veg"
+                    />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
               <br />
               <br />
-
               {/* //Upload Images  */}
-
-             
-              <Typography variant="h5" style={{ color: "#00000099" }}>                
+              <Typography variant="h5" style={{ color: "#00000099" }}>
                 <UploadIcon /> Upload images{" "}
-              </Typography><br/> 
-
-               {/* image1 */}            
-              <Button onClick={() => {
-                fileRef1.current.click();
-              }} variant="contained">
-                <input 
-                ref={fileRef1}
+              </Typography>
+              <br />
+              {/* image1 */}
+              <Button
+                onClick={() => {
+                  fileRef1.current.click();
+                }}
+                variant="contained"
+              >
+                <input
+                  ref={fileRef1}
                   hidden
-                  type='file'
+                  type="file"
                   name="image1"
-                  onChange={formik.handleChange}
+                  onChange={(event) => {
+                    setImages1(event.target.files[0]);
+                    // let data = event.target.files[0];
+                    // signUpApi(data);
+                  }}
                   value={formik.values.image1}
-                />  Upload                              
-              </Button>           
-              <br /> 
-              <br/>
-
-               {/* image2 */}            
-              <Button onClick={() => {
-                fileRef2.current.click();
-              }} variant="contained">
-                <input 
-                ref={fileRef2}
+                />{" "}
+                Upload
+              </Button>
+              <br />
+              <br />
+              {/* image2 */}
+              <Button
+                onClick={() => {
+                  fileRef2.current.click();
+                }}
+                variant="contained"
+              >
+                <input
+                  ref={fileRef2}
                   hidden
-                  type='file'
+                  type="file"
                   name="image2"
-                  onChange={formik.handleChange}
+                  onChange={(event) => {
+                    setImages2(event.target.files[0]);
+                    // let data = event.target.files[0];
+                    // signUpApi(data);
+                  }}
                   value={formik.values.image2}
-                />  Upload                              
-              </Button>           
-              <br /> <br/>
-
-               {/* image3 */}            
-              <Button onClick={() => {
-                fileRef3.current.click();
-              }} variant="contained">
-                <input 
-                ref={fileRef3}
+                />{" "}
+                Upload
+              </Button>
+              <br /> <br />
+              {/* image3 */}
+              <Button
+                onClick={() => {
+                  fileRef3.current.click();
+                }}
+                variant="contained"
+              >
+                <input
+                  ref={fileRef3}
                   hidden
-                  type='file'
+                  type="file"
                   name="image3"
-                  onChange={formik.handleChange}
+                  onChange={(event) => {
+                    setImages3(event.target.files[0]);
+                    // let data = event.target.files[0];
+                    // signUpApi(data);
+                  }}
                   value={formik.values.image3}
-                />  Upload                              
-              </Button>           
-              <br /> <br/>
-
-               {/* image4 */}            
-              <Button onClick={() => {
-                fileRef4.current.click();
-              }} variant="contained">
-                <input 
-                ref={fileRef4}
+                />{" "}
+                Upload
+              </Button>
+              <br /> <br />
+              {/* image4 */}
+              <Button
+                onClick={() => {
+                  fileRef4.current.click();
+                }}
+                variant="contained"
+              >
+                <input
+                  ref={fileRef4}
                   hidden
-                  type='file'
+                  type="file"
                   name="image4"
-                  onChange={formik.handleChange}
+                  onChange={(event) => {
+                    setImages4(event.target.files[0]);
+                    // let data = event.target.files[0];
+                    // signUpApi(data);
+                  }}
                   value={formik.values.image4}
-                />  Upload                              
-              </Button>           
-              <br />              
-
+                />{" "}
+                Upload
+              </Button>
+              <br />
+              <Button
+                onClick={() => {
+                  handleImage();
+                }}
+                variant="contained"
+              >
+                Upload to server That is good way to improve UX
+              </Button>
               <br />
               <TextField
                 label="Enter Food Item "
@@ -257,10 +395,21 @@ export const AddTiffin = () => {
               <br />
               <br />
               <Grid container>
-              <Typography><AddLocationAltIcon style={{color:'green'}}/> Give Current Location</Typography>
-              <Button onClick={handleLocation} variant="contained" style={{marginLeft:'50px'}}>click here</Button>
+                <Typography>
+                  <AddLocationAltIcon style={{ color: "green" }} /> Give Current
+                  Location
+                </Typography>
+                <Button
+                  onClick={handleLocation}
+                  variant="contained"
+                  style={{ marginLeft: "50px" }}
+                >
+                  click here
+                </Button>
+                <span>
+                  <p id="locationText"></p>
+                </span>
               </Grid>
-
               <Button
                 type="submit"
                 variant="contained"
@@ -276,6 +425,5 @@ export const AddTiffin = () => {
         </Grid>
       </ThemeProvider>
     </>
-  )
-}
-
+  );
+};
