@@ -15,7 +15,7 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
-class TiffinSection extends React.Component {
+class TiffinSectionForOrder extends React.Component {
   constructor() {
     super();
 
@@ -49,11 +49,11 @@ class TiffinSection extends React.Component {
     const { tiffins } = this.state;
     return (
       <>
-        {" "}
-        <Grid mt={10} container spacing={3}>
+        
+        <Grid mt={5}  justifyContent="center" container spacing={3}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3} style={{}} key={product._id}>
+              <Grid item sm={2} style={{}} key={product._id}>
                 <Paper elevation={24}>
                   <Card sx={{ maxWidth: 345 }} variant="contained">
                     <CardActionArea>
@@ -136,4 +136,4 @@ class TiffinSection extends React.Component {
   }
 }
 
-export default TiffinSection;
+export default TiffinSectionForOrder;

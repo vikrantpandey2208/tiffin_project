@@ -37,7 +37,6 @@ function HomeComponent() {
         <Navbar />
         <Container>
           <BodySection />
-          <ConfirmOrder />
           <TiffinSection />
         </Container>
         <Footer />
