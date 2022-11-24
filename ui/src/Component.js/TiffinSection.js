@@ -11,9 +11,11 @@ import {
   CardActions,
   Button,
   Paper,
-  Dialog, DialogContent, DialogActions
+  Dialog,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
-import Login from '../Pages/Login.js'
+import Login from "../Pages/Login.js";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
@@ -25,10 +27,10 @@ class TiffinSection extends React.Component {
 
     this.state = {
       tiffins: [],
-      showDialogLogin:false,
+      showDialogLogin: false,
     };
-   }
- 
+  }
+
   componentDidMount() {
     let data = {
       userId: "demoid",
@@ -59,12 +61,16 @@ class TiffinSection extends React.Component {
             return (
               <Grid item sm={3} style={{}} key={product._id}>
                 <Paper elevation={24}>
-                  <Card sx={{ maxWidth: 365 }} variant="contained">
+                  <Card
+                    sx={{ maxWidth: 300, maxHeight: 400 }}
+                    variant="contained"
+                  >
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        image={product.photo2}
+                        image={product.photo1}
                         alt="Tiffin img"
+                        height="250px"
                       />
 
                       <CardContent>
@@ -113,8 +119,6 @@ class TiffinSection extends React.Component {
                             {product.price}
                           </Typography>
                         </Grid>
-
-                        
                       </CardContent>
                     </CardActionArea>
 
@@ -124,11 +128,10 @@ class TiffinSection extends React.Component {
                         variant="contained"
                         style={{ alignContent: "left", fontSize: "11px" }}
                         component={Link}
-                        to='/login'
+                        to="/login"
                       >
                         Order
                       </Button>
-                      
                     </CardActions>
                   </Card>
                 </Paper>
