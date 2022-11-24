@@ -65,16 +65,7 @@ const AfterLogin = () => {
           <Toolbar>
             <Typography variant="h5" flexGrow={1}>
               Just Dabba
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+            </Typography>           
             <Button variant="h6" component={Link}>
               <UserProfileMenu />
             </Button>

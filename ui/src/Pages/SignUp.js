@@ -27,7 +27,7 @@ const theme = createTheme({
 const SignUp = () => {
   const paperStyle = {
     padding: 20,
-    height: "80vh",
+    height: "",
     width: "500px",
     margin: "20px auto",
   };

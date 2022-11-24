@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import AfterLogin from "../CostomerAfterLogin/AfterLogin";
 import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import { NavBarCostomerProfile } from "./NavBarCostomerProfile";
 import { GetLoggedUser } from "../Auth/Logged-Seller";
 
 const paperStyle = {
   padding: 20,
-  height: "75vh",
+  height: "",
   width: "400px",
   margin: "20px auto",
 };
@@ -18,7 +17,7 @@ const fontStyle = {
 };
 
 export const CostomerProfile = (props) => {
-  const [firstName, setFirstName] = React.useState("Karan");
+  const [firstName, setFirstName] = React.useState("firstname");
   const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
 
   const [lastName, setLastName] = React.useState("lastname");
@@ -51,9 +50,9 @@ export const CostomerProfile = (props) => {
 
   return (
     <>
-      <NavBarCostomerProfile />
+      
       <Grid container>
-        <Paper elevation={10} style={paperStyle}>
+        <Paper elevation={0} style={paperStyle}>
           <Typography
             ml={12}
             variant="h4"
@@ -159,11 +158,11 @@ export const CostomerProfile = (props) => {
             )}
           </div>
           <br />
-          <Grid ml={15}>
+          {/* <Grid ml={15}>
             <Button variant="contained" component="label" onClick={handleSave}>
               {save}
             </Button>
-          </Grid>
+          </Grid> */}
         </Paper>
       </Grid>
     </>

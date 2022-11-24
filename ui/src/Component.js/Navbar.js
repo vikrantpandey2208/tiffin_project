@@ -13,7 +13,6 @@ import Login from '../Pages/Login.js'
 
 const useStyle = {
     display:'none',
-    
 }
 
 
@@ -49,7 +48,7 @@ export default function Navbar(){
          <AppBar position="static" color='primary'>
             <Toolbar >
                 
-              <Typography variant="h6" style={{flexGrow:1}} >
+              <Typography variant="h6" style={{flexGrow:1, textDecoration:'none', color:'inherit', fontSize:'30px'}} component={Link} to='/' >
                Just Dabba
              </Typography>
              
@@ -65,7 +64,7 @@ export default function Navbar(){
                 </DialogActions>              
              </Dialog>
 
-             <Button onClick={openDialog} color="inherit"  >  AddYourTiffin</Button>
+             <Button onClick={openDialog} color="inherit"  >  AddTiffin</Button>
              <Dialog open={showDialog} onClose={closeDialog} >
                 <DialogContent>
                 <TiffinAdminLogin />

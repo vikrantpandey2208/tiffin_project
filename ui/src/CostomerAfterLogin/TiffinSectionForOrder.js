@@ -11,20 +11,48 @@ import {
   CardActions,
   Button,
   Paper,
+  Dialog, DialogContent, DialogActions, DialogTitle
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import ConfirmOrder from "../Order/ConfirmOrder.js";
 
 class TiffinSectionForOrder extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.getTiffinList = this.getTiffinList.bind(this);
+    this.openDialog = this.openDialog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+    this.handleConfirm = this.handleConfirm(this);
 
     this.state = {
       tiffins: [],
+      showDialog:false,
     };
   }
+
+  handleConfirm(){
+    this.setState(
+      {
+        showDialog:false
+      }
+    )
+  }
+
+  //Show Dialog box
+    openDialog(){
+      this.setState({
+        showDialog:true
+    })
+  }
+
+  closeDialog(){
+    this.setState({
+      showDialog:false
+  })
+  }
+
   componentDidMount() {
     let data = {
       userId: "demoid",
@@ -53,9 +81,9 @@ class TiffinSectionForOrder extends React.Component {
         <Grid mt={5}  justifyContent="center" container spacing={3}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={2} style={{}} key={product._id}>
+              <Grid item sm={3} style={{}} key={product._id}>
                 <Paper elevation={24}>
-                  <Card sx={{ maxWidth: 345 }} variant="contained">
+                  <Card sx={{ maxWidth: 365 }} variant="contained">
                     <CardActionArea>
                       <CardMedia
                         component="img"
@@ -87,7 +115,7 @@ class TiffinSectionForOrder extends React.Component {
                             <Typography
                               style={{ color: "white", fontSize: "15px" }}
                             >
-                              3.5{" "}
+                              {product.rating}{" "}
                               <StarIcon
                                 size="small"
                                 style={{ color: "white", fontSize: "13px" }}
@@ -118,12 +146,21 @@ class TiffinSectionForOrder extends React.Component {
                       <Button
                         size="small"
                         variant="contained"
-                        style={{ alignContent: "left", fontSize: "11px" }}
-                        component={Link}
-                        to="/login"
+                        style={{ alignContent: "left", fontSize: "11px" }} 
+                        onClick={this.openDialog}                       
                       >
                         Order
                       </Button>
+                      <Dialog open={this.state.showDialog} onClose={this.state.showDialog} >
+                        <DialogTitle>Confirm Your Order</DialogTitle>
+                        <DialogContent>
+                        <ConfirmOrder/>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={this.handleConfirm}>confirm</Button>
+                            <Button onClick={this.closeDialog}>cancel</Button>
+                        </DialogActions>              
+                      </Dialog> 
                     </CardActions>
                   </Card>
                 </Paper>

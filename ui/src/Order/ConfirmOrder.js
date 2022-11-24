@@ -24,7 +24,11 @@ const ConfirmOrder = () => {
     }
   }
 
-  return <div></div>;
+  return(
+    <>
+    <h1></h1>
+    </>
+  );
 };
 
 export default ConfirmOrder;

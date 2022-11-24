@@ -27,26 +27,8 @@ class TiffinSection extends React.Component {
       tiffins: [],
       showDialogLogin:false,
     };
-    this.openDialogLogin = this.openDialogLogin.bind(this);
-    this.closeDialogLogin = this.closeDialogLogin.bind(this);
-     
-
-
-  }
-  openDialogLogin() {
-    this.setState(
-      {
-        showDialogLogin:true
-      }
-    )
-  }
-  closeDialogLogin() {
-    this.setState(
-      {
-        showDialogLogin:true
-      }
-    )
-  }
+   }
+ 
   componentDidMount() {
     let data = {
       userId: "demoid",
@@ -77,7 +59,7 @@ class TiffinSection extends React.Component {
             return (
               <Grid item sm={3} style={{}} key={product._id}>
                 <Paper elevation={24}>
-                  <Card sx={{ maxWidth: 345 }} variant="contained">
+                  <Card sx={{ maxWidth: 365 }} variant="contained">
                     <CardActionArea>
                       <CardMedia
                         component="img"
@@ -141,18 +123,12 @@ class TiffinSection extends React.Component {
                         size="small"
                         variant="contained"
                         style={{ alignContent: "left", fontSize: "11px" }}
-                        onClick={this.openDialogLogin}
+                        component={Link}
+                        to='/login'
                       >
                         Order
                       </Button>
-                      <Dialog open={this.showDialogLogin} onClose={this.closeDialogLogin} >
-                      <DialogContent>
-                      <Login/>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.closeDialogLogin}>close</Button>
-                        </DialogActions>              
-                      </Dialog>
+                      
                     </CardActions>
                   </Card>
                 </Paper>

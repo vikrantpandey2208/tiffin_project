@@ -7,7 +7,7 @@ import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
 const paperStyle = {
   padding: 20,
-  height: "75vh",
+  height: "",
   width: "400px",
   margin: "20px auto",
 };
@@ -52,9 +52,9 @@ export const AdminProfile = () => {
 
   return (
     <>
-      <NavBarSellerProfile />
+      
       <Grid container>
-        <Paper elevation={10} style={paperStyle}>
+        <Paper elevation={0} style={paperStyle}>
           <Typography
             ml={12}
             variant="h4"
@@ -159,11 +159,11 @@ export const AdminProfile = () => {
             )}
           </div>
           <br />
-          <Grid ml={15}>
+          {/* <Grid ml={15}>
             <Button variant="contained" component="label" onClick={handleSave}>
               {save}
             </Button>
-          </Grid>
+          </Grid> */}
         </Paper>
       </Grid>
     </>

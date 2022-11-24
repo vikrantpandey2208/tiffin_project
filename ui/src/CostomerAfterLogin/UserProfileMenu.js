@@ -5,11 +5,26 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { Link} from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Dialog, DialogContent, DialogActions } from "@mui/material";
 
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
+import { CostomerProfile } from "../Profile/CostomerProfile.js";
 
 export default function UserProfileMenu() {
+
+  
+  
+  const [showDialogLogin, setShowDialogLogin] = React.useState(false);
+
+        const openDialogLogin = () => {
+          setShowDialogLogin(true);
+      }
+
+      const closeDialogLogin = () => {
+          setShowDialogLogin(false)
+      }
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -61,9 +76,18 @@ export default function UserProfileMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose} component={Link} to="/userprofile">
-          My account
+        <MenuItem onClick={handleClose}  >
+        <Button onClick={openDialogLogin}  color="inherit"  >Profile</Button>                  
         </MenuItem>
+        <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
+
+                <DialogContent>
+                <CostomerProfile/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDialogLogin}>close</Button>
+                </DialogActions>              
+             </Dialog>
         <MenuItem onClick={handleClose} component={Link}>
           My Order
         </MenuItem>

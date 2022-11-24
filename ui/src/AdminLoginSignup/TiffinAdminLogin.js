@@ -80,7 +80,7 @@ const TiffinAdminLogin = () => {
       <ThemeProvider theme={theme}>
         
         <Grid container>
-          <Paper elevation={1} style={paperStyle}>
+          <Paper elevation={0} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
                 <LockOutlined />

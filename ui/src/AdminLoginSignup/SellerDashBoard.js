@@ -4,8 +4,21 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Link } from 'react-router-dom';
+import { Dialog, DialogContent, DialogActions } from "@mui/material";
+import { AdminProfile } from '../Profile/AdminProfile';
+
 
 export default function BasicMenu() {
+
+  const [showDialogLogin, setShowDialogLogin] = React.useState(false);
+
+      const openDialogLogin = () => {
+        setShowDialogLogin(true);
+    }
+
+    const closeDialogLogin = () => {
+        setShowDialogLogin(false)
+    }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -39,7 +52,20 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose} component={Link} to='/adminprofile'>My account</MenuItem>
+        <MenuItem onClick={handleClose} >
+        <Button onClick={openDialogLogin}  color="inherit"  >Profile</Button> 
+        </MenuItem>
+        <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
+        <DialogActions>
+            <Button onClick={closeDialogLogin} variant="cobtained"></Button>
+        </DialogActions>
+        <DialogContent>
+        <AdminProfile/>
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={closeDialogLogin} >close</Button>
+        </DialogActions>              
+        </Dialog>
         <MenuItem onClick={handleClose} component={Link} to='/addtiffin' >Add Tiffin</MenuItem>
         <MenuItem onClick={handleClose}>Order</MenuItem>
       </Menu>
