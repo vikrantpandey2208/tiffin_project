@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography,Grid} from '@mui/material';
 import logo from '../Logo/justdabba.png';
 import './BodySection.css';
-import { borderRadius } from '@mui/system';
+
 
 const BodySection = () => {
     return (
@@ -21,21 +21,21 @@ const BodySection = () => {
             <img src={logo} width="400px" height="100px" align='center' alt='img' />                      
             </Grid>                     
         </Grid>
-        <Grid mt={5}>
-            <Typography variant='h1'><span style={{color:'#ff386a', }} >Customer  </span><span style={{color:'black', }}>can..</span> </Typography>
+        <Grid mt={8}>
+            <Typography variant='h2'><span style={{color:'#ff386a', }} >Customer  </span><span style={{color:'black', }}>can..</span> </Typography>
         </Grid>
 
-        <Grid mt={2} container spacing={4}  >
+        <Grid mt={1} container spacing={4}  >
               <Grid item> 
               <div className='usecase'>
                 Choose               
               </div>         
               </Grid> 
 
-              <Grid item> 
-              <div className='usecase'>
-               order
-              </div>         
+              <Grid item>                
+                <div className='usecase'>
+                order
+                </div>                    
               </Grid>
 
               <Grid item > 

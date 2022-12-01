@@ -14,16 +14,16 @@ export const Footer = () => {
   	 		<div className="footer-col">
   	 			<h4>Just Dabba</h4>
   	 			<ul>
-  	 				<li><Link href="#">about us</Link></li>
-  	 				<li><Link href="#">our services</Link></li>
-  	 				<li><Link href="#">privacy policy</Link></li>  	 				
+  	 				<li><Link to='/aboutus'>about us</Link></li>
+  	 				<li><Link to='/ourservices'>our services</Link></li>
+  	 				<li><Link to='privacy'>privacy policy</Link></li>  	 				
   	 			</ul>
   	 		</div>
   	 		<div className="footer-col">
   	 			<h4>get help</h4>
   	 			<ul>
-  	 				<li><Link href="#">FAQ</Link></li>  	 				
-  	 				<li><Link href="#">payment options</Link></li>
+  	 				<li><Link to='faq'>FAQ</Link></li>  	 				
+  	 				<li><Link to='contactus'>Contact Us</Link></li>
   	 			</ul>
   	 		</div>  	 		
   	 		<div className="footer-col">
@@ -35,6 +35,7 @@ export const Footer = () => {
   	 			</div>
   	 		</div>
   	 	</div>
+		<center><div className='credit'>Designed by Karan and Vikrant </div></center>
   	 </div>
   </footer>
 

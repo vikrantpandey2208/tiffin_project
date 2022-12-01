@@ -9,9 +9,6 @@ import Login from '../Pages/Login.js'
 
 
 
-const useStyle = {
-    display:'none',
-}
 
 
 
@@ -46,7 +43,7 @@ export default function Navbar(){
          <AppBar position="static" color='primary'>
             <Toolbar >
                 
-              <Typography variant="h6" style={{flexGrow:1, textDecoration:'none', color:'inherit', fontSize:'30px'}} component={Link} to='/' >
+              <Typography variant="h4" style={{flexGrow:1, textDecoration:'none', color:'inherit', fontSize:'25px'}} component={Link} to='/' >
                Just Dabba
              </Typography> 
              {/* Login Link  */}

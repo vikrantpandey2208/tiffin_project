@@ -79,13 +79,13 @@ class TiffinSectionForOrder extends React.Component {
     const { tiffins } = this.state;
     return (
       <>
-        <Grid mt={5} justifyContent="center" container spacing={3}>
+        <Grid ml={5} mr={5} mt={5}  container spacing={3}>
           {tiffins.map((product) => {
             return (
               <Grid item sm={3} style={{}} key={product._id}>
-                <Paper elevation={24}>
+                <Paper elevation={24} style={{width:'270px'}}>
                   <Card
-                    sx={{ maxWidth: 365, maxHeight: 400 }}
+                    sx={{width:275,height:350 }}
                     variant="contained"
                   >
                     <CardActionArea>
@@ -93,6 +93,7 @@ class TiffinSectionForOrder extends React.Component {
                         component="img"
                         image={product.photo1}
                         alt="Tiffin img"
+                        height=''
                       />
 
                       <CardContent>

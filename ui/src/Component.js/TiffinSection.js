@@ -56,21 +56,24 @@ class TiffinSection extends React.Component {
     return (
       <>
         {" "}
-        <Grid mt={10} container spacing={3}>
+        <Grid mt={10} container spacing={2}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3} style={{}} key={product._id}>
-                <Paper elevation={24}>
-                  <Card
-                    sx={{ maxWidth: 300, maxHeight: 400 }}
+              <Grid item sm={3}  key={product._id}>
+                <Paper elevation={24} style={{width:'270px'}}>
+                  <Card                    
                     variant="contained"
+                    sx={{width:275,height:350 }}
                   >
                     <CardActionArea>
                       <CardMedia
                         component="img"
                         image={product.photo1}
                         alt="Tiffin img"
-                        height="250px"
+                        
+                        height="250"
+                        
+                        
                       />
 
                       <CardContent>
@@ -89,7 +92,7 @@ class TiffinSection extends React.Component {
                             style={{
                               backgroundColor: "green",
                               borderRadius: "8px",
-                              width: "42px",
+                              width: "35px",
                               height: "25px",
                               textAlign: "center",
                             }}
@@ -122,8 +125,8 @@ class TiffinSection extends React.Component {
                       </CardContent>
                     </CardActionArea>
 
-                    <CardActions>
-                      {/* <Button
+                    {/* <CardActions>
+                      <Button
                         size="small"
                         variant="contained"
                         style={{ alignContent: "left", fontSize: "11px" }}
@@ -131,10 +134,10 @@ class TiffinSection extends React.Component {
                         to="/login"
                       >
                         Order
-                      </Button> */}
-                    </CardActions>
+                      </Button>
+                    </CardActions> */}
                   </Card>
-                </Paper>
+                  </Paper>
               </Grid>
             );
           })}
