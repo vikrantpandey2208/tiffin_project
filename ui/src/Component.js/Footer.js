@@ -35,7 +35,7 @@ export const Footer = () => {
   	 			</div>
   	 		</div>
   	 	</div>
-		<center><div className='credit'>Designed by Karan and Vikrant </div></center>
+		<center><div className='credit'>Designed and Developed by Karan and Vikrant </div></center>
   	 </div>
   </footer>
 
