@@ -13,4 +13,4 @@ npm i jsonwebtoken --save
 npm i multer  --save
 npm install axios
 
-npm i paypal-rest-sdk
+npm i razorpay
