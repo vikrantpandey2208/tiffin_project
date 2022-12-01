@@ -69,8 +69,7 @@ class TiffinSection extends React.Component {
                       <CardMedia
                         component="img"
                         image={product.photo1}
-                        alt="Tiffin img"
-                        
+                        alt="Tiffin img"                        
                         height="250"
                         
                         
