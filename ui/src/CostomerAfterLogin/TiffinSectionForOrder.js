@@ -52,6 +52,7 @@ class TiffinSectionForOrder extends React.Component {
     this.setState({
       showDialog: false,
     });
+    console.log("Closed");
   }
 
   componentDidMount() {
@@ -68,7 +69,7 @@ class TiffinSectionForOrder extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      console.log(response, response.data);
+      // console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
       console.log("failed in fetching tiffins", response.message);
@@ -83,7 +84,10 @@ class TiffinSectionForOrder extends React.Component {
             return (
               <Grid item sm={3} style={{}} key={product._id}>
                 <Paper elevation={24}>
-                  <Card sx={{ maxWidth: 365, maxHeight: 400}} variant="contained">
+                  <Card
+                    sx={{ maxWidth: 365, maxHeight: 400 }}
+                    variant="contained"
+                  >
                     <CardActionArea>
                       <CardMedia
                         component="img"
@@ -141,6 +145,7 @@ class TiffinSectionForOrder extends React.Component {
                     </CardActionArea>
 
                     <CardActions>
+                      <ConfirmOrder />
                       <Button
                         size="small"
                         variant="contained"
@@ -149,14 +154,13 @@ class TiffinSectionForOrder extends React.Component {
                       >
                         Order
                       </Button>
+
                       <Dialog
                         open={this.state.showDialog}
                         onClose={this.state.showDialog}
                       >
                         <DialogTitle>Confirm Your Order</DialogTitle>
-                        <DialogContent>
-                          <ConfirmOrder />
-                        </DialogContent>
+                        <DialogContent>Confirm this order</DialogContent>
                         <DialogActions>
                           <Button onClick={this.handleConfirm}>confirm</Button>
                           <Button onClick={this.closeDialog}>cancel</Button>

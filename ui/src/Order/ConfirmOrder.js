@@ -3,7 +3,8 @@ import { Fetch } from "../dbFetch.js";
 
 const ConfirmOrder = () => {
   let data = make();
-  PlaceOrder(data);
+  // PlaceOrder(data);
+  GetPayment();
 
   function make() {
     let data = {
@@ -23,10 +24,19 @@ const ConfirmOrder = () => {
       console.log("Order failed", response.message);
     }
   }
+  async function GetPayment(data) {
+    const path = "/api/pay";
+    const response = await Fetch(path, data);
+    if (response.success) {
+      console.log("Payment Done");
+    } else {
+      console.log("Payment failed", response.message);
+    }
+  }
 
-  return(
+  return (
     <>
-    <h1></h1>
+      <h1></h1>
     </>
   );
 };

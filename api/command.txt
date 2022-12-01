@@ -12,3 +12,5 @@ npm install cors --save
 npm i jsonwebtoken --save
 npm i multer  --save
 npm install axios
+
+npm i paypal-rest-sdk

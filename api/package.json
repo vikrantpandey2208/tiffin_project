@@ -11,7 +11,8 @@
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.2",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "paypal-rest-sdk": "^1.8.1"
   },
   "scripts": {
     "start": "nodemon -e js,graphql -w . -w .env server.js"
