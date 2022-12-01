@@ -5,6 +5,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import TiffinAdminLogin from '../AdminLoginSignup/TiffinAdminLogin'
 import React from 'react';
 import Login from '../Pages/Login.js'
+import HomeIcon from '@mui/icons-material/Home';
 
 
 
@@ -46,11 +47,15 @@ export default function Navbar(){
          <AppBar position="static" color='primary'>
             <Toolbar >
                 
-              <Typography variant="h6" style={{flexGrow:1, textDecoration:'none', color:'inherit', fontSize:'30px'}} component={Link} to='/' >
+              <Typography variant="h6" style={{flexGrow:1, textDecoration:'none', color:'inherit', fontSize:'30px'}}  >
                Just Dabba
              </Typography> 
+             
+             {/* Home Link */}
+             <Button  color="inherit" component={Link} to="/"  ><HomeIcon style={{fontSize:'20px'}} />Home</Button>
+             
              {/* Login Link  */}
-            <Button onClick={openDialogLogin} color="inherit"  ><LoginIcon style={{fontSize:'18px'}} />Login</Button>
+            <Button onClick={openDialogLogin} color="inherit"  ><LoginIcon style={{fontSize:'20px'}} />Login</Button>
              <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
                 <DialogContent>
                 <Login/>
@@ -58,17 +63,7 @@ export default function Navbar(){
                 <DialogActions>
                     <Button onClick={closeDialogLogin}>close</Button>
                 </DialogActions>              
-             </Dialog>
-             {/* Add Tiffin Link */}
-             <Button onClick={openDialog} color="inherit"  > <AddBusinessIcon style={{fontSize:'18px'}} /> AddTiffin</Button>
-             <Dialog open={showDialog} onClose={closeDialog} >
-                <DialogContent>
-                <TiffinAdminLogin />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={closeDialog}>close</Button>
-                </DialogActions>              
-             </Dialog>             
+             </Dialog>                      
                         
             </Toolbar>            
         </AppBar>

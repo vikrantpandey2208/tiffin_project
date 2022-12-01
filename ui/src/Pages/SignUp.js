@@ -11,10 +11,10 @@ import {
   Typography,  
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Navbar from "../Component.js/Navbar";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
+import NavbarForSignup from './NavbarForSignup'
 
 const theme = createTheme({
   palette: {
@@ -74,7 +74,7 @@ const SignUp = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        <NavbarForSignup/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -164,10 +164,6 @@ const SignUp = () => {
               </Button>
               <br />              
             </form>
-            <Typography>
-              {" "}
-              Already have an account ?<Link to="/login" style={{color:'#ff386a', textDecoration:'none'}}>Login</Link>
-            </Typography>
           </Paper>
         </Grid>
       </ThemeProvider>

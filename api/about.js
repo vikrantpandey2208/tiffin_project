@@ -6,7 +6,7 @@ function setAboutMessage(_, { message }) {
 }
 
 function getMessage() {
-  return aboutMessage;
+  return aboutMessage; 
 }
 
 module.exports = { setAboutMessage, getMessage };

@@ -2,4 +2,50 @@
     color: #ff386a;
     font-weight: bold;
 }
+/* 
+.usecase {
+    margin-left: 50px;
+    width: 20%;
+    height: 280px;
+    border-radius: 50%;
+    margin: 10px;   
+    background: 
+      radial-gradient(
+        circle at 30% 30%,
+        #FF4E63,
+        #FF4E63
+      );   
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+} */
+
+/* .usecase {
+    background-color: #ff386a;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    text-align: center;    
+    color: white;
+    z-index: 50;
+    font-weight:100;
+    font-stretch:normal;
+    font-size: 35px;
+    position: relative;
+} */
+
+.usecase{
+    background-color: #ff386a;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    box-shadow: 3px 1px 5px 2px rgb(196, 186, 186);
+    text-align: center;
+    text-justify: inter-cluster;
+    top: 50%;
+    font-size: 35px;
+    color: white;
+
+    
+}
+
 

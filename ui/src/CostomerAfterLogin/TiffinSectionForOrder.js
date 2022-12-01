@@ -83,7 +83,7 @@ class TiffinSectionForOrder extends React.Component {
             return (
               <Grid item sm={3} style={{}} key={product._id}>
                 <Paper elevation={24}>
-                  <Card sx={{ maxWidth: 365 }} variant="contained">
+                  <Card sx={{ maxWidth: 365, maxHeight: 400}} variant="contained">
                     <CardActionArea>
                       <CardMedia
                         component="img"

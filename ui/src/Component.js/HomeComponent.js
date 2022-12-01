@@ -3,14 +3,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import BodySection from "./BodySection";
 import { Container } from "@mui/system";
 import TiffinSection from "./TiffinSection";
-import { useNavigate } from "react-router";
-import { useEffect } from "react";
-import SellerAddTiffin from "../SellerData/HandleSellerData";
+
+
 import Navbar from "./Navbar";
 import { Footer } from "./Footer";
-import ConfirmOrder from "../Order/ConfirmOrder";
-import CustomerOrder from "../Order/CustomerOrder";
-import SellerOrder from "../Order/SellerOrder";
+
 
 const theme = createTheme({
   palette: {
@@ -39,7 +36,6 @@ function HomeComponent() {
         <Navbar />
         <Container>
           <BodySection />          
-          {/* <SellerOrder /> */}
           <TiffinSection />
         </Container>
         <Footer />
