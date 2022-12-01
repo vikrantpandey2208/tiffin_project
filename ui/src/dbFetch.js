@@ -3,6 +3,7 @@ export async function Fetch(path, data) {
     const endpoint = "http://localhost:8000";
     const response = await fetch(endpoint.concat(path), {
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },

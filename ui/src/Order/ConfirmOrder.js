@@ -2,9 +2,9 @@ import React from "react";
 import { Fetch } from "../dbFetch.js";
 
 const ConfirmOrder = () => {
-  let data = make();
+  // let data = make();
   // PlaceOrder(data);
-  GetPayment();
+  // GetPayment(data);
 
   function make() {
     let data = {
@@ -30,7 +30,7 @@ const ConfirmOrder = () => {
     if (response.success) {
       console.log("Payment Done");
     } else {
-      console.log("Payment failed", response.message);
+      console.log("Payment failed", response);
     }
   }
 

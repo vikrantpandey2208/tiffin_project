@@ -20,6 +20,17 @@ import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import ConfirmOrder from "../Order/ConfirmOrder.js";
 
+async function GetPayment(data) {
+  const path = "/api/pay";
+  const response = await Fetch(path, data);
+  if (response.success) {
+    console.log("Payment Token generated", response);
+    // window.location.replace(response.redirect);
+  } else {
+    console.log("Payment token not generated", response);
+  }
+}
+
 class TiffinSectionForOrder extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +73,7 @@ class TiffinSectionForOrder extends React.Component {
       latitude: 23.189228,
     };
     this.getTiffinList(data);
+    GetPayment(100);
   }
 
   async getTiffinList(data) {
@@ -146,7 +158,6 @@ class TiffinSectionForOrder extends React.Component {
                     </CardActionArea>
 
                     <CardActions>
-                      <ConfirmOrder />
                       <Button
                         size="small"
                         variant="contained"
