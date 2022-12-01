@@ -22,13 +22,13 @@ const BodySection = () => {
             </Grid>                     
         </Grid>
         <Grid mt={5}>
-            <Typography variant='h1'><span style={{color:'#ff386a', }} >Costomer  </span><span style={{color:'black', }}>can</span> </Typography>
+            <Typography variant='h1'><span style={{color:'#ff386a', }} >Customer  </span><span style={{color:'black', }}>can..</span> </Typography>
         </Grid>
 
-        <Grid mt={2} container spacing={3}  >
+        <Grid mt={2} container spacing={4}  >
               <Grid item> 
               <div className='usecase'>
-               choose
+                Choose               
               </div>         
               </Grid> 
 

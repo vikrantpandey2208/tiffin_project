@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import AddYourTiffin from "../Pages/AddYourTiffin";
+import NavbarForadminSignup from "./NavbarForAdminSignup.js";
 
 const theme = createTheme({
   palette: {
@@ -93,7 +94,7 @@ const TiffinAdminSignup = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AddYourTiffin />
+        <NavbarForadminSignup/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -184,17 +185,7 @@ const TiffinAdminSignup = () => {
                 Signup
               </Button>
               <br />
-            </form>
-            <Typography>
-              {" "}
-              Already have an account ?
-              <Link
-                to="/loginadmin"
-                style={{ color: "#ff386a", textDecoration: "none" }}
-              >
-                Login
-              </Link>
-            </Typography>
+            </form>           
           </Paper>
         </Grid>
       </ThemeProvider>

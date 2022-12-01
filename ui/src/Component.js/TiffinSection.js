@@ -123,7 +123,7 @@ class TiffinSection extends React.Component {
                     </CardActionArea>
 
                     <CardActions>
-                      <Button
+                      {/* <Button
                         size="small"
                         variant="contained"
                         style={{ alignContent: "left", fontSize: "11px" }}
@@ -131,7 +131,7 @@ class TiffinSection extends React.Component {
                         to="/login"
                       >
                         Order
-                      </Button>
+                      </Button> */}
                     </CardActions>
                   </Card>
                 </Paper>
