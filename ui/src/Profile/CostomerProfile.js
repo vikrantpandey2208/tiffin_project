@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import AfterLogin from "../CostomerAfterLogin/AfterLogin";
 import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { GetLoggedUser } from "../Auth/Logged-Seller";
@@ -16,6 +15,14 @@ const fontStyle = {
   marginTop: "10px",
 };
 
+export function getUserDetails() {
+  let user = GetLoggedUser();
+  if (user != null) {
+    let token = user.token;
+    return token;
+  } else return null;
+}
+
 export const CostomerProfile = (props) => {
   const [firstName, setFirstName] = React.useState("firstname");
   const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
@@ -24,6 +31,8 @@ export const CostomerProfile = (props) => {
   const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
 
   const [email, setEmail] = React.useState("email");
+  const [phone, setPhone] = React.useState("phone");
+  const [isPhoneFocused, setIsPhoneFocused] = React.useState(false);
   const [isEmailFocused, setIsEmailFocused] = React.useState(false);
 
   //Saved data
@@ -32,25 +41,18 @@ export const CostomerProfile = (props) => {
   function handleSave(e) {
     setSave("saved");
   }
-  function getUserDetails() {
-    let user = GetLoggedUser();
-
-    // console.log(user.token, "user profile");
-    if (user != null) {
-      let token = user.token;
-      setFirstName(token.firstname);
-      setLastName(token.lastname);
-      setEmail(token.email);
-    }
-  }
 
   useEffect(() => {
-    getUserDetails();
+    let user = getUserDetails();
+    console.log(user);
+    setFirstName(user.firstname);
+    setLastName(user.lastname);
+    setEmail(user.email);
+    setPhone(user.phone);
   });
 
   return (
     <>
-      
       <Grid container>
         <Paper elevation={0} style={paperStyle}>
           <Typography
@@ -157,12 +159,40 @@ export const CostomerProfile = (props) => {
               />
             )}
           </div>
+          <div>
+            <Typography
+              variant="h5"
+              style={{
+                color: "#00000099",
+              }}
+            >
+              Contact
+            </Typography>
+            {!isEmailFocused ? (
+              <Typography
+                style={fontStyle}
+                onClick={() => {
+                  setIsPhoneFocused(true);
+                }}
+              >
+                {phone}
+              </Typography>
+            ) : (
+              <TextField
+                style={fontStyle}
+                autoFocus
+                value={email}
+                onChange={(event) => setPhone(event.target.value)}
+                onBlur={(event) => setIsPhoneFocused(false)}
+              />
+            )}
+          </div>
           <br />
-          {/* <Grid ml={15}>
+          <Grid ml={15}>
             <Button variant="contained" component="label" onClick={handleSave}>
-              {save}
+              Update
             </Button>
-          </Grid> */}
+          </Grid>
         </Paper>
       </Grid>
     </>

@@ -8,12 +8,11 @@ import {
   CardContent,
   Grid,
   CardActionArea,
-  CardActions,
-  Button,
   Paper,
   Dialog,
   DialogContent,
   DialogActions,
+  Button,
 } from "@mui/material";
 import Login from "../Pages/Login.js";
 import StarIcon from "@mui/icons-material/Star";
@@ -24,7 +23,8 @@ class TiffinSection extends React.Component {
     super();
 
     this.getTiffinList = this.getTiffinList.bind(this);
-
+    this.closeDialog = this.closeDialog.bind(this);
+    this.openDialogLogin = this.openDialogLogin.bind(this);
     this.state = {
       tiffins: [],
       showDialogLogin: false,
@@ -32,12 +32,12 @@ class TiffinSection extends React.Component {
   }
 
   componentDidMount() {
+    //TODO select
     let data = {
       userId: "demoid",
-      longitude: 79.98362,
-      latitude: 23.189228,
+      longitude: 75.8577258,
+      latitude: 22.7195687,
     };
-    console.log("calling data");
     this.getTiffinList(data);
   }
 
@@ -46,24 +46,34 @@ class TiffinSection extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      console.log(response, response.data);
+      // console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
-      console.log("failed in fetching tiffins", response.message);
+      console.log("failed in fetching tiffins", response.err.code);
     }
   }
+
+  // click on tiffin event handling
+  closeDialog() {
+    this.setState({ showDialogLogin: false });
+  }
+
+  openDialogLogin() {
+    this.setState({ showDialogLogin: true });
+  }
+
   render() {
-    const { tiffins } = this.state;
+    const { tiffins, showDialogLogin } = this.state;
+
     return (
       <>
-        {" "}
         <Grid mt={10} container spacing={2}>
           {tiffins.map((product) => {
             return (
               <Grid item sm={3} key={product._id}>
                 <Paper elevation={24} style={{ width: "270px" }}>
                   <Card variant="contained" sx={{ width: 275, height: 350 }}>
-                    <CardActionArea>
+                    <CardActionArea onClick={this.openDialogLogin}>
                       <CardMedia
                         component="img"
                         image={product.photo1}
@@ -137,6 +147,14 @@ class TiffinSection extends React.Component {
             );
           })}
         </Grid>
+        <Dialog open={showDialogLogin} onClose={this.closeDialog}>
+          <DialogContent>
+            <Login />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeDialog}>close</Button>
+          </DialogActions>
+        </Dialog>
       </>
     );
   }

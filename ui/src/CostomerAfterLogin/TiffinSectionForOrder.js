@@ -18,8 +18,8 @@ import {
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import Slide from "@mui/material/Slide";
 import DialogContentText from "@mui/material/DialogContentText";
+import { getUserDetails } from "../Profile/CostomerProfile.js";
 
 class TiffinSectionForOrder extends React.Component {
   constructor(props) {
@@ -54,8 +54,8 @@ class TiffinSectionForOrder extends React.Component {
   async componentDidMount() {
     let data = {
       userId: "demoid",
-      longitude: 79.98362,
-      latitude: 23.189228,
+      longitude: 75.8577258,
+      latitude: 22.7195687,
     };
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
@@ -142,33 +142,24 @@ class TiffinSectionForOrder extends React.Component {
                         </Grid>
                       </CardContent>
                     </CardActionArea>
-
-                    <CardActions>
-                      <Dialog
-                        open={this.state.showDialog}
-                        onClose={this.closeDialog}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                      >
-                        <DialogTitle>Confirm This Order</DialogTitle>
-                        <DialogContent>
-                          <DialogContentText id="alert-dialog-description">
-                            By clicking confirm you will redirect to cart then
-                            payment
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={this.handleConfirm}>Confirm</Button>
-                          <Button onClick={this.closeDialog}>Cancel</Button>
-                        </DialogActions>
-                      </Dialog>
-                    </CardActions>
                   </Card>
                 </Paper>
               </Grid>
             );
           })}
         </Grid>
+        <Dialog open={this.state.showDialog} onClose={this.closeDialog}>
+          <DialogTitle>Confirm </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              By clicking confirm you will redirect to cart then payment
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleConfirm}>Confirm</Button>
+            <Button onClick={this.closeDialog}>Cancel</Button>
+          </DialogActions>
+        </Dialog>
       </>
     );
   }

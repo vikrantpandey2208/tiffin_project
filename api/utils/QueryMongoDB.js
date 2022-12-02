@@ -21,16 +21,18 @@ function searchTiffin(longitude, latitude, callback) {
         $geoNear: {
           near: { type: "Point", coordinates: [longitude, latitude] },
           distanceField: "dist.calculated",
-          // maxDistance: 5000,
+          maxDistance: 15000,
           includeLocs: "dist.location",
           spherical: true,
         },
+      },
+      {
+        $project: { photo1: 1, rating: 1, brandName: 1, category: 1, price: 1 },
       },
     ],
 
     (err, tiffins) => {
       if (err) {
-        console.log(err);
         callback(err, false);
       } else {
         callback(tiffins, true);

@@ -15,6 +15,8 @@ import TiffinAdminLogin from "../AdminLoginSignup/TiffinAdminLogin";
 import React from "react";
 import Login from "../Pages/Login.js";
 
+// home navbar
+
 export default function Navbar() {
   const [showDialog, setShowDialog] = React.useState(false);
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);

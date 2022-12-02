@@ -9,12 +9,6 @@ import { GetLoggedUser } from "../Auth/Logged-Seller";
 import TiffinSectionForOrder from "./TiffinSectionForOrder";
 import { Footer } from "../Component.js/Footer";
 
-// name
-function getUserDetails() {
-  let user = GetLoggedUser();
-  return user;
-}
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -56,14 +50,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AfterLogin = () => {
-  let detail = getUserDetails();
   // if (detail != null) console.log(detail.token, "Details of user");
   return (
     <>
       <Grid container>
         <AppBar position="static" color="primary">
           <Toolbar>
-            <Typography variant="h5" flexGrow={1}>
+            <Typography
+              variant="h4"
+              style={{
+                flexGrow: 1,
+                textDecoration: "none",
+                color: "inherit",
+                fontSize: "20px",
+              }}
+              component={Link}
+              to="/"
+            >
               Just Dabba
             </Typography>
             <Button variant="h6" component={Link}>

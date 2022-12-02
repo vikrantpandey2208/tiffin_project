@@ -3,27 +3,24 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Dialog, DialogContent, DialogActions } from "@mui/material";
 
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
-import { CostomerProfile } from "../Profile/CostomerProfile.js";
+import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
 
 export default function UserProfileMenu() {
-
-  
-  
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);
 
-        const openDialogLogin = () => {
-          setShowDialogLogin(true);
-      }
+  const openDialogLogin = () => {
+    setShowDialogLogin(true);
+  };
 
-      const closeDialogLogin = () => {
-          setShowDialogLogin(false)
-      }
+  const closeDialogLogin = () => {
+    setShowDialogLogin(false);
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -45,7 +42,6 @@ export default function UserProfileMenu() {
       if (response.success) {
         console.log("Logged out navigate to login");
         navigate("/");
-
       } else {
         console.log("Error", response.message);
       }
@@ -53,6 +49,9 @@ export default function UserProfileMenu() {
       console.log("Already logged out");
     }
   };
+
+  // Get name of user to show
+  let user = getUserDetails().firstname;
 
   return (
     <div>
@@ -65,7 +64,7 @@ export default function UserProfileMenu() {
         color="inherit"
         startIcon={<AccountCircleIcon />}
       >
-        Karan
+        {user}
       </Button>
       <Menu
         id="basic-menu"
@@ -76,18 +75,19 @@ export default function UserProfileMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}  >
-        <Button onClick={openDialogLogin}  color="inherit"  >Profile</Button>                  
+        <MenuItem onClick={handleClose}>
+          <Button onClick={openDialogLogin} color="inherit">
+            Profile
+          </Button>
         </MenuItem>
-        <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
-
-                <DialogContent>
-                <CostomerProfile/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={closeDialogLogin}>close</Button>
-                </DialogActions>              
-             </Dialog>
+        <Dialog open={showDialogLogin} onClose={closeDialogLogin}>
+          <DialogContent>
+            <CostomerProfile />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closeDialogLogin}>close</Button>
+          </DialogActions>
+        </Dialog>
         <MenuItem onClick={handleClose} component={Link}>
           My Order
         </MenuItem>

@@ -12,10 +12,11 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Navbar from "../Component.js/Navbar";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { getUserDetails } from "../Profile/CostomerProfile";
+import { useEffect } from "react";
 
 const theme = createTheme({
   palette: {
@@ -36,6 +37,17 @@ const btnstyle = { margin: "8px 0" };
 
 const Login = () => {
   const navigate = useNavigate();
+
+  // check running session of user
+  let user = getUserDetails();
+
+  useEffect(() => {
+    if (user != null) {
+      // console.log("already logged user", user.email);
+      navigate("/logged");
+    }
+  });
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -46,9 +58,7 @@ const Login = () => {
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      // logInVerify();
       logInApi(values);
-      // logoutApi();
     },
   });
 
@@ -61,7 +71,7 @@ const Login = () => {
         token: response.user,
         setupTime: new Date().getTime(),
       });
-      console.log("login successful", response.success);
+      // console.log("login successful", response.success);
       navigate("/logged");
     } else {
       console.log("login failed", response.message);
@@ -82,26 +92,10 @@ const Login = () => {
       console.log("logged out user go to login");
     }
   }
-  async function logoutApi() {
-    const obj = getFromStorage("tiffin_app");
-    if (obj && obj.token) {
-      const { token } = obj;
-
-      const response = await Get("/api/logout?token=" + token);
-      if (response.success) {
-        console.log("Logged out");
-      } else {
-        console.log("Error", response.message);
-      }
-    } else {
-      console.log("Internal Server Error");
-    }
-  }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        
         <Grid container>
           <Paper elevation={0} style={paperStyle}>
             <Grid align="center">
@@ -119,9 +113,7 @@ const Login = () => {
                 fullWidth
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                error={
-                  formik.touched.email && Boolean(formik.errors.email)
-                }
+                error={formik.touched.email && Boolean(formik.errors.email)}
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.email && formik.errors.email}
               />
@@ -136,7 +128,9 @@ const Login = () => {
                 fullWidth
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                error={formik.touched.password && Boolean(formik.errors.password)}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.password && formik.errors.password}
               />

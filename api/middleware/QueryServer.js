@@ -31,6 +31,7 @@ module.exports = (app) => {
       } else {
         return res.send({
           success: false,
+          err: result,
           message: "Error: Internal Server error while searching tifffin",
         });
       }
