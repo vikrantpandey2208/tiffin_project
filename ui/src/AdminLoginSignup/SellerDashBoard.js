@@ -29,6 +29,8 @@ export default function BasicMenu() {
 
   };
 
+  
+
   return (
     <div>
       <Button
@@ -58,16 +60,16 @@ export default function BasicMenu() {
         <MenuItem onClick={handleClose}>Order</MenuItem>
       </Menu>
 
-      <Paper>      
+          
       <Dialog open={showDialogLogin} onClose={closeDialogLogin} sx={{ m: 0, p: 2 }} >
-          <DialogContent style={{width:'300px', marginLeft:'70px'}}>
+          <DialogContent style={{width:'350px', marginLeft:'30px', height:'380px'}}>
             <AdminProfile />
           </DialogContent>
           <DialogActions>
             <Button onClick={closeDialogLogin}>close</Button>
           </DialogActions>
         </Dialog>
-        </Paper>
+        
     </div>
   );
 }

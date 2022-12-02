@@ -95,7 +95,7 @@ export default function UserProfileMenu() {
 
       
       <Dialog open={showDialogLogin} onClose={closeDialogLogin} sx={{ m: 0, p: 2 }} >
-          <DialogContent style={{width:'300px', marginLeft:'70px'}}>
+          <DialogContent style={{width:'300px', marginLeft:'30px', height:'400px'}}>
             <CostomerProfile />
           </DialogContent>
           <DialogActions>
