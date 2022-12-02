@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Link } from 'react-router-dom';
-import { Dialog, DialogContent, DialogActions } from "@mui/material";
+import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
 import { AdminProfile } from '../Profile/AdminProfile';
 
 
@@ -12,9 +12,6 @@ export default function BasicMenu() {
 
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);
 
-      const openDialogLogin = () => {
-        setShowDialogLogin(true);
-    }
 
     const closeDialogLogin = () => {
         setShowDialogLogin(false)
@@ -27,7 +24,9 @@ export default function BasicMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setShowDialogLogin(true);
     setAnchorEl(null);
+
   };
 
   return (
@@ -53,22 +52,22 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose} >
-        <Button onClick={openDialogLogin}  color="inherit"  >Profile</Button> 
-        </MenuItem>
-        <Dialog open={showDialogLogin} onClose={closeDialogLogin} >
-        <DialogActions>
-            <Button onClick={closeDialogLogin} variant="cobtained"></Button>
-        </DialogActions>
-        <DialogContent>
-        <AdminProfile/>
-        </DialogContent>
-        <DialogActions>
-            <Button onClick={closeDialogLogin} >close</Button>
-        </DialogActions>              
-        </Dialog>
+        Profile 
+        </MenuItem>       
         <MenuItem onClick={handleClose} component={Link} to='/addtiffin' >Add Tiffin</MenuItem>
         <MenuItem onClick={handleClose}>Order</MenuItem>
       </Menu>
+
+      <Paper>      
+      <Dialog open={showDialogLogin} onClose={closeDialogLogin} sx={{ m: 0, p: 2 }} >
+          <DialogContent style={{width:'300px', marginLeft:'70px'}}>
+            <AdminProfile />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closeDialogLogin}>close</Button>
+          </DialogActions>
+        </Dialog>
+        </Paper>
     </div>
   );
 }

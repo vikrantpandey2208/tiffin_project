@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
-import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
+import { Grid,  Typography, TextField, Button } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavBarSellerProfile } from "./NavBarSellerProfile";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
@@ -50,11 +50,13 @@ export const AdminProfile = () => {
     getSellerDetails();
   });
 
+
+
   return (
     <>
       
       <Grid container>
-        <Paper elevation={0} style={paperStyle}>
+        
           <Typography
             ml={12}
             variant="h4"
@@ -164,7 +166,7 @@ export const AdminProfile = () => {
               {save}
             </Button>
           </Grid> */}
-        </Paper>
+        
       </Grid>
     </>
   );

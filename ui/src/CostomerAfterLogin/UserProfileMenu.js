@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Dialog, DialogContent, DialogActions } from "@mui/material";
+import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
 
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
@@ -14,9 +14,9 @@ import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
 export default function UserProfileMenu() {
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);
 
-  const openDialogLogin = () => {
-    setShowDialogLogin(true);
-  };
+  // const openDialogLogin = () => {
+  //   setShowDialogLogin(true);
+  // };
 
   const closeDialogLogin = () => {
     setShowDialogLogin(false);
@@ -27,9 +27,13 @@ export default function UserProfileMenu() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    
   };
   const handleClose = () => {
+    setShowDialogLogin(true);
     setAnchorEl(null);
+    
+    
   };
   const navigate = useNavigate();
   const logout = async () => {
@@ -52,6 +56,7 @@ export default function UserProfileMenu() {
 
   // Get name of user to show
   let user = getUserDetails().firstname;
+
 
   return (
     <div>
@@ -76,23 +81,28 @@ export default function UserProfileMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Button onClick={openDialogLogin} color="inherit">
+          {/* <Button onClick={openDialogLogin} color="inherit">
             Profile
-          </Button>
+          </Button> */}
+          Profile
         </MenuItem>
-        <Dialog open={showDialogLogin} onClose={closeDialogLogin}>
-          <DialogContent>
+        
+        <MenuItem onClick={handleClose} component={Link}>
+          My Order
+        </MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
+      </Menu><Paper>
+
+      
+      <Dialog open={showDialogLogin} onClose={closeDialogLogin} sx={{ m: 0, p: 2 }} >
+          <DialogContent style={{width:'300px', marginLeft:'70px'}}>
             <CostomerProfile />
           </DialogContent>
           <DialogActions>
             <Button onClick={closeDialogLogin}>close</Button>
           </DialogActions>
         </Dialog>
-        <MenuItem onClick={handleClose} component={Link}>
-          My Order
-        </MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu>
+        </Paper>
     </div>
   );
 }

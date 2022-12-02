@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Grid, Paper, Typography, TextField, Button } from "@mui/material";
+import { Grid, Paper, Typography, TextField, Button, Avatar } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { GetLoggedUser } from "../Auth/Logged-Seller";
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const paperStyle = {
   padding: 20,
@@ -50,25 +51,15 @@ export const CostomerProfile = (props) => {
     setEmail(user.email);
     setPhone(user.phone);
   });
-
+  let user = getUserDetails().firstname;
+  let userLastName = getUserDetails().lastname;
+  let firstNameFirstLetter = user.charAt(0);
+  let lastNameFirstLetter = userLastName.charAt(0);
   return (
     <>
-      <Grid container>
-        <Paper elevation={0} style={paperStyle}>
-          <Typography
-            ml={12}
-            variant="h4"
-            style={{
-              color: "white",
-              backgroundColor: "#ff386a",
-              width: "40%",
-              borderRadius: "5px",
-              align: "center",
-            }}
-          >
-            <ManageAccountsIcon />
-            Profile
-          </Typography>
+          
+         
+        <Avatar style={{marginLeft:'30px'}} sx={{ bgcolor: deepPurple[500] }}>{firstNameFirstLetter + lastNameFirstLetter }</Avatar>
           <br />
           {/* First Name */}
           <div>
@@ -189,12 +180,12 @@ export const CostomerProfile = (props) => {
           </div>
           <br />
           <Grid ml={15}>
-            <Button variant="contained" component="label" onClick={handleSave}>
+            {/* <Button variant="contained" component="label" onClick={handleSave}>
               Update
-            </Button>
+            </Button> */}
           </Grid>
-        </Paper>
-      </Grid>
+        
+      
     </>
   );
 };

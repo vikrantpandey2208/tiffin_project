@@ -9,7 +9,6 @@ import choose from './images/choose.svg';
 const BodySection = () => {
     return (
         <>
-
         <Grid container direction="row"  alignItems="center" mt={2} >
            <Grid item sm={6} order={{xs:2,sm:1}} xs={12} mt={5} >
             <Typography variant="h1"    >
