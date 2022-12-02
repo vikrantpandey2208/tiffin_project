@@ -37,6 +37,7 @@ class TiffinSection extends React.Component {
       longitude: 79.98362,
       latitude: 23.189228,
     };
+    console.log("calling data");
     this.getTiffinList(data);
   }
 
@@ -45,7 +46,7 @@ class TiffinSection extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      // console.log(response, response.data);
+      console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
       console.log("failed in fetching tiffins", response.message);
@@ -59,20 +60,15 @@ class TiffinSection extends React.Component {
         <Grid mt={10} container spacing={2}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3}  key={product._id}>
-                <Paper elevation={24} style={{width:'270px'}}>
-                  <Card                    
-                    variant="contained"
-                    sx={{width:275,height:350 }}
-                  >
+              <Grid item sm={3} key={product._id}>
+                <Paper elevation={24} style={{ width: "270px" }}>
+                  <Card variant="contained" sx={{ width: 275, height: 350 }}>
                     <CardActionArea>
                       <CardMedia
                         component="img"
                         image={product.photo1}
-                        alt="Tiffin img"                        
+                        alt="Tiffin img"
                         height="250"
-                        
-                        
                       />
 
                       <CardContent>
@@ -112,7 +108,7 @@ class TiffinSection extends React.Component {
                             variant="subtitle1"
                             style={{ flexGrow: 1 }}
                           >
-                            veg
+                            {product.category}
                           </Typography>
                           <Typography variant="subtitle1">
                             <CurrencyRupeeIcon
@@ -136,7 +132,7 @@ class TiffinSection extends React.Component {
                       </Button>
                     </CardActions> */}
                   </Card>
-                  </Paper>
+                </Paper>
               </Grid>
             );
           })}

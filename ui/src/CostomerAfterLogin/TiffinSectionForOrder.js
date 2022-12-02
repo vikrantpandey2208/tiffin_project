@@ -18,27 +18,14 @@ import {
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import ConfirmOrder from "../Order/ConfirmOrder.js";
-
-async function GetPayment(data) {
-  const path = "/api/pay";
-  const response = await Fetch(path, data);
-  if (response.success) {
-    console.log("Payment Token generated", response);
-    // window.location.replace(response.redirect);
-  } else {
-    console.log("Payment token not generated", response);
-  }
-}
+import Slide from "@mui/material/Slide";
+import DialogContentText from "@mui/material/DialogContentText";
 
 class TiffinSectionForOrder extends React.Component {
   constructor(props) {
     super(props);
 
     this.getTiffinList = this.getTiffinList.bind(this);
-    this.openDialog = this.openDialog.bind(this);
-    this.closeDialog = this.closeDialog.bind(this);
-    this.handleConfirm = this.handleConfirm(this);
 
     this.state = {
       tiffins: [],
@@ -47,9 +34,7 @@ class TiffinSectionForOrder extends React.Component {
   }
 
   handleConfirm() {
-    this.setState({
-      showDialog: false,
-    });
+    console.log("Clicked Confirm Button");
   }
 
   //Show Dialog box
@@ -66,14 +51,17 @@ class TiffinSectionForOrder extends React.Component {
     console.log("Closed");
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let data = {
       userId: "demoid",
       longitude: 79.98362,
       latitude: 23.189228,
     };
+    this.openDialog = this.openDialog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
     this.getTiffinList(data);
-    GetPayment(100);
+    // Payment();
   }
 
   async getTiffinList(data) {
@@ -89,18 +77,16 @@ class TiffinSectionForOrder extends React.Component {
   }
   render() {
     const { tiffins } = this.state;
+
     return (
       <>
-        <Grid ml={5} mr={5} mt={5}  container spacing={3}>
+        <Grid ml={5} mr={5} mt={5} container spacing={3}>
           {tiffins.map((product) => {
             return (
-              <Grid item sm={3}  key={product._id}>
-                <Paper elevation={24} style={{width:'270px'}}>
-                  <Card
-                    sx={{width:275,height:350 }}
-                    variant="contained"
-                  >
-                    <CardActionArea>
+              <Grid item sm={3} key={product._id}>
+                <Paper elevation={24} style={{ width: "270px" }}>
+                  <Card sx={{ width: 275, height: 350 }} variant="contained">
+                    <CardActionArea onClick={this.openDialog}>
                       <CardMedia
                         component="img"
                         image={product.photo1}
@@ -145,7 +131,7 @@ class TiffinSectionForOrder extends React.Component {
                             variant="subtitle1"
                             style={{ flexGrow: 1 }}
                           >
-                            veg
+                            {product.category}
                           </Typography>
                           <Typography variant="subtitle1">
                             <CurrencyRupeeIcon
@@ -158,24 +144,22 @@ class TiffinSectionForOrder extends React.Component {
                     </CardActionArea>
 
                     <CardActions>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        style={{ alignContent: "left", fontSize: "11px" }}
-                        onClick={this.openDialog}
-                      >
-                        Order
-                      </Button>
-
                       <Dialog
                         open={this.state.showDialog}
-                        onClose={this.state.showDialog}
+                        onClose={this.closeDialog}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
                       >
-                        <DialogTitle>Confirm Your Order</DialogTitle>
-                        <DialogContent>Confirm this order</DialogContent>
+                        <DialogTitle>Confirm This Order</DialogTitle>
+                        <DialogContent>
+                          <DialogContentText id="alert-dialog-description">
+                            By clicking confirm you will redirect to cart then
+                            payment
+                          </DialogContentText>
+                        </DialogContent>
                         <DialogActions>
-                          <Button onClick={this.handleConfirm}>confirm</Button>
-                          <Button onClick={this.closeDialog}>cancel</Button>
+                          <Button onClick={this.handleConfirm}>Confirm</Button>
+                          <Button onClick={this.closeDialog}>Cancel</Button>
                         </DialogActions>
                       </Dialog>
                     </CardActions>

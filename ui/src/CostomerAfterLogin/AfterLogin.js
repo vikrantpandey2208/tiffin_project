@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const AfterLogin = () => {
   let detail = getUserDetails();
-  if (detail != null) console.log(detail.token, "Details of user");
+  // if (detail != null) console.log(detail.token, "Details of user");
   return (
     <>
       <Grid container>
@@ -65,17 +65,17 @@ const AfterLogin = () => {
           <Toolbar>
             <Typography variant="h5" flexGrow={1}>
               Just Dabba
-            </Typography>           
+            </Typography>
             <Button variant="h6" component={Link}>
               <UserProfileMenu />
             </Button>
           </Toolbar>
-        </AppBar>        
-        </Grid>     
-      <Grid container >
-      <TiffinSectionForOrder/>
-      </Grid>      
-      <Footer />     
+        </AppBar>
+      </Grid>
+      <Grid container>
+        <TiffinSectionForOrder />
+      </Grid>
+      <Footer />
     </>
   );
 };

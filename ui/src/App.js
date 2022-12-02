@@ -39,11 +39,11 @@ function App() {
           <Route path="/logged" element={<AfterLogin />} />
           <Route path="/adminprofile" element={<AdminProfile />} />
           <Route path="/userprofile" element={<CostomerProfile />} />
-          <Route path="/aboutus" element={<About/>} />
-          <Route path="/privacy" element={<PrivacyPolicy/>} />
-          <Route path="/contactus" element={<ContactUs/>} />
-          <Route path="/faq" element={<FAQ/>} />
-          <Route path="/ourservices" element={<OurServices/>} />
+          <Route path="/aboutus" element={<About />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/ourservices" element={<OurServices />} />
         </Routes>
       </Router>
     </>

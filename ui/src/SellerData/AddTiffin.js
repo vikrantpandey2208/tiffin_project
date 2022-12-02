@@ -236,12 +236,12 @@ export const AddTiffin = () => {
                     onChange={formik.handleChange}
                   >
                     <FormControlLabel
-                      value="veg"
+                      value="Veg"
                       control={<Radio />}
-                      label="veg"
+                      label="Veg"
                     />
                     <FormControlLabel
-                      value="nonveg"
+                      value="Non-Veg"
                       control={<Radio />}
                       label="non-veg"
                     />
