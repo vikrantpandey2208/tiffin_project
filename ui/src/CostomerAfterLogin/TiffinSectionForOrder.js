@@ -80,7 +80,7 @@ class TiffinSectionForOrder extends React.Component {
 
     return (
       <>
-        <Grid ml={5} mr={5} mt={5} container spacing={3}>
+        <Grid ml={15} mr={15} mt={5} container spacing={3}>
           {tiffins.map((product) => {
             return (
               <Grid item sm={3} key={product._id}>
