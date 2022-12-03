@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Fetch } from "../dbFetch.js";
 import {
   Typography,
@@ -30,17 +30,23 @@ class TiffinSectionForOrder extends React.Component {
     this.state = {
       tiffins: [],
       showDialog: false,
+      selectedTiffin: null,
+      goToPay: false,
     };
   }
 
   handleConfirm() {
-    console.log("Clicked Confirm Button");
+    this.setState({
+      showDialog: false,
+      goToPay: true,
+    });
   }
 
   //Show Dialog box
-  openDialog() {
+  openDialog(e) {
     this.setState({
       showDialog: true,
+      selectedTiffin: e,
     });
   }
 
@@ -75,8 +81,15 @@ class TiffinSectionForOrder extends React.Component {
       console.log("failed in fetching tiffins", response.message);
     }
   }
+
   render() {
-    const { tiffins } = this.state;
+    const { tiffins, goToPay, selectedTiffin } = this.state;
+
+    if (goToPay) {
+      return (
+        <Navigate to="/cart" state={selectedTiffin} props={selectedTiffin} />
+      );
+    }
 
     return (
       <>
@@ -86,7 +99,7 @@ class TiffinSectionForOrder extends React.Component {
               <Grid item sm={3} key={product._id}>
                 <Paper elevation={24} style={{ width: "270px" }}>
                   <Card sx={{ width: 275, height: 350 }} variant="contained">
-                    <CardActionArea onClick={this.openDialog}>
+                    <CardActionArea onClick={() => this.openDialog(product)}>
                       <CardMedia
                         component="img"
                         image={product.photo1}
@@ -152,7 +165,7 @@ class TiffinSectionForOrder extends React.Component {
           <DialogTitle>Confirm </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              By clicking confirm you will redirect to cart then payment
+              By clicking confirm you will go to cart then payment
             </DialogContentText>
           </DialogContent>
           <DialogActions>

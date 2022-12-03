@@ -14,7 +14,7 @@ import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
 export default function UserProfileMenu() {
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);
 
-  // const openDialogLogin = () => {
+  // const openDialogLogin = () => { rzp_test_3eMWORUD65IeZa
   //   setShowDialogLogin(true);
   // };
 
@@ -27,13 +27,10 @@ export default function UserProfileMenu() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    
   };
   const handleClose = () => {
     setShowDialogLogin(true);
     setAnchorEl(null);
-    
-    
   };
   const navigate = useNavigate();
   const logout = async () => {
@@ -56,7 +53,6 @@ export default function UserProfileMenu() {
 
   // Get name of user to show
   let user = getUserDetails().firstname;
-
 
   return (
     <div>
@@ -86,23 +82,28 @@ export default function UserProfileMenu() {
           </Button> */}
           Profile
         </MenuItem>
-        
+
         <MenuItem onClick={handleClose} component={Link}>
           My Order
         </MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu><Paper>
-
-      
-      <Dialog open={showDialogLogin} onClose={closeDialogLogin} sx={{ m: 0, p: 2 }} >
-          <DialogContent style={{width:'300px', marginLeft:'30px', height:'400px'}}>
+      </Menu>
+      <Paper>
+        <Dialog
+          open={showDialogLogin}
+          onClose={closeDialogLogin}
+          sx={{ m: 0, p: 2 }}
+        >
+          <DialogContent
+            style={{ width: "300px", marginLeft: "30px", height: "400px" }}
+          >
             <CostomerProfile />
           </DialogContent>
           <DialogActions>
             <Button onClick={closeDialogLogin}>close</Button>
           </DialogActions>
         </Dialog>
-        </Paper>
+      </Paper>
     </div>
   );
 }

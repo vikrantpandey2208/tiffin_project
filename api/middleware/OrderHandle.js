@@ -100,14 +100,19 @@ module.exports = (app) => {
       key_secret: "Xmx8035EXbb6pOnpdnOxMGhZ",
     });
 
+    let data = req.body.data;
+
     var options = {
-      amount: 50000, // amount in the smallest currency unit
+      amount: data.amount * 100, // amount in the smallest currency unit
       currency: "INR",
-      receipt: "order_rcptid_11",
+      receipt: data.receipt,
     };
     instance.orders.create(options, function (err, order) {
-      console.log(order);
-      res.send({ success: true, orderId: order.id });
+      if (err) {
+        res.send({ success: false, message: err.description });
+      } else {
+        res.send({ success: true, orderId: order.id });
+      }
     });
   });
 };
