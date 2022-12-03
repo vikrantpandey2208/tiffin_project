@@ -2,11 +2,10 @@ import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBar, Typography, Button, Toolbar, Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import SellerDashBoard from "./SellerDashBoard";
+import SellerDashBoard from "../AdminLoginSignup/SellerDashBoard";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
-import { ViewTiffin } from "../SellerData/ViewTiffin";
 
 
 function getSellerDetails() {
@@ -54,7 +53,7 @@ const AdminAfterLogin = () => {
           </Toolbar>
         </AppBar>
       </Grid>
-      <ViewTiffin/>
+      
     </>
   );
 };
