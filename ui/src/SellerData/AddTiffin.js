@@ -18,9 +18,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import UploadIcon from "@mui/icons-material/Upload";
-import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import FormLabel from "@mui/material/FormLabel";
+import AdminNavbar from './AdminNavbar'
 
 import { UploadImage } from "../dbFetch.js";
 import { hasLocationAccess, getCurrentLocation } from "../Location";
@@ -184,7 +184,7 @@ export const AddTiffin = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AdminAfterLogin />
+        <AdminNavbar/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -261,7 +261,7 @@ export const AddTiffin = () => {
                       style={{ padding: "10px" }}
                       width={150}
                       height={100}
-                      src={item ? URL.createObjectURL(item) : null}
+                      src={item ? URL.createObjectURL(item) : null} 
                     />
                   </span>
                 );
