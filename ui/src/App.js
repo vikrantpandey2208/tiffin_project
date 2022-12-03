@@ -18,6 +18,7 @@ import { ContactUs } from "./FooterPages/ContactUs";
 import { FAQ } from "./FooterPages/FAQ";
 import { OurServices } from "./FooterPages/OurServives";
 import Cart from "./Order/Cart";
+import MyOrder from "./Order/MyOrder";
 
 function App() {
   // const [userId, setUserId] = useState("0");
@@ -46,6 +47,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/ourservices" element={<OurServices />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/my-order" element={<MyOrder />} />
         </Routes>
       </Router>
     </>

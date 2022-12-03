@@ -115,4 +115,64 @@ module.exports = (app) => {
       }
     });
   });
+
+  app.post("/api/save-payment", (req, res, next) => {
+    const key_secret = "Xmx8035EXbb6pOnpdnOxMGhZ";
+    var instance = new Razorpay({
+      key_id: "rzp_test_3eMWORUD65IeZa",
+      key_secret: "Xmx8035EXbb6pOnpdnOxMGhZ",
+    });
+
+    let data = req.body.data;
+
+    let body = data.orderId + "|" + data.paymentId;
+
+    var crypto = require("crypto");
+    var expectedSignature = crypto
+      .createHmac("sha256", key_secret)
+      .update(body.toString())
+      .digest("hex");
+
+    // console.log("sig received ", data.signature);
+    // console.log("sig generated ", expectedSignature);
+
+    if (expectedSignature !== data.signature) {
+      res.send({ success: false, message: "Payment Not verified" });
+    }
+
+    const { sellerId, userId, tiffinId } = data;
+
+    if (!userId) {
+      return res.send({
+        success: false,
+        message: "Error: Session expired",
+      });
+    }
+    if (!tiffinId && !sellerId) {
+      return res.send({
+        success: false,
+        message: "Error: Wrong Information",
+      });
+    }
+    // Save the new order
+    const newOrder = new Order();
+    newOrder.sellerId = sellerId;
+    newOrder.userId = userId;
+    newOrder.tiffinId = tiffinId;
+    newOrder.paymentId = data.paymentId;
+
+    newOrder.save((err, order) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: err,
+        });
+      }
+
+      return res.send({
+        success: true,
+        message: "Congratulations! Order Saved!",
+      });
+    });
+  });
 };

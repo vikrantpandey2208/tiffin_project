@@ -16,6 +16,7 @@ import { AppBar, Button, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 import UserProfileMenu from "../CostomerAfterLogin/UserProfileMenu";
 import { Footer } from "../Component.js/Footer";
+import { getUserDetails } from "../Profile/CostomerProfile";
 
 const createOrder = async function createOrder(params) {
   const path = "/api/pay";
@@ -27,6 +28,16 @@ const createOrder = async function createOrder(params) {
     // console.log("Payment token not generated", response);
     return null;
   }
+};
+const savePayment = async function savePayment(data) {
+  const path = "/api/save-payment";
+  const response = await Fetch(path, data);
+  return response;
+};
+
+const completeData = function completeData() {
+  let user = getUserDetails();
+  if (user == null) throw new Error("User Session Expired");
 };
 
 export default function Cart() {
@@ -56,8 +67,25 @@ export default function Cart() {
       order_id: order,
 
       handler: function (response) {
-        navigate("/my-order");
-        console.log(response);
+        let user = getUserDetails();
+
+        let data = {
+          userId: user._id,
+          sellerId: props.sellerId,
+          tiffinId: props._id,
+          paymentId: response.razorpay_payment_id,
+          orderId: response.razorpay_order_id,
+          signature: response.razorpay_signature,
+        };
+        console.log(data);
+        savePayment(data).then(function (result) {
+          console.log(result);
+          if (result.success) {
+            navigate("/my-order");
+          } else {
+            console.log(result);
+          }
+        });
       },
       prefill: {
         name: "Your Name",
@@ -105,9 +133,7 @@ export default function Cart() {
             >
               Just Dabba
             </Typography>
-            <Button variant="h6" component={Link}>
-              <UserProfileMenu />
-            </Button>
+            <UserProfileMenu />
           </Toolbar>
         </AppBar>
       </Grid>

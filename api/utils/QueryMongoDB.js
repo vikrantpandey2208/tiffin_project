@@ -27,7 +27,14 @@ function searchTiffin(longitude, latitude, callback) {
         },
       },
       {
-        $project: { photo1: 1, rating: 1, brandName: 1, category: 1, price: 1 },
+        $project: {
+          photo1: 1,
+          rating: 1,
+          brandName: 1,
+          category: 1,
+          price: 1,
+          sellerId: 1,
+        },
       },
     ],
 

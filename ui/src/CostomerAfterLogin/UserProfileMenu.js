@@ -5,34 +5,55 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogActions,
+  Paper,
+  Fade,
+  Grow,
+  Zoom,
+} from "@mui/material";
 
+import { useEffect } from "react";
 import { Get } from "../dbFetch.js";
-import { setInStorage, getFromStorage } from "../storage";
+import { getFromStorage } from "../storage";
 import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
 
 export default function UserProfileMenu() {
+  const navigate = useNavigate();
+
+  // profile dialog
   const [showDialogLogin, setShowDialogLogin] = React.useState(false);
-
-  // const openDialogLogin = () => { rzp_test_3eMWORUD65IeZa
-  //   setShowDialogLogin(true);
-  // };
-
   const closeDialogLogin = () => {
     setShowDialogLogin(false);
   };
+  const openProfileDialog = () => {
+    setShowDialogLogin(true);
+    setAnchorEl(null);
+  };
 
+  // menu pupulate
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    setShowDialogLogin(true);
     setAnchorEl(null);
   };
-  const navigate = useNavigate();
+
+  // my order
+  const [goToOrders, setGoToOrders] = React.useState(false);
+  const openMyOrder = () => {
+    setGoToOrders(true);
+  };
+  useEffect(() => {
+    if (goToOrders) {
+      navigate("/my-order");
+    }
+  });
+
   const logout = async () => {
     console.log("fired logout");
     const obj = getFromStorage("tiffin_app_user");
@@ -76,27 +97,20 @@ export default function UserProfileMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>
-          {/* <Button onClick={openDialogLogin} color="inherit">
-            Profile
-          </Button> */}
-          Profile
-        </MenuItem>
+        <MenuItem onClick={openProfileDialog}>Profile</MenuItem>
 
-        <MenuItem onClick={handleClose} component={Link}>
-          My Order
-        </MenuItem>
+        <MenuItem onClick={openMyOrder}>My Order</MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
       <Paper>
         <Dialog
           open={showDialogLogin}
           onClose={closeDialogLogin}
-          sx={{ m: 0, p: 2 }}
+          TransitionComponent={Zoom}
+          fullWidth
+          maxWidth="sm"
         >
-          <DialogContent
-            style={{ width: "300px", marginLeft: "30px", height: "400px" }}
-          >
+          <DialogContent style={{}}>
             <CostomerProfile />
           </DialogContent>
           <DialogActions>
