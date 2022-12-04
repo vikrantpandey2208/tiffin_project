@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
-import AdminAfterLogin from "../AdminLoginSignup/AdminAfterLogin";
-import { Grid,  Typography, TextField, Button, Avatar, Divider } from "@mui/material";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import { NavBarSellerProfile } from "./NavBarSellerProfile";
+import {  Typography,  Avatar, Divider } from "@mui/material";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import {  deepPurple } from '@mui/material/colors';
 
-let firstNameFirstLetter = "";
-let lastNameFirstLetter = "";
+
 
 const fontStyle = {
   fontSize: "25px",
@@ -16,20 +12,18 @@ const fontStyle = {
 
 export const AdminProfile = () => {
   const [firstName, setFirstName] = React.useState("firstname");
-  const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
+  
 
   const [lastName, setLastName] = React.useState("lastname");
-  const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
+  
 
   const [email, setEmail] = React.useState("email");
-  const [isEmailFocused, setIsEmailFocused] = React.useState(false);
+  
 
   //Saved data
-  const [save, setSave] = React.useState("save");
 
-  function handleSave(e) {
-    setSave("saved");
-  }
+
+
 
   function getSellerDetails() {
     let user = GetLoggedSeller();

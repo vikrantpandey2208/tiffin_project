@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { AuthContext } from "../context/auth-context";
 import { setInStorage, getFromStorage } from "../storage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   Grid,
@@ -18,7 +20,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
-import AddYourTiffin from "../Pages/AddYourTiffin";
 // import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
@@ -68,10 +69,12 @@ const TiffinAdminLogin = () => {
         token: response.seller,
         setupTime: new Date().getTime(),
       });
+      toast.success("Login successfull");
       console.log("Seller login successful", response.success);
       navigate("/adminlogged");
     } else {
       console.log("login failed", response.message);
+      toast.error("Bad user credential");
     }
   }
 
@@ -150,6 +153,18 @@ const TiffinAdminLogin = () => {
           </Paper>
         </Grid>
       </ThemeProvider>
+      <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          />
     </>
   );
 };

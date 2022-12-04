@@ -7,6 +7,7 @@ import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
 import { ViewTiffin } from "../SellerData/ViewTiffin";
+import { toast } from "react-toastify";
 
 
 function getSellerDetails() {
@@ -26,7 +27,9 @@ const AdminAfterLogin = () => {
       const response = await Get("/api/seller-logout?token=" + token._id);
       localStorage.removeItem("tiffin_app_seller");
       if (response.success) {
+        toast.success("Logout successfull")
         navigate("/")
+
       } else {
         console.log("Error", response.message);
       }

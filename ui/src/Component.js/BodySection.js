@@ -15,7 +15,7 @@ const BodySection = () => {
                 <span  style={{color:'#ff386a', fontWeight:'bold', usecaseShadow:'2px 2px solid black'}}>Home Food</span> 
             </Typography>
             <Typography variant="h3" color="inherit">
-                Nearest Tiifin in Your Place 
+                Nearest Tiffin in Your Place 
             </Typography>
             </Grid>
             <Grid item sm={6} order={{xs:1,sm:2}}  xs={12} >

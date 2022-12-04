@@ -1,6 +1,6 @@
 export async function Fetch(path, data) {
   try {
-    const endpoint = "http://192.168.43.23:8000";
+    const endpoint = "http://localhost:8000";
     // const endpoint = "http://localhost:8000";
     const response = await fetch(endpoint.concat(path), {
       method: "POST",
@@ -46,7 +46,7 @@ export async function UploadImage(path, data, isFullUrl = false) {
 
 export async function Get(query) {
   // const endpoint = "http://localhost:8000";
-  const endpoint = "http://192.168.43.23:8000";
+  const endpoint = "http://localhost:8000";
   const res = await fetch(endpoint + query);
   const body = await res.text();
   const response = JSON.parse(body);

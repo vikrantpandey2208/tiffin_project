@@ -17,6 +17,7 @@ import {
 import Login from "../Pages/Login.js";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import { toast } from "react-toastify";
 
 class TiffinSection extends React.Component {
   constructor() {
@@ -50,6 +51,7 @@ class TiffinSection extends React.Component {
       this.setState({ tiffins: response.data });
     } else {
       console.log("failed in fetching tiffins", response.err.code);
+      toast.info("Check you network connection please");
     }
   }
 

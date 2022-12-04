@@ -17,6 +17,8 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../Profile/CostomerProfile";
 import { useEffect } from "react";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme({
   palette: {
@@ -25,6 +27,7 @@ const theme = createTheme({
     },
   },
 });
+
 
 const paperStyle = {
   padding: 20,
@@ -47,6 +50,7 @@ const Login = () => {
       navigate("/logged");
     }
   });
+  
 
   const formik = useFormik({
     initialValues: {
@@ -71,11 +75,15 @@ const Login = () => {
         token: response.user,
         setupTime: new Date().getTime(),
       });
-      // console.log("login successful", response.success);
+      toast.success("login successfull");
+       console.log("login successful", response.success);
       navigate("/logged");
+      
     } else {
       console.log("login failed", response.message);
+      toast.error("Bad user credential");
     }
+    
   }
   async function logInVerify() {
     const obj = getFromStorage("tiffin_app_user");
@@ -85,6 +93,7 @@ const Login = () => {
       const response = await Get("/api/verify?token=" + token);
       if (response.success) {
         console.log("Already loggedin user");
+        toast.info("Already loggedin")
       } else {
         console.log("logged out user go to login");
       }

@@ -10,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -85,9 +87,11 @@ const TiffinAdminSignup = () => {
 
     const response = await Fetch(path, data);
     if (response.success) {
-      navigate("/")
+      navigate("/");
+      toast.success("Signup successfull")
     } else {
       console.log("Sign up failed", response.message);
+      toast.info("Account already exist");
     }
   }
   return (
@@ -188,6 +192,18 @@ const TiffinAdminSignup = () => {
           </Paper>
         </Grid>
       </ThemeProvider>
+      <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          />
     </>
   );
 };

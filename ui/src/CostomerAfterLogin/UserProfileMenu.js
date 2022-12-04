@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
-
+import { ToastContainer, toast } from 'react-toastify';
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
 import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
@@ -40,9 +40,11 @@ export default function UserProfileMenu() {
       const { token } = obj;
       const response = await Get("/api/logout?token=" + token._id);
       localStorage.removeItem("tiffin_app_user");
+      toast.success("logout success");
       if (response.success) {
         console.log("Logged out navigate to login");
         navigate("/");
+        
       } else {
         console.log("Error", response.message);
       }
@@ -50,11 +52,14 @@ export default function UserProfileMenu() {
       console.log("Already logged out");
     }
   };
+ 
 
   // Get name of user to show
   let user = getUserDetails().firstname;
 
   return (
+
+    <>
     <div>
       <Button
         id="basic-button"
@@ -105,5 +110,18 @@ export default function UserProfileMenu() {
         </Dialog>
       </Paper>
     </div>
+          <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          />
+    </>
   );
 }

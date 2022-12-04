@@ -14,7 +14,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForSignup from './NavbarForSignup'
+import NavbarForSignup from './NavbarForSignup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme({
   palette: {
@@ -65,9 +67,11 @@ const SignUp = () => {
     const response = await Fetch(path, data);
     if (response.success) {      
       console.log("Sign up successful");
+      toast.success("Signup Successfull");
       navigate("/login")
     } else {
       console.log("Sign up failed", response.message);
+      toast.info("Account Already exist");
     }
   }
 
@@ -167,6 +171,18 @@ const SignUp = () => {
           </Paper>
         </Grid>
       </ThemeProvider>
+      <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          />
     </>
   );
 };
