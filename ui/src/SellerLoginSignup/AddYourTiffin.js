@@ -1,3 +1,4 @@
+import React from 'react';
 import { AppBar, Typography,Button, Toolbar,  Grid} from '@mui/material';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
@@ -14,7 +15,7 @@ export default function AddYourTiffin(){
                Just Dabba
              </Typography>
                 <Button component={Link} to='/' color="inherit" startIcon={<HomeIcon/>}>Home</Button>
-                <Button component={Link} to='/loginadmin' color="inherit" startIcon={<ControlPointIcon/>}>Login</Button>                
+                <Button component={Link} to='/seller-login' color="inherit" startIcon={<ControlPointIcon/>}>Login</Button>                
             </Toolbar>            
         </AppBar>        
         </Grid>                    

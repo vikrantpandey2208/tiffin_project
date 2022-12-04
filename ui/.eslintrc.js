@@ -2,7 +2,7 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        "node": ture
+        node: true
     },
     "extends": [
         "eslint:recommended",

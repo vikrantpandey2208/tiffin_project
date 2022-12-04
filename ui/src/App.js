@@ -10,7 +10,7 @@ import SellerAfterLogin from "./SellerAfterLogin/SellerAfterLogin";
 import { AddTiffin } from "./SellerAfterLogin/AddTiffin";
 import CustomerAfterLogin from "./CustomerAfterLogin/CustomerAfterLogin";
 import { SellerProfile } from "./Profile/SellerProfile";
-import { CostomerProfile } from "./Profile/CostomerProfile";
+import { CustomerProfile } from "./Profile/CustomerProfile";
 import { About } from "./FooterPages/About";
 import { PrivacyPolicy } from "./FooterPages/PrivacyPolicy";
 import { ContactUs } from "./FooterPages/ContactUs";
@@ -37,7 +37,7 @@ function App() {
           <Route path="/addtiffin" element={<AddTiffin />} />
           <Route path="/customer-logged" element={<CustomerAfterLogin />} />
           <Route path="/Seller-profile" element={<SellerProfile />} />
-          <Route path="/customer-profile" element={<CostomerProfile />} />
+          <Route path="/customer-profile" element={<CustomerProfile />} />
           <Route path="/aboutus" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/contactus" element={<ContactUs />} />

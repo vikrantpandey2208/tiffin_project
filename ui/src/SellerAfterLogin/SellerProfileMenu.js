@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
-import { AdminProfile } from "../Profile/AdminProfile";
+import { SellerProfile } from "../Profile/SellerProfile";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
@@ -135,7 +135,7 @@ export default function SellerProfileMenu() {
                 maxWidth="sm"
               >
                 <DialogContent style={{}}>
-                  <AdminProfile />
+                  <SellerProfile />
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={closeDialogLogin}>close</Button>

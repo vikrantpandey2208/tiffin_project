@@ -2,7 +2,7 @@ import React from "react";
 import {  Typography } from "@mui/material";
 import { NavbarForFooter } from "./NavbarForFooter";
 import { Container } from "@mui/system";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 export const FAQ = () => {
   return (
     <>

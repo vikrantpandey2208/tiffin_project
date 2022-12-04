@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Grid } from "@mui/material";
 import { NavbarForFooter } from "./NavbarForFooter";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 export const OurServices = () => {
   return (
     <>

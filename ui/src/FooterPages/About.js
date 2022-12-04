@@ -5,7 +5,7 @@ import vk from "./vk.jpg";
 import kk from "./kk.jpg";
 import { Container } from "@mui/system";
 import "./About.css";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 
 export const About = () => {
   return (

@@ -1,8 +1,8 @@
-import React from "react";
-import { Fetch } from "../dbFetch.js";
-import { useState, useEffect } from "react";
-import { getUserDetails } from "../Profile/CostomerProfile.js";
-import { toast } from "react-toastify";
+import React from 'react'
+import { Fetch } from '../dbFetch.js'
+import { useState, useEffect } from 'react'
+import { getUserDetails } from '../Profile/CustomerProfile.js'
+import { toast } from 'react-toastify'
 import {
   Typography,
   Card,
@@ -10,41 +10,41 @@ import {
   CardContent,
   Grid,
   Paper,
-} from "@mui/material";
-import CustomerProfileMenu from "../CustomerAfterLogin/CustomerProfileMenu";
-import { AppBar, Toolbar } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Footer } from "../Component.js/Footer";
-import StarIcon from "@mui/icons-material/Star";
-import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+} from '@mui/material'
+import CustomerProfileMenu from '../CustomerAfterLogin/CustomerProfileMenu'
+import { AppBar, Toolbar } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { Footer } from '../LandingPage/Footer'
+import StarIcon from '@mui/icons-material/Star'
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee'
 
 export const CustomerOrder = () => {
-  let user = getUserDetails();
+  let user = getUserDetails()
 
-  const [orderItem, setOrderItem] = useState([]);
+  const [orderItem, setOrderItem] = useState([])
 
   async function GetCustomerOrders() {
-    let data;
+    let data
     if (user == null) {
-      toast.info("Session Expired");
-      return;
+      toast.info('Session Expired')
+      return
     } else {
       data = {
         userId: user._id,
-      };
+      }
     }
-    const path = "/api/get-customer-orders";
-    const response = await Fetch(path, data);
+    const path = '/api/get-customer-orders'
+    const response = await Fetch(path, data)
     if (response.success) {
-      setOrderItem(response.data);
+      setOrderItem(response.data)
     } else {
-      toast.info(response.message);
+      toast.info(response.message)
     }
   }
 
   useEffect(() => {
-    GetCustomerOrders();
-  }, []);
+    GetCustomerOrders()
+  }, [])
 
   return (
     <>
@@ -56,9 +56,9 @@ export const CustomerOrder = () => {
               variant="h4"
               style={{
                 flexGrow: 1,
-                textDecoration: "none",
-                color: "inherit",
-                fontSize: "20px",
+                textDecoration: 'none',
+                color: 'inherit',
+                fontSize: '20px',
               }}
               component={Link}
               to="/"
@@ -69,13 +69,13 @@ export const CustomerOrder = () => {
           </Toolbar>
         </AppBar>
       </Grid>
-       {/* cart Details */}
+      {/* cart Details */}
       <Grid ml={15} mr={15} mt={5} container spacing={3}>
         {orderItem.map((order) => {
           return order.Tiffin.map((product) => {
             return (
               <Grid item sm={3} key={product._id}>
-                <Paper elevation={24} style={{ width: "270px" }}>
+                <Paper elevation={24} style={{ width: '270px' }}>
                   <Card sx={{ width: 275, height: 350 }} variant="contained">
                     <CardMedia
                       component="img"
@@ -90,28 +90,28 @@ export const CustomerOrder = () => {
                           variant="h6"
                           style={{
                             flexGrow: 1,
-                            fontSize: "20px",
-                            fontWeight: "520",
+                            fontSize: '20px',
+                            fontWeight: '520',
                           }}
                         >
-                          {product.brandName}{" "}
+                          {product.brandName}{' '}
                         </Typography>
                         <div
                           style={{
-                            backgroundColor: "green",
-                            borderRadius: "8px",
-                            width: "42px",
-                            height: "25px",
-                            textAlign: "center",
+                            backgroundColor: 'green',
+                            borderRadius: '8px',
+                            width: '42px',
+                            height: '25px',
+                            textAlign: 'center',
                           }}
                         >
                           <Typography
-                            style={{ color: "white", fontSize: "15px" }}
+                            style={{ color: 'white', fontSize: '15px' }}
                           >
-                            {product.rating}{" "}
+                            {product.rating}{' '}
                             <StarIcon
                               size="small"
-                              style={{ color: "white", fontSize: "13px" }}
+                              style={{ color: 'white', fontSize: '13px' }}
                             />
                           </Typography>
                         </div>
@@ -122,7 +122,7 @@ export const CustomerOrder = () => {
                         </Typography>
                         <Typography variant="subtitle1">
                           <CurrencyRupeeIcon
-                            style={{ color: "", fontSize: "13px" }}
+                            style={{ color: '', fontSize: '13px' }}
                           />
                           {product.price}
                         </Typography>
@@ -131,12 +131,12 @@ export const CustomerOrder = () => {
                   </Card>
                 </Paper>
               </Grid>
-            );
-          });
+            )
+          })
         })}
       </Grid>
 
       <Footer />
     </>
-  );
-};
+  )
+}

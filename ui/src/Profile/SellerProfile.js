@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 
-const fontStyle = {};
+
 
 export function getSellerDetails() {
   let user = GetLoggedSeller();
@@ -19,17 +19,16 @@ export function getSellerDetails() {
   } else return null;
 }
 
-export const AdminProfile = () => {
+export const SellerProfile = () => {
   const [firstName, setFirstName] = React.useState("firstname");
-  const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
+  
 
   const [lastName, setLastName] = React.useState("lastname");
-  const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
+  
 
   const [email, setEmail] = React.useState("email");
   const [phone, setPhone] = React.useState("phone");
-  const [isPhoneFocused, setIsPhoneFocused] = React.useState(false);
-  const [isEmailFocused, setIsEmailFocused] = React.useState(false);
+  
 
   useEffect(() => {
     let user = getSellerDetails();
@@ -70,7 +69,7 @@ export const AdminProfile = () => {
         <Grid item xs={6}>
           <TextField
             variant="standard"
-            label={fName}
+            label={firstName}
             margin="none"
             onChange={(event) => setFirstName(event.target.value)}
           />
@@ -87,7 +86,7 @@ export const AdminProfile = () => {
         <Grid item xs={6}>
           <TextField
             variant="standard"
-            label={userLastName}
+            label={lastName}
             margin="none"
             onChange={(event) => setLastName(event.target.value)}
           />

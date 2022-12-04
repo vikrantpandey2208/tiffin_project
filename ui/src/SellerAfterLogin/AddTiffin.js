@@ -129,15 +129,10 @@ export const AddTiffin = () => {
           lt.push(position.coords.latitude);
           lt.push(position.coords.longitude);
           setLocation(lt);
-        },
-        function (error) {
-          //console.error("Error Code = " + error.code + " - " + error.message);
-        },
+        },      
       );
       
-    } else {
-      
-    }
+    } 
   };
 
   function getSellerDetails() {
@@ -253,7 +248,7 @@ export const AddTiffin = () => {
               </Typography>
               <br />
               {/* image1 */}
-              {Array.from(images1).map((item) => {
+              {/* {Array.from(images1).map((item) => {
                 return (
                   <span>
                     <img
@@ -264,7 +259,7 @@ export const AddTiffin = () => {
                     />
                   </span>
                 );
-              })}
+              })} */}
               <Button
                 onClick={() => {
                   fileRef1.current.click();

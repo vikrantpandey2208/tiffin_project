@@ -2,15 +2,15 @@ import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBar, Typography, Button, Toolbar, Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import SellerDashBoard from "../AdminLoginSignup/SellerProfileMenu";
-import { GetLoggedSeller } from "../Auth/Logged-Seller";
+import SellerProfileMenu from "./SellerProfileMenu";
+// import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
 import {  getFromStorage } from "../storage";
 
-function getSellerDetails() {
-  let user = GetLoggedSeller();
-  return user;
-}
+// function getSellerDetails() {
+//   let user = GetLoggedSeller();
+//   return user;
+// }
 
 const AdminAfterLogin = () => {
   const navigate = useNavigate();
@@ -32,8 +32,7 @@ const AdminAfterLogin = () => {
     }
   };
 
-  let detail = getSellerDetails();
-  // if (detail != null) console.log(detail.token, "Details of seller");
+
   return (
     <>
       <Grid container>
@@ -43,7 +42,7 @@ const AdminAfterLogin = () => {
               Just Dabba
             </Typography>
             <Button variant="h6" component={Link}>
-              <SellerDashBoard />
+              <SellerProfileMenu />
             </Button>
             <Button onClick={logout} color="inherit" startIcon={<LogoutIcon />}>
               Logout

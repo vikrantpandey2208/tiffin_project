@@ -2,7 +2,7 @@ import React from 'react'
 import {  Typography } from '@mui/material'
 import { NavbarForFooter } from './NavbarForFooter'
 import {Container} from '@mui/material'
-import {Footer} from '../Component.js/Footer.js'
+import {Footer} from '../LandingPage/Footer'
 export const PrivacyPolicy = () => {
   return (
     <>

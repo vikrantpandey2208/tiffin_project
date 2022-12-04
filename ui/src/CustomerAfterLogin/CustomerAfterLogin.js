@@ -1,9 +1,9 @@
 import React from "react";
 import { AppBar, Typography,Toolbar, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import UserProfileMenu from "./UserProfileMenu";
+import CustomerProfileMenu from "./CustomerProfileMenu";
 import TiffinSectionForOrder from "./TiffinSectionForOrder";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 
 const CustomerAfterLogin = () => {
 //Customer After Login 
@@ -26,7 +26,7 @@ const CustomerAfterLogin = () => {
               Just Dabba
             </Typography>
             {/* Menubar of Profile */}
-            <UserProfileMenu />
+            <CustomerProfileMenu />
           </Toolbar>
         </AppBar>
       </Grid>

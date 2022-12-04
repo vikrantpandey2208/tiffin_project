@@ -1,7 +1,7 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
 import { useNavigate } from "react-router-dom";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 import {
   Grid,
   Paper,
@@ -13,7 +13,6 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { useFormik } from "formik";
 import * as yup from "react-yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
@@ -73,9 +72,8 @@ const TiffinSellerSignup = () => {
   async function signUpApi(data) {
     const path = "/api/seller-signin";
     delete data.initialValues;
-
     
-    const photo = data;
+    
     
 
     const response = await Fetch(path, data);

@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
-import TiffinAdminLogin from "./TiffinAdminLogin";
+import TiffinSellerLogin from "./TiffinSellerLogin";
 import React from "react";
 
 export default function NavbarForadminSignup() {
@@ -56,7 +56,7 @@ export default function NavbarForadminSignup() {
             </Button>
             <Dialog open={showDialog} onClose={closeDialog}>
               <DialogContent>
-                <TiffinAdminLogin />
+                <TiffinSellerLogin />
               </DialogContent>
               <DialogActions>
                 <Button onClick={closeDialog}>close</Button>

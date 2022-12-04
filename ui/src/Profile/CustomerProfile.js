@@ -17,22 +17,21 @@ export function getUserDetails() {
   } else return null;
 }
 
-export const CostomerProfile = (props) => {
+export const CustomerProfile = () => {
   const [firstName, setFirstName] = React.useState("firstname");
-  const [isFirstNameFocused, setIsFirstNamedFocused] = React.useState(false);
+  
 
   const [lastName, setLastName] = React.useState("lastname");
-  const [isLastNameFocused, setIsLastNamedFocused] = React.useState(false);
+ 
 
   const [email, setEmail] = React.useState("email");
   const [phone, setPhone] = React.useState("phone");
-  const [isPhoneFocused, setIsPhoneFocused] = React.useState(false);
-  const [isEmailFocused, setIsEmailFocused] = React.useState(false);
+
 
   //Saved data
   const [save, setSave] = React.useState("save");
 
-  function handleSave(e) {
+  function handleSave() {
     setSave("saved");
   }
 
@@ -71,7 +70,7 @@ export const CostomerProfile = (props) => {
         <Grid item xs={6}>
           <TextField
             variant="standard"
-            label={user}
+            label={firstName}
             margin="none"
             onChange={(event) => setFirstName(event.target.value)}
           />
@@ -88,7 +87,7 @@ export const CostomerProfile = (props) => {
         <Grid item xs={6}>
           <TextField
             variant="standard"
-            label={userLastName}
+            label={lastName}
             margin="none"
             onChange={(event) => setLastName(event.target.value)}
           />
@@ -131,7 +130,7 @@ export const CostomerProfile = (props) => {
       </Grid>
       <Grid container alignItems="center" justifyContent="center" mt={5} mb={0}>
         <Button variant="contained" component="label" onClick={handleSave}>
-          Update
+          {save}
         </Button>
       </Grid>
     </>
