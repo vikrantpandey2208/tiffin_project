@@ -163,9 +163,10 @@ module.exports = (app) => {
 
     newOrder.save((err, order) => {
       if (err) {
+        console.log(err);
         return res.send({
           success: false,
-          message: err,
+          message: "Internal Server Error",
         });
       }
 

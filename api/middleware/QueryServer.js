@@ -7,7 +7,7 @@ module.exports = (app) => {
     const { data } = body;
     const { userId } = data;
     const { longitude, latitude } = data;
-
+    console.log(data);
     if (!userId) {
       return res.send({
         success: false,
@@ -32,7 +32,7 @@ module.exports = (app) => {
         return res.send({
           success: false,
           err: result,
-          message: "Error: Internal Server error while searching tifffin",
+          message: "Internal Server Error",
         });
       }
     });

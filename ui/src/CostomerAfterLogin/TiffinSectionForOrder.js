@@ -19,7 +19,9 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import DialogContentText from "@mui/material/DialogContentText";
+import { toast } from "react-toastify";
 import { getUserDetails } from "../Profile/CostomerProfile.js";
+import { hasLocationAccess } from "../Location";
 
 class TiffinSectionForOrder extends React.Component {
   constructor(props) {
@@ -58,16 +60,34 @@ class TiffinSectionForOrder extends React.Component {
   }
 
   async componentDidMount() {
+    let user = getUserDetails();
+    if (user == null) {
+      toast.info("Session Expired");
+    }
     let data = {
-      userId: "demoid",
-      longitude: 75.8577258,
-      latitude: 22.7195687,
+      userId: user._id,
     };
+
+    // location
+    if (hasLocationAccess()) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          data["latitude"] = position.coords.latitude;
+          data["longitude"] = position.coords.longitude;
+
+          this.getTiffinList(data);
+        },
+        function (error) {
+          toast.error(error);
+        },
+      );
+    } else {
+      toast.info("Allow Location Access");
+    }
+
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
-    this.getTiffinList(data);
-    // Payment();
   }
 
   async getTiffinList(data) {
@@ -75,10 +95,9 @@ class TiffinSectionForOrder extends React.Component {
     delete data.initialValues;
     const response = await Fetch(path, data);
     if (response.success) {
-      // console.log(response, response.data);
       this.setState({ tiffins: response.data });
     } else {
-      console.log("failed in fetching tiffins", response.message);
+      toast.error(response.message);
     }
   }
 

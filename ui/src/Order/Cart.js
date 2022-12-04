@@ -17,15 +17,14 @@ import { Link } from "react-router-dom";
 import UserProfileMenu from "../CostomerAfterLogin/UserProfileMenu";
 import { Footer } from "../Component.js/Footer";
 import { getUserDetails } from "../Profile/CostomerProfile";
+import { ToastContainer, toast } from "react-toastify";
 
 const createOrder = async function createOrder(params) {
   const path = "/api/pay";
   const response = await Fetch(path, params);
   if (response.success) {
-    // console.log("Order id generated", response);
     return response.orderId;
   } else {
-    // console.log("Payment token not generated", response);
     return null;
   }
 };
@@ -33,11 +32,6 @@ const savePayment = async function savePayment(data) {
   const path = "/api/save-payment";
   const response = await Fetch(path, data);
   return response;
-};
-
-const completeData = function completeData() {
-  let user = getUserDetails();
-  if (user == null) throw new Error("User Session Expired");
 };
 
 export default function Cart() {
@@ -56,6 +50,15 @@ export default function Cart() {
     };
 
     const order = await createOrder(orderParams);
+    let user = getUserDetails();
+    if (order == null) {
+      toast.error("Connection Failed");
+      return null;
+    }
+    if (user == null) {
+      toast.info("Session Expired");
+    }
+
     const options = {
       key: "rzp_test_3eMWORUD65IeZa",
       amount: props.price,
@@ -67,8 +70,6 @@ export default function Cart() {
       order_id: order,
 
       handler: function (response) {
-        let user = getUserDetails();
-
         let data = {
           userId: user._id,
           sellerId: props.sellerId,
@@ -77,13 +78,13 @@ export default function Cart() {
           orderId: response.razorpay_order_id,
           signature: response.razorpay_signature,
         };
-        console.log(data);
+
         savePayment(data).then(function (result) {
-          console.log(result);
           if (result.success) {
+            toast.success("Payment Successful");
             navigate("/my-order");
           } else {
-            console.log(result);
+            toast.error(result.message);
           }
         });
       },
@@ -107,7 +108,7 @@ export default function Cart() {
 
     rzp1.on("payment.failed", function (response) {
       // show toast
-      console.log(response.error.description);
+      toast.info(response.error.description);
     });
 
     rzp1.open();

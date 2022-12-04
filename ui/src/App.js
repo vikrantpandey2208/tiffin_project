@@ -19,7 +19,7 @@ import { FAQ } from "./FooterPages/FAQ";
 import { OurServices } from "./FooterPages/OurServives";
 import Cart from "./Order/Cart";
 import { ErrorPage } from "./ErrorPage/ErrorPage";
-import MyOrder from "./Order/MyOrder";
+import { CustomerOrder } from "./Order/CustomerOrder";
 
 function App() {
   // const [userId, setUserId] = useState("0");
@@ -48,8 +48,8 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/ourservices" element={<OurServices />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/my-order" element={<MyOrder />} />
-          <Route path='/*' element={<ErrorPage/>}/>
+          <Route path="/my-order" element={<CustomerOrder />} />
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </>

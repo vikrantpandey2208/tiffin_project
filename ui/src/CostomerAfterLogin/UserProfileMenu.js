@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   Dialog,
@@ -58,87 +58,88 @@ export default function UserProfileMenu() {
   });
 
   const logout = async () => {
-    console.log("fired logout");
     const obj = getFromStorage("tiffin_app_user");
     if (obj && obj.token._id) {
       const { token } = obj;
       const response = await Get("/api/logout?token=" + token._id);
       localStorage.removeItem("tiffin_app_user");
-      toast.success("logout success");
+
       if (response.success) {
-        console.log("Logged out navigate to login");
+        toast.info("Logout Success");
         navigate("/");
-        
       } else {
-        console.log("Error", response.message);
+        toast.error(response.message);
       }
     } else {
-      console.log("Already logged out");
+      toast.info("Session Expired");
     }
   };
- 
 
   // Get name of user to show
-  let user = getUserDetails().firstname;
+  let user = getUserDetails();
+  if (user != null) {
+    user = user.firstname;
+  } else {
+    toast.info("Session Expired");
+  }
 
   return (
-
     <>
-    <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        color="inherit"
-        startIcon={<AccountCircleIcon />}
-      >
-        {user}
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={openProfileDialog}>Profile</MenuItem>
-
-        <MenuItem onClick={openMyOrder}>My Order</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu>
-      <Paper>
-        <Dialog
-          open={showDialogLogin}
-          onClose={closeDialogLogin}
-          TransitionComponent={Zoom}
-          fullWidth
-          maxWidth="sm"
+      <div>
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+          color="inherit"
+          startIcon={<AccountCircleIcon />}
         >
-          <DialogContent style={{}}>
-            <CostomerProfile />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={closeDialogLogin}>close</Button>
-          </DialogActions>
-        </Dialog>
-      </Paper>
-    </div>
-          <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          />
+          {user}
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={openProfileDialog}>Profile</MenuItem>
+
+          <MenuItem onClick={openMyOrder}>My Order</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
+        </Menu>
+        <Paper>
+          <Dialog
+            open={showDialogLogin}
+            onClose={closeDialogLogin}
+            TransitionComponent={Zoom}
+            fullWidth
+            maxWidth="sm"
+          >
+            <DialogContent style={{}}>
+              <CostomerProfile />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={closeDialogLogin}>close</Button>
+            </DialogActions>
+          </Dialog>
+        </Paper>
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 }

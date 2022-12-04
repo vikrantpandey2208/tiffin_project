@@ -7,8 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import { GetLoggedUser } from "../Auth/Logged-Seller";
 import TiffinSectionForOrder from "./TiffinSectionForOrder";
 import { Footer } from "../Component.js/Footer";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
