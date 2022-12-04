@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SellerDashBoard from "../AdminLoginSignup/SellerProfileMenu";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
-import { setInStorage, getFromStorage } from "../storage";
+import {  getFromStorage } from "../storage";
 
 function getSellerDetails() {
   let user = GetLoggedSeller();

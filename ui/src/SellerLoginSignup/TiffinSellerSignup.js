@@ -11,13 +11,13 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as yup from "react-yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForadminSignup from "./NavbarForAdminSignup.js";
+import NavbarForSellerSignup from "./NavbarForSellerSignup.js";
 
 const theme = createTheme({
   palette: {
@@ -27,7 +27,7 @@ const theme = createTheme({
   },
 });
 
-const TiffinAdminSignup = () => {
+const TiffinSellerSignup = () => {
   const navigate = useNavigate();
 
   const paperStyle = {
@@ -40,6 +40,7 @@ const TiffinAdminSignup = () => {
   const btnstyle = { margin: "8px 0" };
 
   const formik = useFormik({
+    //initial value form
     initialValues: {
       initialValues: {
         firstName: "",
@@ -49,15 +50,21 @@ const TiffinAdminSignup = () => {
         password: "",
       },
     },
-
+    //validation
     validationSchema: yup.object({
       firstName: yup.string().required("required"),
       lastName: yup.string().required("required").min(3, "too short"),
-      phone: yup.number().required("required"),
+      phone: yup.number().required("required")
+                .min(1000000000, "Not Valid Phone Number!")
+                .max(9999999999, "Not Valid Phone Number!"),
       email: yup.string().required("required").email("Invalid email"),
-      password: yup.string().required("required"),
+      password: yup.string().required("required")
+                    .matches(
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+                    ),
     }),
-
+    //on submot form all value come here
     onSubmit: (values) => {
       signUpApi(values);
     },
@@ -67,9 +74,9 @@ const TiffinAdminSignup = () => {
     const path = "/api/seller-signin";
     delete data.initialValues;
 
-    let imageUrl = "";
+    
     const photo = data;
-    console.log("SIGN ", photo);
+    
 
     const response = await Fetch(path, data);
     if (response.success) {
@@ -82,7 +89,7 @@ const TiffinAdminSignup = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavbarForadminSignup />
+        <NavbarForSellerSignup />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -94,6 +101,7 @@ const TiffinAdminSignup = () => {
               </Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+              {/* input First name */}
               <TextField
                 label="First Name"
                 type="text"
@@ -109,6 +117,7 @@ const TiffinAdminSignup = () => {
               />
               <br />
               <br />
+              {/* input last name */}
               <TextField
                 label="Last Name"
                 type="text"
@@ -124,6 +133,7 @@ const TiffinAdminSignup = () => {
               />
               <br />
               <br />
+              {/* input phone number */}
               <TextField
                 label="Phone Number"
                 type="text"
@@ -137,6 +147,7 @@ const TiffinAdminSignup = () => {
               />
               <br />
               <br />
+              {/* input email address */}
               <TextField
                 label="Email"
                 type="text"
@@ -150,6 +161,7 @@ const TiffinAdminSignup = () => {
               />
               <br />
               <br />
+              {/* input password */}
               <TextField
                 label="Password"
                 type="password"
@@ -178,20 +190,9 @@ const TiffinAdminSignup = () => {
         </Grid>
       </ThemeProvider>
       <Footer />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+
     </>
   );
 };
 
-export default TiffinAdminSignup;
+export default TiffinSellerSignup;

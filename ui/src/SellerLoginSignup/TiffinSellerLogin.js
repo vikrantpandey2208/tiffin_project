@@ -1,12 +1,9 @@
 import React from "react";
-import { Fetch, Get } from "../dbFetch.js";
+import { Fetch } from "../dbFetch.js";
 import { useNavigate, Link } from "react-router-dom";
-import { GetLoggedSeller } from "../Auth/Logged-Seller";
-import { AuthContext } from "../context/auth-context";
-import { setInStorage, getFromStorage } from "../storage";
-import { ToastContainer, toast } from "react-toastify";
+import { setInStorage} from "../storage";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import {
   Grid,
   Paper,
@@ -19,8 +16,8 @@ import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useFormik } from "formik";
-import * as yup from "yup";
-// import { useNavigate } from 'react-router-dom';
+import * as yup from "react-yup";
+
 
 const theme = createTheme({
   palette: {
@@ -39,12 +36,9 @@ const paperStyle = {
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
-const TiffinAdminLogin = () => {
+const TiffinSellerLogin = () => {
   const navigate = useNavigate();
-  // const value = React.useContext(AuthContext);
-  // console.log(value);
-  // value.setUserId();
-  // console.log(value);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -69,7 +63,7 @@ const TiffinAdminLogin = () => {
         setupTime: new Date().getTime(),
       });
       toast.success("Login Successful");
-      navigate("/adminlogged");
+      navigate("/seller-logged");
     } else {
       toast.error(response.message);
     }
@@ -88,6 +82,7 @@ const TiffinAdminLogin = () => {
             </Grid>
 
             <form onSubmit={formik.handleSubmit}>
+              {/* input email and userid */}
               <TextField
                 label="Username"
                 name="email"
@@ -103,7 +98,7 @@ const TiffinAdminLogin = () => {
               />
               <br />
               <br />
-
+              {/* input password */}
               <TextField
                 label="Password"
                 name="password"
@@ -136,11 +131,12 @@ const TiffinAdminLogin = () => {
               </Link>
             </Typography>
             <br />
+
             <Typography>
               {" "}
               Do you have an account ?
               <Link
-                to="/signupadmin"
+                to="/seller-signup"
                 style={{ color: "#ff386a", textDecoration: "none" }}
               >
                 Sign Up
@@ -149,20 +145,8 @@ const TiffinAdminLogin = () => {
           </Paper>
         </Grid>
       </ThemeProvider>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </>
   );
 };
 
-export default TiffinAdminLogin;
+export default TiffinSellerLogin;

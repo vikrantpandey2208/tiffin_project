@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Fetch } from "../dbFetch.js";
-
 import {
   Grid,
   Paper,
@@ -11,7 +10,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as yup from "react-yup";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -20,10 +19,10 @@ import FormControl from "@mui/material/FormControl";
 import UploadIcon from "@mui/icons-material/Upload";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import FormLabel from "@mui/material/FormLabel";
-import AdminNavbar from './AdminNavbar'
+import SellerNavbar from './SellerNavbar';
 
 import { UploadImage } from "../dbFetch.js";
-import { hasLocationAccess, getCurrentLocation } from "../Location";
+import { hasLocationAccess} from "../Location";
 
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 
@@ -132,12 +131,12 @@ export const AddTiffin = () => {
           setLocation(lt);
         },
         function (error) {
-          console.error("Error Code = " + error.code + " - " + error.message);
+          //console.error("Error Code = " + error.code + " - " + error.message);
         },
       );
-      // e.innerHTML(position);
+      
     } else {
-      // e.innerHTML("Allow Location access");
+      
     }
   };
 
@@ -170,7 +169,7 @@ export const AddTiffin = () => {
       photo3: imageUrl[2],
       photo4: imageUrl[3],
     };
-    // console.log(data, "Prepared data");
+    
 
     const path = "/api/seller-add-tiffin";
     const response = await Fetch(path, data);
@@ -184,7 +183,7 @@ export const AddTiffin = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AdminNavbar/>
+        <SellerNavbar/>
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">

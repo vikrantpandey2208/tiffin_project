@@ -9,7 +9,7 @@ import TiffinSellerSignup from "./SellerLoginSignup/TiffinSellerSignup";
 import SellerAfterLogin from "./SellerAfterLogin/SellerAfterLogin";
 import { AddTiffin } from "./SellerAfterLogin/AddTiffin";
 import CustomerAfterLogin from "./CustomerAfterLogin/CustomerAfterLogin";
-import { SellerProfile } from "./Profile/AdminProfile";
+import { SellerProfile } from "./Profile/SellerProfile";
 import { CostomerProfile } from "./Profile/CostomerProfile";
 import { About } from "./FooterPages/About";
 import { PrivacyPolicy } from "./FooterPages/PrivacyPolicy";
