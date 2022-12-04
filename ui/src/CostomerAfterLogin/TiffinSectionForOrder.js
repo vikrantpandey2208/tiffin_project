@@ -80,6 +80,7 @@ class TiffinSectionForOrder extends React.Component {
         function (error) {
           toast.error(error);
         },
+        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: true },
       );
     } else {
       toast.info("Allow Location Access");

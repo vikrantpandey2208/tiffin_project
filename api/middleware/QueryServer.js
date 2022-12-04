@@ -7,7 +7,6 @@ module.exports = (app) => {
     const { data } = body;
     const { userId } = data;
     const { longitude, latitude } = data;
-    console.log(data);
     if (!userId) {
       return res.send({
         success: false,

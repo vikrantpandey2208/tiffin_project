@@ -4,8 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { AuthContext } from "../context/auth-context";
 import { setInStorage, getFromStorage } from "../storage";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Grid,
@@ -31,10 +31,10 @@ const theme = createTheme({
 });
 
 const paperStyle = {
-  padding: 20,
+  padding: 10,
   height: "70vh",
   width: "400px",
-  margin: "20px auto",
+  margin: "10px auto",
 };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
@@ -55,7 +55,6 @@ const TiffinAdminLogin = () => {
       password: yup.string().required("required"),
     }),
     onSubmit: (values) => {
-      console.log(values, "Onsubmit");
       logInApi(values);
     },
   });
@@ -69,19 +68,16 @@ const TiffinAdminLogin = () => {
         token: response.seller,
         setupTime: new Date().getTime(),
       });
-      toast.success("Login successfull");
-      console.log("Seller login successful", response.success);
+      toast.success("Login Successful");
       navigate("/adminlogged");
     } else {
-      console.log("login failed", response.message);
-      toast.error("Bad user credential");
+      toast.error(response.message);
     }
   }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        
         <Grid container>
           <Paper elevation={0} style={paperStyle}>
             <Grid align="center">
@@ -154,17 +150,17 @@ const TiffinAdminLogin = () => {
         </Grid>
       </ThemeProvider>
       <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          />
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

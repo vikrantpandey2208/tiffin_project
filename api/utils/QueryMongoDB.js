@@ -21,7 +21,7 @@ function searchTiffin(longitude, latitude, callback) {
         $geoNear: {
           near: { type: "Point", coordinates: [longitude, latitude] },
           distanceField: "dist.calculated",
-          maxDistance: 15000,
+          // maxDistance: 13000,
           includeLocs: "dist.location",
           spherical: true,
         },
@@ -34,6 +34,7 @@ function searchTiffin(longitude, latitude, callback) {
           category: 1,
           price: 1,
           sellerId: 1,
+          dist: 1,
         },
       },
     ],

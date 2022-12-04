@@ -1,6 +1,7 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Footer } from "../Component.js/Footer";
 import {
   Grid,
   Paper,
@@ -10,8 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -27,13 +28,12 @@ const theme = createTheme({
 });
 
 const TiffinAdminSignup = () => {
-
   const navigate = useNavigate();
 
   const paperStyle = {
-    padding: 10,
+    padding: 20,
     height: "",
-    width: "400px",
+    width: "500px",
     margin: "20px auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
@@ -71,33 +71,18 @@ const TiffinAdminSignup = () => {
     const photo = data;
     console.log("SIGN ", photo);
 
-    if (false) {
-      const formData = new FormData();
-      formData.append("file", photo);
-      formData.append("upload_preset", "default-preset");
-
-      const CLOUDINARY_URL =
-        "https://api.cloudinary.com/v1_1/dqdovhtp1/image/upload";
-
-      const dataRes = await Fetch(CLOUDINARY_URL, formData, true);
-      imageUrl = dataRes.data.url;
-      console.log(imageUrl);
-      data.photo = imageUrl;
-    }
-
     const response = await Fetch(path, data);
     if (response.success) {
       navigate("/");
-      toast.success("Signup successfull")
+      toast.success("Signup Successful");
     } else {
-      console.log("Sign up failed", response.message);
-      toast.info("Account already exist");
+      toast.info(response.message);
     }
   }
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavbarForadminSignup/>
+        <NavbarForadminSignup />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
@@ -188,22 +173,23 @@ const TiffinAdminSignup = () => {
                 Signup
               </Button>
               <br />
-            </form>           
+            </form>
           </Paper>
         </Grid>
       </ThemeProvider>
+      <Footer />
       <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          />
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

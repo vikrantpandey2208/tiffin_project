@@ -2,11 +2,10 @@ import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBar, Typography, Button, Toolbar, Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import SellerDashBoard from "../AdminLoginSignup/SellerDashBoard";
+import SellerDashBoard from "../AdminLoginSignup/SellerProfileMenu";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { Get } from "../dbFetch.js";
 import { setInStorage, getFromStorage } from "../storage";
-
 
 function getSellerDetails() {
   let user = GetLoggedSeller();
@@ -14,7 +13,6 @@ function getSellerDetails() {
 }
 
 const AdminAfterLogin = () => {
-
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -25,7 +23,7 @@ const AdminAfterLogin = () => {
       const response = await Get("/api/seller-logout?token=" + token._id);
       localStorage.removeItem("tiffin_app_seller");
       if (response.success) {
-        navigate("/")
+        navigate("/");
       } else {
         console.log("Error", response.message);
       }
@@ -53,7 +51,6 @@ const AdminAfterLogin = () => {
           </Toolbar>
         </AppBar>
       </Grid>
-      
     </>
   );
 };

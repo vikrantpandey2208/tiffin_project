@@ -8,15 +8,15 @@ import {
   Avatar,
   TextField,
   Button,
-  Typography,  
+  Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForSignup from './NavbarForSignup';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import NavbarForSignup from "./NavbarForSignup";
+import { ToastContainer, toast } from "react-toastify";
+import { Footer } from "../Component.js/Footer";
 
 const theme = createTheme({
   palette: {
@@ -65,27 +65,27 @@ const SignUp = () => {
     const path = "/api/signin";
     delete data.initialValues;
     const response = await Fetch(path, data);
-    if (response.success) {      
-      console.log("Sign up successful");
-      toast.success("Signup Successfull");
-      navigate("/login")
+    if (response.success) {
+      toast.success("Signup Successful");
+      navigate("/login");
     } else {
-      console.log("Sign up failed", response.message);
-      toast.info("Account Already exist");
+      toast.info(response.message);
     }
   }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavbarForSignup/>
+        <NavbarForSignup />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
                 <AddCircleOutlineOutlined />
               </Avatar>
-              <Typography variant="h6" color="inherit" >Signup</Typography>
+              <Typography variant="h6" color="inherit">
+                Signup
+              </Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit}>
               <TextField
@@ -157,7 +157,7 @@ const SignUp = () => {
                 onBlur={formik.handleBlur}
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
-              <br />              
+              <br />
               <Button
                 type="submit"
                 variant="contained"
@@ -166,23 +166,24 @@ const SignUp = () => {
               >
                 Signup
               </Button>
-              <br />              
+              <br />
             </form>
           </Paper>
         </Grid>
       </ThemeProvider>
+      <Footer />
       <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          />
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

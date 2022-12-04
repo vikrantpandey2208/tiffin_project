@@ -21,7 +21,7 @@ export const Footer = () => {
                   <Link to="/ourservices">our services</Link>
                 </li>
                 <li>
-                  <Link to="privacy">privacy policy</Link>
+                  <Link to="/privacy">privacy policy</Link>
                 </li>
               </ul>
             </div>
@@ -29,10 +29,10 @@ export const Footer = () => {
               <h4>get help</h4>
               <ul>
                 <li>
-                  <Link to="faq">FAQ</Link>
+                  <Link to="/faq">FAQ</Link>
                 </li>
                 <li>
-                  <Link to="contactus">Contact Us</Link>
+                  <Link to="/contactus">Contact Us</Link>
                 </li>
               </ul>
             </div>

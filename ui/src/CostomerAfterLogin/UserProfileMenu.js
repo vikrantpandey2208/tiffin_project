@@ -51,9 +51,18 @@ export default function UserProfileMenu() {
   const openMyOrder = () => {
     setGoToOrders(true);
   };
+  const [dashboard, setDashboard] = React.useState(false);
+  const openDashboard = () => {
+    setDashboard(true);
+  };
   useEffect(() => {
     if (goToOrders) {
       navigate("/my-order");
+    }
+  });
+  useEffect(() => {
+    if (dashboard) {
+      navigate("/logged");
     }
   });
 
@@ -106,6 +115,7 @@ export default function UserProfileMenu() {
             "aria-labelledby": "basic-button",
           }}
         >
+          <MenuItem onClick={openDashboard}>Dashboard</MenuItem>
           <MenuItem onClick={openProfileDialog}>Profile</MenuItem>
 
           <MenuItem onClick={openMyOrder}>My Order</MenuItem>

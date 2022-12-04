@@ -10,7 +10,6 @@ import {
 import { GetLoggedUser } from "../Auth/Logged-Seller";
 import { deepPurple } from "@mui/material/colors";
 
-const fontStyle = {};
 export function getUserDetails() {
   let user = GetLoggedUser();
   if (user != null) {
@@ -45,6 +44,7 @@ export const CostomerProfile = (props) => {
     setEmail(user.email);
     setPhone(user.phone);
   });
+
   let user = getUserDetails().firstname;
   let userLastName = getUserDetails().lastname;
   let firstNameFirstLetter = user.charAt(0);
@@ -113,6 +113,8 @@ export const CostomerProfile = (props) => {
           />
         </Grid>
       </Grid>
+
+      {/* Contact */}
       <Grid container>
         <Grid item xs={4}>
           <Typography variant="body1" align="left" mt={3} mr={3} ml={8}>

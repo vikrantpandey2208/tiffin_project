@@ -29,10 +29,10 @@ const theme = createTheme({
 });
 
 const paperStyle = {
-  padding: 20,
+  padding: 10,
   height: "70vh",
   width: "400px",
-  margin: "20px auto",
+  margin: "10px auto",
 };
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };

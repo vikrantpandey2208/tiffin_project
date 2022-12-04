@@ -70,7 +70,6 @@ export const CustomerOrder = () => {
       </Grid>
 
       <Grid ml={15} mr={15} mt={5} container spacing={3}>
-        {console.log(orderItem)}
         {orderItem.map((order) => {
           return order.Tiffin.map((product) => {
             return (
