@@ -36,13 +36,13 @@ const BodySection = () => {
               <Grid item>                
                 <div className='usecase2'>                
                 </div>
-                <Typography variant='h5' color='#F50057' style={{ marginLeft:'100px', fontWeight:'bold'}}>order</Typography>                    
+                <Typography variant='h5' color='#F50057' style={{ marginLeft:'100px', fontWeight:'bold'}}>Order</Typography>                    
               </Grid>
 
               <Grid item > 
               <div className='usecase3'>             
               </div> 
-              <Typography variant='h5' color='#F50057' style={{ marginLeft:'100px', fontWeight:'bold'}}>pay</Typography>        
+              <Typography variant='h5' color='#F50057' style={{ marginLeft:'100px', fontWeight:'bold'}}>Pay</Typography>        
               </Grid>
 
               <Grid item> 
