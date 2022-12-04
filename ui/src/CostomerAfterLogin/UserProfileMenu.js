@@ -5,10 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-<<<<<<< HEAD
-import { Dialog, DialogContent, DialogActions, Paper } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
-=======
+
 import {
   Dialog,
   DialogContent,
@@ -20,7 +18,7 @@ import {
 } from "@mui/material";
 
 import { useEffect } from "react";
->>>>>>> d886f8b1de6b24d5046c37b5cdfb051c1b08221c
+
 import { Get } from "../dbFetch.js";
 import { getFromStorage } from "../storage";
 import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
