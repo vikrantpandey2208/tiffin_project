@@ -6,7 +6,6 @@ import TiffinSection from "./TiffinSection";
 
 import Navbar from "./Navbar";
 import { Footer } from "./Footer";
-import { Divider } from "@mui/material";
 
 const theme = createTheme({
   palette: {

@@ -11,22 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as yup from "react-yup";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../Profile/CostomerProfile";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#ff386a",
-    },
-  },
-});
 
 const paperStyle = {
   padding: 10,
@@ -37,7 +27,7 @@ const paperStyle = {
 const avatarStyle = { backgroundColor: "#1bbd7e" };
 const btnstyle = { margin: "8px 0" };
 
-const Login = () => {
+const CustomerLogin = () => {
   const navigate = useNavigate();
 
   // check running session of user
@@ -55,10 +45,12 @@ const Login = () => {
       email: "",
       password: "",
     },
+    //validation of from
     validationSchema: yup.object({
-      email: yup.string().required("required"),
+      email: yup.string().required("required").email("Invalid Email"),
       password: yup.string().required("required"),
     }),
+    //forms value comes here
     onSubmit: (values) => {
       logInApi(values);
     },
@@ -85,20 +77,18 @@ const Login = () => {
       const { token } = obj;
 
       const response = await Get("/api/verify?token=" + token);
-      if (response.success) {
-        console.log("Already loggedin user");
+      if (response.success) {       
         toast.info("Already loggedin");
       } else {
-        console.log("logged out user go to login");
+        toas.info("logged out user go to login")
       }
     } else {
-      console.log("logged out user go to login");
+      toast.info("logged out user go to login");
     }
   }
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <>      
         <Grid container>
           <Paper elevation={0} style={paperStyle}>
             <Grid align="center">
@@ -107,7 +97,7 @@ const Login = () => {
               </Avatar>
               <h1 style={{ color: "#ff386a" }}>Login</h1>
             </Grid>
-
+             {/* Input Email or user Id */}
             <form onSubmit={formik.handleSubmit}>
               <TextField
                 label="Username"
@@ -122,7 +112,7 @@ const Login = () => {
               />
               <br />
               <br />
-
+              {/* input password */}
               <TextField
                 label="Password"
                 name="password"
@@ -139,7 +129,7 @@ const Login = () => {
               />
               <br />
               <br />
-
+               {/* Form Submit here  */}
               <Button
                 type="submit"
                 variant="contained"
@@ -157,21 +147,21 @@ const Login = () => {
               </Link>
             </Typography>
             <br />
+            {/* Sign up page Link */}
             <Typography>
               {" "}
               Do you have an account ?
               <Link
-                to="/signup"
+                to="/customer-signup"
                 style={{ color: "#ff386a", textDecoration: "none" }}
               >
                 Sign Up
               </Link>
             </Typography>
           </Paper>
-        </Grid>
-      </ThemeProvider>
+        </Grid>      
     </>
   );
 };
 
-export default Login;
+export default CustomerLogin;

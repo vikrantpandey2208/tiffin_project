@@ -3,8 +3,7 @@ import { Typography, Grid, Paper } from "@mui/material";
 import { NavbarForFooter } from "./NavbarForFooter";
 import vk from "./vk.jpg";
 import kk from "./kk.jpg";
-import { Container, Stack } from "@mui/system";
-import Divider from "@mui/material/Divider";
+import { Container } from "@mui/system";
 import "./About.css";
 import { Footer } from "../Component.js/Footer";
 
@@ -16,6 +15,7 @@ export const About = () => {
         <Typography variant="h5" mt={3} sx={{ fontWeight: "bold" }}>
           About JustDabba
         </Typography>
+        {/* Developer details */}
         <Paper elevation={4} style={{ width: "auto" }}>
           <Grid
             container
@@ -44,7 +44,7 @@ export const About = () => {
                   Degree: Master of Computer Application{" "}
                 </Typography>
                 <Typography variant="body1">
-                  Project-Detail: <b>ReactJs</b>
+                Technology:{" "}  <b>ReactJs</b>
                 </Typography>
                 <Typography variant="body1">
                   Role - Front-End Development
@@ -78,6 +78,7 @@ export const About = () => {
           </Grid>
         </Paper>
       </Container>
+      {/* Purpose Of project */}
       <Container style={{ paddingTop: "60px", paddingButtom: "100px" }}>
         <div>
           <Typography variant="body1">
@@ -146,7 +147,3 @@ export const About = () => {
   );
 };
 
-/* <div style={{paddingLeft:'100px'}}>
-      <Typography variant='h4'>This is the Demo Application Designed and developed by -</Typography>
-        <Typography variant='h4'>Karan Khatik and Vikrant Pandey </Typography> 
-      </div> */

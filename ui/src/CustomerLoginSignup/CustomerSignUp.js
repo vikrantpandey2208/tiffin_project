@@ -1,6 +1,5 @@
 import React from "react";
 import { Fetch } from "../dbFetch.js";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   Grid,
@@ -12,11 +11,11 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as yup from "react-yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForSignup from "./NavbarForSignup";
+import NavbarForCustomerSignup from "./NavbarForCustomerSignup";
 import { ToastContainer, toast } from "react-toastify";
-import { Footer } from "../Component.js/Footer";
+import { Footer } from "../LandingPage/Footer";
 
 const theme = createTheme({
   palette: {
@@ -26,7 +25,8 @@ const theme = createTheme({
   },
 });
 
-const SignUp = () => {
+const CustomerSignUp = () => {
+
   const paperStyle = {
     padding: 20,
     height: "",
@@ -37,6 +37,7 @@ const SignUp = () => {
   const btnstyle = { margin: "8px 0" };
 
   const formik = useFormik({
+    //intial value to the the form name
     initialValues: {
       initialValues: {
         firstName: "",
@@ -46,15 +47,21 @@ const SignUp = () => {
         password: "",
       },
     },
-
+    //validation to the form
     validationSchema: yup.object({
       firstName: yup.string().required("required"),
       lastName: yup.string().required("required").min(3, "too short"),
-      phone: yup.number().required("required"),
+      phone: yup.number().required("required")
+                         .min(1000000000, "Not Valid Phone Number!")
+                         .max(9999999999, "Not Valid Phone Number!"),
       email: yup.string().required("required").email("Invalid email"),
-      password: yup.string().required("required"),
+      password: yup.string().required("required")
+                    .matches(
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+                    ),
     }),
-
+     //All the value of form come here after submitting
     onSubmit: (values) => {
       signUpApi(values);
     },
@@ -88,6 +95,7 @@ const SignUp = () => {
               </Typography>
             </Grid>
             <form onSubmit={formik.handleSubmit}>
+              {/* Input First Name */}
               <TextField
                 label="First Name"
                 type="text"
@@ -103,6 +111,7 @@ const SignUp = () => {
               />
               <br />
               <br />
+              {/* Input Last Name */}
               <TextField
                 label="Last Name"
                 type="text"
@@ -118,6 +127,7 @@ const SignUp = () => {
               />
               <br />
               <br />
+              {/* input Phone Number */}
               <TextField
                 label="Phone Number"
                 type="text"
@@ -131,6 +141,7 @@ const SignUp = () => {
               />
               <br />
               <br />
+              {/* Input Email Address */}
               <TextField
                 label="Email"
                 type="text"
@@ -144,6 +155,7 @@ const SignUp = () => {
               />
               <br />
               <br />
+              {/* Input Password */}
               <TextField
                 label="Password"
                 type="password"
@@ -158,6 +170,7 @@ const SignUp = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
+              {/* Submit Form */}
               <Button
                 type="submit"
                 variant="contained"
@@ -172,20 +185,8 @@ const SignUp = () => {
         </Grid>
       </ThemeProvider>
       <Footer />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </>
   );
 };
 
-export default SignUp;
+export default CustomerSignUp;

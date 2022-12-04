@@ -1,16 +1,15 @@
 import React from "react";
-import HomeComponent from "./Component.js/HomeComponent";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-import AddYourTiffin from "./Pages/AddYourTiffin";
-
-import TiffinAdminLogin from "./AdminLoginSignup/TiffinAdminLogin";
-import TiffinAdminSignup from "./AdminLoginSignup/TiffinAdminSignup";
-import AdminAfterLogin from "./AdminLoginSignup/AdminAfterLogin";
-import { AddTiffin } from "./SellerData/AddTiffin";
-import AfterLogin from "./CostomerAfterLogin/AfterLogin";
-import { AdminProfile } from "./Profile/AdminProfile";
+import HomeComponent from "./LandingPage/HomeComponent";
+import CustomerLogin from './CustomerLoginSignup/CustomerLogin'
+import CustomerSignUp from "./CustomerLoginSignup/CustomerSignUp";
+import AddYourTiffin from "./SellerLoginSignup/AddYourTiffin";
+import TiffinSellerLogin from "./SellerLoginSignup/TiffinSellerLogin";
+import TiffinSellerSignup from "./SellerLoginSignup/TiffinSellerSignup";
+import SellerAfterLogin from "./SellerAfterLogin/SellerAfterLogin";
+import { AddTiffin } from "./SellerAfterLogin/AddTiffin";
+import CustomerAfterLogin from "./CustomerAfterLogin/CustomerAfterLogin";
+import { SellerProfile } from "./Profile/AdminProfile";
 import { CostomerProfile } from "./Profile/CostomerProfile";
 import { About } from "./FooterPages/About";
 import { PrivacyPolicy } from "./FooterPages/PrivacyPolicy";
@@ -22,26 +21,23 @@ import { ErrorPage } from "./ErrorPage/ErrorPage";
 import { CustomerOrder } from "./Order/CustomerOrder";
 
 function App() {
-  // const [userId, setUserId] = useState("0");
-  // console.log("State", userId);
-  // setUserId("pandey");
-  // console.log("updated state", userId);
 
   return (
     <>
+    {/* Routing Tables  */}
       <Router>
         <Routes>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/customer-login" element={<CustomerLogin />}></Route>
+          <Route exact path="/customer-signup" element={<CustomerSignUp />} />
           <Route exact path="/" element={<HomeComponent />} />
           <Route exact path="/addyourtiffin" element={<AddYourTiffin />} />
-          <Route exact path="/loginadmin" element={<TiffinAdminLogin />} />
-          <Route exact path="/signupadmin" element={<TiffinAdminSignup />} />
-          <Route exact path="/adminlogged" element={<AdminAfterLogin />} />
+          <Route exact path="/seller-login" element={<TiffinSellerLogin />} />
+          <Route exact path="/seller-signup" element={<TiffinSellerSignup />} />
+          <Route exact path="/seller-logged" element={<SellerAfterLogin />} />
           <Route path="/addtiffin" element={<AddTiffin />} />
-          <Route path="/logged" element={<AfterLogin />} />
-          <Route path="/adminprofile" element={<AdminProfile />} />
-          <Route path="/userprofile" element={<CostomerProfile />} />
+          <Route path="/customer-logged" element={<CustomerAfterLogin />} />
+          <Route path="/Seller-profile" element={<SellerProfile />} />
+          <Route path="/customer-profile" element={<CostomerProfile />} />
           <Route path="/aboutus" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/contactus" element={<ContactUs />} />

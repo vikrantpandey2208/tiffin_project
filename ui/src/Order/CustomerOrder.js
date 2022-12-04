@@ -11,8 +11,8 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import UserProfileMenu from "../CostomerAfterLogin/UserProfileMenu";
-import { AppBar, Button, Toolbar } from "@mui/material";
+import CustomerProfileMenu from "../CustomerAfterLogin/CustomerProfileMenu";
+import { AppBar, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Footer } from "../Component.js/Footer";
 import StarIcon from "@mui/icons-material/Star";
@@ -49,6 +49,7 @@ export const CustomerOrder = () => {
   return (
     <>
       <Grid container>
+        {/* navbar */}
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography
@@ -64,11 +65,11 @@ export const CustomerOrder = () => {
             >
               Just Dabba
             </Typography>
-            <UserProfileMenu />
+            <CustomerProfileMenu />
           </Toolbar>
         </AppBar>
       </Grid>
-
+       {/* cart Details */}
       <Grid ml={15} mr={15} mt={5} container spacing={3}>
         {orderItem.map((order) => {
           return order.Tiffin.map((product) => {

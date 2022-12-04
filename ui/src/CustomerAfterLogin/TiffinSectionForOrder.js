@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Fetch } from "../dbFetch.js";
 import {
   Typography,
@@ -8,7 +8,6 @@ import {
   CardContent,
   Grid,
   CardActionArea,
-  CardActions,
   Button,
   Paper,
   Dialog,
@@ -113,6 +112,7 @@ class TiffinSectionForOrder extends React.Component {
 
     return (
       <>
+      {/* Tiffin carts  */}
         <Grid ml={15} mr={15} mt={5} container spacing={3}>
           {tiffins.map((product) => {
             return (
@@ -181,6 +181,7 @@ class TiffinSectionForOrder extends React.Component {
             );
           })}
         </Grid>
+        {/* Order Confirm or cancel Dialog */}
         <Dialog open={this.state.showDialog} onClose={this.closeDialog}>
           <DialogTitle>Confirm </DialogTitle>
           <DialogContent>

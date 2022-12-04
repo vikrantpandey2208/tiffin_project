@@ -14,10 +14,10 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useLocation, useNavigate } from "react-router";
 import { AppBar, Button, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
-import UserProfileMenu from "../CostomerAfterLogin/UserProfileMenu";
+import CustomerProfileMenu from "../CustomerAfterLogin/CustomerProfileMenu";
 import { Footer } from "../Component.js/Footer";
 import { getUserDetails } from "../Profile/CostomerProfile";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 
 const createOrder = async function createOrder(params) {
   const path = "/api/pay";
@@ -118,6 +118,7 @@ export default function Cart() {
   return (
     // view detail of tiffin here
     <>
+    {/* Navbar  */}
       <Grid container>
         <AppBar position="static" color="primary">
           <Toolbar>
@@ -134,10 +135,11 @@ export default function Cart() {
             >
               Just Dabba
             </Typography>
-            <UserProfileMenu />
+            <CustomerProfileMenu />
           </Toolbar>
         </AppBar>
       </Grid>
+      {/* //cart Details */}
 
       <Grid ml={15} mr={15} mt={5} container columns={1} rowSpacing={1}>
         <Grid item>
@@ -196,13 +198,14 @@ export default function Cart() {
           </Paper>
         </Grid>
       </Grid>
-
+       {/* Payment Button for payment */}
       <Grid container ml={15} mr={15} mt={2} columns={2} columnSpacing={5}>
         <Grid item md={1} xs={6}>
           <Button color="success" onClick={handlePayment} variant="contained">
             Payment
           </Button>
           {"  "}
+          {/* Abort to cancel the payment and back to the dashboard */}
           <Button color="error" onClick={handleAbort} variant="contained">
             Abort
           </Button>

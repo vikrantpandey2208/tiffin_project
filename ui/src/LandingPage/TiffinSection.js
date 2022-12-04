@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Fetch } from "../dbFetch.js";
 import {
   Typography,
@@ -14,7 +13,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import Login from "../Pages/Login.js";
+import CustomerLogin from "../CustomerLoginSignup/CustomerLogin";
 import StarIcon from "@mui/icons-material/Star";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { toast } from "react-toastify";
@@ -67,6 +66,7 @@ class TiffinSection extends React.Component {
 
     return (
       <>
+      {/* Tiffin carts */}
         <Grid mt={10} container spacing={2}>
           {tiffins.map((product) => {
             return (
@@ -129,27 +129,16 @@ class TiffinSection extends React.Component {
                         </Grid>
                       </CardContent>
                     </CardActionArea>
-
-                    {/* <CardActions>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        style={{ alignContent: "left", fontSize: "11px" }}
-                        component={Link}
-                        to="/login"
-                      >
-                        Order
-                      </Button>
-                    </CardActions> */}
                   </Card>
                 </Paper>
               </Grid>
             );
           })}
         </Grid>
+        {/* Customer Login Dialog */}
         <Dialog open={showDialogLogin} onClose={this.closeDialog}>
           <DialogContent>
-            <Login />
+            <CustomerLogin />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.closeDialog}>close</Button>

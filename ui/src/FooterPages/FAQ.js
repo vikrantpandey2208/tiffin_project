@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 import { NavbarForFooter } from "./NavbarForFooter";
 import { Container } from "@mui/system";
 import { Footer } from "../Component.js/Footer";
@@ -7,7 +7,7 @@ export const FAQ = () => {
   return (
     <>
       <NavbarForFooter />
-
+       {/* Working of the application */}
       <Container style={{ paddingTop: "30px" }}>
         <Typography variant="h5" mt={3} sx={{ fontWeight: "bold" }}>
           Q.1 How to use application

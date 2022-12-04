@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AppBar,
   Typography,
@@ -11,11 +12,9 @@ import {
 import { Link } from "react-router-dom";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import LoginIcon from "@mui/icons-material/Login";
-import TiffinAdminLogin from "../AdminLoginSignup/TiffinAdminLogin";
-import React from "react";
-import Login from "../Pages/Login.js";
+import TiffinSellerLogin from "../SellerLoginSignup/TiffinSellerLogin";
+import CustomerLogin from "../CustomerLoginSignup/CustomerLogin";
 
-// home navbar
 
 export default function Navbar() {
   const [showDialog, setShowDialog] = React.useState(false);
@@ -60,9 +59,10 @@ export default function Navbar() {
               <LoginIcon style={{ fontSize: "18px" }} />
               Login
             </Button>
+            {/* Customer Login Dialog */}
             <Dialog open={showDialogLogin} onClose={closeDialogLogin}>
               <DialogContent>
-                <Login />
+                <CustomerLogin />
               </DialogContent>
               <DialogActions>
                 <Button onClick={closeDialogLogin}>close</Button>
@@ -73,9 +73,10 @@ export default function Navbar() {
               {" "}
               <AddBusinessIcon style={{ fontSize: "18px" }} /> Add Tiffin
             </Button>
+            {/* Seller Login dialog */}
             <Dialog open={showDialog} onClose={closeDialog}>
               <DialogContent>
-                <TiffinAdminLogin />
+                <TiffinSellerLogin />
               </DialogContent>
               <DialogActions>
                 <Button onClick={closeDialog}>close</Button>

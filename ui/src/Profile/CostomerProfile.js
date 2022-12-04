@@ -4,7 +4,6 @@ import {
   Typography,
   TextField,
   Avatar,
-  Stack,
   Button,
 } from "@mui/material";
 import { GetLoggedUser } from "../Auth/Logged-Seller";

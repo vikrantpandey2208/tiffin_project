@@ -3,17 +3,14 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import {
   Dialog,
   DialogContent,
   DialogActions,
   Paper,
-  Fade,
-  Grow,
   Zoom,
 } from "@mui/material";
 
@@ -23,7 +20,7 @@ import { Get } from "../dbFetch.js";
 import { getFromStorage } from "../storage";
 import { CostomerProfile, getUserDetails } from "../Profile/CostomerProfile.js";
 
-export default function UserProfileMenu() {
+export default function CustomerProfileMenu() {
   const navigate = useNavigate();
 
   // profile dialog
@@ -95,6 +92,7 @@ export default function UserProfileMenu() {
   return (
     <>
       <div>
+        {/* User name link */}
         <Button
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
@@ -106,6 +104,7 @@ export default function UserProfileMenu() {
         >
           {user}
         </Button>
+        {/* Menu inside the name button */}
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
@@ -122,6 +121,7 @@ export default function UserProfileMenu() {
           <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
         <Paper>
+          {/* Customer Profile dialog */}
           <Dialog
             open={showDialogLogin}
             onClose={closeDialogLogin}
@@ -138,18 +138,6 @@ export default function UserProfileMenu() {
           </Dialog>
         </Paper>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
     </>
   );
 }

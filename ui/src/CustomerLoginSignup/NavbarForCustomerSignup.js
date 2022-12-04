@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
 import React from "react";
-import Login from "../Pages/Login.js";
+import CutomerLogin from "../CustomerLoginSignup/CustomerLogin";
 import HomeIcon from "@mui/icons-material/Home";
 
 export default function Navbar() {
@@ -57,7 +57,7 @@ export default function Navbar() {
             </Button>
             <Dialog open={showDialogLogin} onClose={closeDialogLogin}>
               <DialogContent>
-                <Login />
+                <CutomerLogin />
               </DialogContent>
               <DialogActions>
                 <Button onClick={closeDialogLogin}>close</Button>
