@@ -1,4 +1,4 @@
-const { searchTiffin } = require("../utils/QueryMongoDB");
+const { searchTiffin } = require("../databaseUtility/QueryMongoDB");
 
 module.exports = (app) => {
   app.post("/api/search-near-tiffin", (req, res) => {

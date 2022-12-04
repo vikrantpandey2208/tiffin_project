@@ -12,11 +12,11 @@ const app = express();
 
 app.use(cors(corsOptions));
 app.use(express.json());
-require("./sign-in.js")(app);
-require("../middleware/Seller-sign-in.js")(app);
-require("../middleware/SellerData")(app);
-require("../middleware/QueryServer")(app);
-require("../middleware/OrderHandle")(app);
+require("../middleware/UserSignLoginOut")(app);
+require("../middleware/SellerSignLoginOut")(app);
+require("../middleware/SellerAddTiffin")(app);
+require("../middleware/TiffinSearch")(app);
+require("../middleware/OrderSaveFetch")(app);
 
 const port = process.env.API_SERVER_PORT || 8000;
 

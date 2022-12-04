@@ -1,4 +1,4 @@
-const { Tiffin } = require("../modals/SellerTiffin");
+const { Tiffin } = require("../modals/TiffinSchema");
 
 function titleCase(str) {
   str = str.toLowerCase().split(" ");

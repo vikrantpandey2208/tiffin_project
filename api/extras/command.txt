@@ -15,3 +15,7 @@ npm install axios
 
 npm i razorpay
  npm install crypto --save
+ npm dedupe
+ npm init @eslint/config
+ npm prune 
+ npm install cors --save

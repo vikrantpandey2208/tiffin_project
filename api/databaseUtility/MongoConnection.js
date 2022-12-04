@@ -4,7 +4,7 @@ const dbURI = config.get("mongoURI");
 
 async function connectToDb() {
   mongoose.connect(dbURI, (err) => {
-    console.log(err ? err : " connection true");
+    console.log(err ? err : "Connected to Atlas");
   });
 }
 

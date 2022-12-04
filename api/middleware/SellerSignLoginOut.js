@@ -1,5 +1,5 @@
-const Seller = require("./modals/Seller");
-const SellerSession = require("./modals/SellerSession");
+const Seller = require("../modals/SellerSchema");
+const SellerSession = require("../modals/SellerSessionSchema");
 
 module.exports = (app) => {
   app.post("/api/seller-signin", (req, res) => {

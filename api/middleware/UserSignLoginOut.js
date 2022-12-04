@@ -1,5 +1,5 @@
-const User = require("./modals/User");
-const UserSession = require("./modals/UserSession");
+const User = require("../modals/UserSchema");
+const UserSession = require("../modals/UserSessionSchema");
 
 module.exports = (app) => {
   app.post("/api/signin", (req, res) => {

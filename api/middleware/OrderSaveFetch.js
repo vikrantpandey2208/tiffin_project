@@ -1,5 +1,8 @@
 const { Order } = require("../modals/OrderSchema");
-const { getCustomerOrders, getSellerOrders } = require("../utils/QueryMongoDB");
+const {
+  getCustomerOrders,
+  getSellerOrders,
+} = require("../databaseUtility/QueryMongoDB");
 const Razorpay = require("razorpay");
 
 module.exports = (app) => {
