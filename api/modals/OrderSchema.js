@@ -13,6 +13,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  paymentId: {
+    type: String,
+    default: null,
+  },
   dateofentry: {
     type: Date,
     default: Date.now(),

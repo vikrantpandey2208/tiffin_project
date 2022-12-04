@@ -71,9 +71,7 @@ const AfterLogin = () => {
             >
               Just Dabba
             </Typography>
-            <Button variant="h6" component={Link}>
-              <UserProfileMenu />
-            </Button>
+            <UserProfileMenu />
           </Toolbar>
         </AppBar>
       </Grid>

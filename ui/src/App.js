@@ -18,7 +18,11 @@ import { ContactUs } from "./FooterPages/ContactUs";
 import { FAQ } from "./FooterPages/FAQ";
 import { OurServices } from "./FooterPages/OurServives";
 import Cart from "./Order/Cart";
+<<<<<<< HEAD
 import { ErrorPage } from "./ErrorPage/ErrorPage";
+=======
+import MyOrder from "./Order/MyOrder";
+>>>>>>> d886f8b1de6b24d5046c37b5cdfb051c1b08221c
 
 function App() {
   // const [userId, setUserId] = useState("0");
@@ -47,7 +51,11 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/ourservices" element={<OurServices />} />
           <Route path="/cart" element={<Cart />} />
+<<<<<<< HEAD
           <Route path='/*' element={<ErrorPage/>}/>
+=======
+          <Route path="/my-order" element={<MyOrder />} />
+>>>>>>> d886f8b1de6b24d5046c37b5cdfb051c1b08221c
         </Routes>
       </Router>
     </>
