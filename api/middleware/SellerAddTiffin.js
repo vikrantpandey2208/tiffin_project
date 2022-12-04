@@ -1,5 +1,4 @@
-const { Point, Tiffin } = require("../modals/SellerTiffin");
-const { getSellersTiffin } = require("../utils/QueryMongoDB");
+const { Tiffin } = require("../modals/SellerTiffin");
 
 function titleCase(str) {
   str = str.toLowerCase().split(" ");
@@ -10,18 +9,10 @@ function titleCase(str) {
 }
 
 module.exports = (app) => {
-  app.post("/api/seller-add-tiffin", (req, res, next) => {
+  app.post("/api/seller-add-tiffin", (req, res) => {
     const { body } = req;
     const { data } = body;
-    const {
-      sellerId,
-      brand,
-      price,
-      dishWithCount,
-      detailsOfTiffin,
-      additionalDetail,
-      category,
-    } = data;
+    const { sellerId, brand } = data;
     const { longitude, latitude } = data;
 
     if (!sellerId) {
@@ -62,7 +53,7 @@ module.exports = (app) => {
       type: "Point",
       coordinates: [longitude, latitude],
     };
-    newTiffin.save((err, tiffin) => {
+    newTiffin.save((err) => {
       if (err) {
         return res.send({
           success: false,

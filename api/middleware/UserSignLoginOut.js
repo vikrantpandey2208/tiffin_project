@@ -2,7 +2,7 @@ const User = require("./modals/User");
 const UserSession = require("./modals/UserSession");
 
 module.exports = (app) => {
-  app.post("/api/signin", (req, res, next) => {
+  app.post("/api/signin", (req, res) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -49,7 +49,7 @@ module.exports = (app) => {
         newUser.lastname = data.lastName;
         newUser.phone = data.phone;
         newUser.password = newUser.generateHash(password);
-        newUser.save((err, user) => {
+        newUser.save((err) => {
           if (err) {
             return res.send({
               success: false,
@@ -67,7 +67,7 @@ module.exports = (app) => {
   }); // end of sign up endpoint
 
   // sign in module
-  app.post("/api/login", (req, res, next) => {
+  app.post("/api/login", (req, res) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -114,7 +114,7 @@ module.exports = (app) => {
         // Otherwise correct user
         const userSession = new UserSession();
         userSession.userId = user._id;
-        userSession.save((err, doc) => {
+        userSession.save((err) => {
           if (err) {
             return res.send({
               success: false,
@@ -132,7 +132,7 @@ module.exports = (app) => {
   });
 
   // logout
-  app.get("/api/logout", (req, res, next) => {
+  app.get("/api/logout", (req, res) => {
     // Get the token
     const { query } = req;
     const { token } = query;
@@ -149,7 +149,7 @@ module.exports = (app) => {
         },
       },
       null,
-      (err, sessions) => {
+      (err) => {
         if (err) {
           return res.send({
             success: false,
@@ -160,41 +160,6 @@ module.exports = (app) => {
           success: true,
           message: "Good",
         });
-      },
-    );
-  });
-
-  // verify
-  app.get("/api/verify", (req, res, next) => {
-    // Get the token
-    const { query } = req;
-    const { token } = query;
-    // ?token=test
-    // Verify the token is one of a kind and it's not deleted.
-    UserSession.find(
-      {
-        _id: token,
-        isDeleted: false,
-      },
-      (err, sessions) => {
-        if (err) {
-          return res.send({
-            success: false,
-            message: "Error: Server error",
-          });
-        }
-        if (sessions.length != 1) {
-          return res.send({
-            success: false,
-            message: "Error: Invalid",
-          });
-        } else {
-          // DO ACTION
-          return res.send({
-            success: true,
-            message: "Good",
-          });
-        }
       },
     );
   });

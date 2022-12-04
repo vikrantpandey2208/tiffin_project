@@ -14,4 +14,4 @@ const TiffinSchema = new Schema({
     required: true,
   },
 });
-module.exports = Item = mongoose.model("tiffin", TiffinSchema);
+module.exports = mongoose.model("tiffin", TiffinSchema);

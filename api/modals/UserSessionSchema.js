@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const SellerSessionSchema = new mongoose.Schema({
-  sellerId: {
+const UserSessionSchema = new mongoose.Schema({
+  userId: {
     type: String,
-    // default: "",
+    require: true,
   },
   timestamp: {
     type: Date,
@@ -13,4 +13,4 @@ const SellerSessionSchema = new mongoose.Schema({
     default: false,
   },
 });
-module.exports = mongoose.model("SellerSession", SellerSessionSchema);
+module.exports = mongoose.model("UserSession", UserSessionSchema);

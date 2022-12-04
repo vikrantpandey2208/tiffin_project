@@ -1,30 +1,8 @@
 const Seller = require("./modals/Seller");
 const SellerSession = require("./modals/SellerSession");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, "photo" + path.extname(file.originalname));
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
-  if (allowedFileTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-let upload = multer({ storage, fileFilter });
 
 module.exports = (app) => {
-  app.post("/api/seller-signin", upload.single("photo"), (req, res, next) => {
+  app.post("/api/seller-signin", (req, res) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -73,7 +51,7 @@ module.exports = (app) => {
         newUser.phone = data.phone;
         newUser.password = newUser.generateHash(password);
         newUser.photo = photo;
-        newUser.save((err, user) => {
+        newUser.save((err) => {
           if (err) {
             return res.send({
               success: false,
@@ -91,7 +69,7 @@ module.exports = (app) => {
   }); // end of sign up endpoint
 
   // sign in module
-  app.post("/api/seller-login", (req, res, next) => {
+  app.post("/api/seller-login", (req, res) => {
     const { body } = req;
     const { data } = body;
     const { password } = data;
@@ -138,7 +116,7 @@ module.exports = (app) => {
         // Otherwise correct user
         const userSession = new SellerSession();
         userSession.sellerId = user._id;
-        userSession.save((err, doc) => {
+        userSession.save((err) => {
           if (err) {
             return res.send({
               success: false,
@@ -146,7 +124,6 @@ module.exports = (app) => {
             });
           }
           // create token
-          const token = user._id;
           return res.send({
             success: true,
             message: "Valid sign in",
@@ -158,7 +135,7 @@ module.exports = (app) => {
   });
 
   // logout
-  app.get("/api/seller-logout", (req, res, next) => {
+  app.get("/api/seller-logout", (req, res) => {
     // Get the token
     const { query } = req;
     const { token } = query;
@@ -175,7 +152,7 @@ module.exports = (app) => {
         },
       },
       null,
-      (err, sessions) => {
+      (err) => {
         if (err) {
           return res.send({
             success: false,
@@ -186,41 +163,6 @@ module.exports = (app) => {
           success: true,
           message: "Good",
         });
-      },
-    );
-  });
-
-  // verify
-  app.get("/api/verify", (req, res, next) => {
-    // Get the token
-    const { query } = req;
-    const { token } = query;
-    // ?token=test
-    // Verify the token is one of a kind and it's not deleted.
-    SellerSession.find(
-      {
-        _id: token,
-        isDeleted: false,
-      },
-      (err, sessions) => {
-        if (err) {
-          return res.send({
-            success: false,
-            message: "Error: Server error",
-          });
-        }
-        if (sessions.length != 1) {
-          return res.send({
-            success: false,
-            message: "Error: Invalid",
-          });
-        } else {
-          // DO ACTION
-          return res.send({
-            success: true,
-            message: "Good",
-          });
-        }
       },
     );
   });

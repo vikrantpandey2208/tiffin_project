@@ -1,4 +1,4 @@
-const { Point, Tiffin } = require("../modals/SellerTiffin");
+const { Tiffin } = require("../modals/SellerTiffin");
 const { Order } = require("../modals/OrderSchema");
 function getSellersTiffin(sellerId, callback) {
   Tiffin.find(

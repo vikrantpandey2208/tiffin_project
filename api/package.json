@@ -23,5 +23,9 @@
   "description": "backend",
   "main": "server.js",
   "author": "Vikrant Pandey",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-plugin-react": "^7.31.11"
+  }
 }

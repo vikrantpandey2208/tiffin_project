@@ -1,8 +1,7 @@
-const { Point, Tiffin } = require("../modals/SellerTiffin");
 const { searchTiffin } = require("../utils/QueryMongoDB");
 
 module.exports = (app) => {
-  app.post("/api/search-near-tiffin", (req, res, next) => {
+  app.post("/api/search-near-tiffin", (req, res) => {
     const { body } = req;
     const { data } = body;
     const { userId } = data;

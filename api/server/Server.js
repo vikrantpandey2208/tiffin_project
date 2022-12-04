@@ -1,7 +1,5 @@
 const express = require("express");
-// settled
-// require("dotenv").config();
-const { connectToDb } = require("./db.js");
+const { connectToDb } = require("../databaseUtility/MongoConnection.js");
 const cors = require("cors");
 
 const corsOptions = {
@@ -15,10 +13,10 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 require("./sign-in.js")(app);
-require("./Seller-sign-in.js")(app);
-require("./middleware/SellerData")(app);
-require("./middleware/QueryServer")(app);
-require("./middleware/OrderHandle")(app);
+require("../middleware/Seller-sign-in.js")(app);
+require("../middleware/SellerData")(app);
+require("../middleware/QueryServer")(app);
+require("../middleware/OrderHandle")(app);
 
 const port = process.env.API_SERVER_PORT || 8000;
 
