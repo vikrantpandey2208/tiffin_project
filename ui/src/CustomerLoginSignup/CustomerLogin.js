@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Fetch, Get } from '../dbFetch.js'
-import { setInStorage, getFromStorage } from '../storage'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Fetch } from "../dbFetch.js";
+import { setInStorage } from "../storage";
 import {
   Grid,
   Paper,
@@ -9,81 +9,67 @@ import {
   TextField,
   Button,
   Typography,
-} from '@mui/material'
-import { LockOutlined } from '@mui/icons-material'
-import { useFormik } from 'formik'
-import * as yup from 'react-yup'
-import { useNavigate } from 'react-router-dom'
-import { getUserDetails } from '../Profile/CustomerProfile'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
+} from "@mui/material";
+import { LockOutlined } from "@mui/icons-material";
+import { useFormik } from "formik";
+import * as yup from "react-yup";
+import { useNavigate } from "react-router-dom";
+import { getUserDetails } from "../Profile/CustomerProfile";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const paperStyle = {
   padding: 10,
-  height: '70vh',
-  width: '400px',
-  margin: '10px auto',
-}
-const avatarStyle = { backgroundColor: '#1bbd7e' }
-const btnstyle = { margin: '8px 0' }
+  height: "70vh",
+  width: "400px",
+  margin: "10px auto",
+};
+const avatarStyle = { backgroundColor: "#1bbd7e" };
+const btnstyle = { margin: "8px 0" };
 
 const CustomerLogin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // check running session of user
-  let user = getUserDetails()
+  let user = getUserDetails();
 
   useEffect(() => {
     if (user != null) {
-      toast.info('Session Activated')
-      navigate('/logged')
+      toast.info("Session Activated");
+      navigate("/logged");
     }
-  })
+  });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-    //validation of from
+    //validation of form
     validationSchema: yup.object({
-      email: yup.string().required('required').email('Invalid Email'),
-      password: yup.string().required('required'),
+      email: yup.string().required("required").email("Invalid Email"),
+      password: yup.string().required("required"),
     }),
+
     //forms value comes here
     onSubmit: (values) => {
-      logInApi(values)
+      logInApi(values);
     },
-  })
+  });
 
   async function logInApi(data) {
-    const path = '/api/login'
-    delete data.initialValues
-    const response = await Fetch(path, data)
+    const path = "/api/login";
+    delete data.initialValues;
+    const response = await Fetch(path, data);
     if (response.success) {
-      setInStorage('tiffin_app_user', {
+      setInStorage("tiffin_app_user", {
         token: response.user,
         setupTime: new Date().getTime(),
-      })
-      toast.success('Login Successful')
-      navigate('/logged')
+      });
+      toast.success("Login Successful");
+      navigate("/logged");
     } else {
-      toast.error(response.message)
-    }
-  }
-  async function logInVerify() {
-    const obj = getFromStorage('tiffin_app_user')
-    if (obj && obj.token) {
-      const { token } = obj
-
-      const response = await Get('/api/verify?token=' + token)
-      if (response.success) {
-        toast.info('Already loggedin')
-      } else {
-        toas.info('logged out user go to login')
-      }
-    } else {
-      toast.info('logged out user go to login')
+      toast.error(response.message);
     }
   }
 
@@ -95,7 +81,7 @@ const CustomerLogin = () => {
             <Avatar style={avatarStyle}>
               <LockOutlined />
             </Avatar>
-            <h1 style={{ color: '#ff386a' }}>Login</h1>
+            <h1 style={{ color: "#ff386a" }}>Login</h1>
           </Grid>
           {/* Input Email or user Id */}
           <form onSubmit={formik.handleSubmit}>
@@ -140,18 +126,18 @@ const CustomerLogin = () => {
             <br />
           </form>
           <Typography>
-            <Link to="" style={{ color: '#ff386a', textDecoration: 'none' }}>
+            <Link to="" style={{ color: "#ff386a", textDecoration: "none" }}>
               Forgot password ?
             </Link>
           </Typography>
           <br />
           {/* Sign up page Link */}
           <Typography>
-            {' '}
+            {" "}
             Do you have an account ?
             <Link
               to="/customer-signup"
-              style={{ color: '#ff386a', textDecoration: 'none' }}
+              style={{ color: "#ff386a", textDecoration: "none" }}
             >
               Sign Up
             </Link>
@@ -159,7 +145,7 @@ const CustomerLogin = () => {
         </Paper>
       </Grid>
     </>
-  )
-}
+  );
+};
 
-export default CustomerLogin
+export default CustomerLogin;

@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "react-yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForCustomerSignup from "./NavbarForCustomerSignup";
-import { ToastContainer, toast } from "react-toastify";
+import Navbar from "./NavbarForCustomerSignup";
+import { toast } from "react-toastify";
 import { Footer } from "../LandingPage/Footer";
 
 const theme = createTheme({
@@ -26,7 +26,6 @@ const theme = createTheme({
 });
 
 const CustomerSignUp = () => {
-
   const paperStyle = {
     padding: 20,
     height: "",
@@ -51,17 +50,21 @@ const CustomerSignUp = () => {
     validationSchema: yup.object({
       firstName: yup.string().required("required"),
       lastName: yup.string().required("required").min(3, "too short"),
-      phone: yup.number().required("required")
-                         .min(1000000000, "Not Valid Phone Number!")
-                         .max(9999999999, "Not Valid Phone Number!"),
+      phone: yup
+        .number()
+        .required("required")
+        .min(1000000000, "Not Valid Phone Number!")
+        .max(9999999999, "Not Valid Phone Number!"),
       email: yup.string().required("required").email("Invalid email"),
-      password: yup.string().required("required")
-                    .matches(
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-                    ),
+      password: yup
+        .string()
+        .required("required")
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character",
+        ),
     }),
-     //All the value of form come here after submitting
+    //All the value of form come here after submitting
     onSubmit: (values) => {
       signUpApi(values);
     },
@@ -83,7 +86,7 @@ const CustomerSignUp = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavbarForSignup />
+        <Navbar />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
