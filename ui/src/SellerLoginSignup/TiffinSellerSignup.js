@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
-import * as yup from "react-yup";
+import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import NavbarForSellerSignup from "./NavbarForSellerSignup.js";
 
@@ -174,6 +174,7 @@ const TiffinSellerSignup = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />{" "}
               <br />
+              {/* Submit Form Button */}
               <Button
                 type="submit"
                 variant="contained"

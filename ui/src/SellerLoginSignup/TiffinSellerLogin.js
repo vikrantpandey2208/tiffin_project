@@ -14,9 +14,8 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import { useFormik } from "formik";
-import * as yup from "react-yup";
+import * as yup from "yup";
 
 
 const theme = createTheme({
@@ -113,7 +112,7 @@ const TiffinSellerLogin = () => {
               />
               <br />
               <br />
-
+             {/* Submit button form */}
               <Button
                 type="submit"
                 variant="contained"

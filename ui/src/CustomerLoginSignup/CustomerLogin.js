@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { useFormik } from "formik";
-import * as yup from "react-yup";
+import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../Profile/CustomerProfile";
 import { useEffect } from "react";
@@ -36,7 +36,7 @@ const CustomerLogin = () => {
   useEffect(() => {
     if (user != null) {
       toast.info("Session Activated");
-      navigate("/logged");
+      navigate("/customer-logged");
     }
   });
 
@@ -67,7 +67,7 @@ const CustomerLogin = () => {
         setupTime: new Date().getTime(),
       });
       toast.success("Login Successful");
-      navigate("/logged");
+      navigate("/customer-logged");
     } else {
       toast.error(response.message);
     }

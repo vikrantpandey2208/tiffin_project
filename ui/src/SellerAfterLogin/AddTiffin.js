@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
-import * as yup from "react-yup";
+import * as yup from "yup";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";

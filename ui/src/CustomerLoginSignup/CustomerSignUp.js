@@ -11,9 +11,9 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
-import * as yup from "react-yup";
+import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import Navbar from "./NavbarForCustomerSignup";
+import NavbarForCustomerSignup from './NavbarForCustomerSignup'
 import { toast } from "react-toastify";
 import { Footer } from "../LandingPage/Footer";
 
@@ -77,7 +77,7 @@ const CustomerSignUp = () => {
     const response = await Fetch(path, data);
     if (response.success) {
       toast.success("Signup Successful");
-      navigate("/login");
+      navigate("/");
     } else {
       toast.info(response.message);
     }
@@ -86,7 +86,7 @@ const CustomerSignUp = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        <NavbarForCustomerSignup />
         <Grid container>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">

@@ -40,13 +40,13 @@ export default function Cart() {
 
   const navigate = useNavigate()
   const handleAbort = () => {
-    navigate('/logged')
+    navigate('/customer-login')
   }
 
-  const handlePayment = async (props) => {
+  const handlePayment = async (prop) => {
     const orderParams = {
-      amount: props.price,
-      receipt: props.brandName,
+      amount: prop.price,
+      receipt: prop.brandName,
     }
 
     const order = await createOrder(orderParams)
@@ -61,10 +61,10 @@ export default function Cart() {
 
     const options = {
       key: 'rzp_test_3eMWORUD65IeZa',
-      amount: props.price,
+      amount: prop.price,
       currency: 'INR',
-      name: props.brandName,
-      description: props.brandName + 'Payment',
+      name: prop.brandName,
+      description: prop.brandName + 'Payment',
       image:
         'https://res.cloudinary.com/dqdovhtp1/image/upload/v1670077631/JustDabba/justdabba_uvph5i.png',
       order_id: order,
@@ -72,8 +72,8 @@ export default function Cart() {
       handler: function (response) {
         let data = {
           userId: user._id,
-          sellerId: props.sellerId,
-          tiffinId: props._id,
+          sellerId: prop.sellerId,
+          tiffinId: prop._id,
           paymentId: response.razorpay_payment_id,
           orderId: response.razorpay_order_id,
           signature: response.razorpay_signature,

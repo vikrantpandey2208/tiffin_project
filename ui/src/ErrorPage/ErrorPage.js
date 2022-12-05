@@ -15,7 +15,7 @@ export const ErrorPage = () => {
                Opps! Page not found
             </h4>
             <p>
-               Sorry, the page you're looking for doesn't exist. 
+               Sorry, the page you&apos;re looking for doesn&apos;t exist. 
             </p>
             <div className ="btns">
                <Link to='/'>return home</Link>
