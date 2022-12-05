@@ -21,7 +21,7 @@ export const About = () => {
             container
             ml={4}
             mt={3}
-            sm={12}
+            sm={6}
             pt={4}
             pb={4}
             alignItems="center"

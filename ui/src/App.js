@@ -19,6 +19,7 @@ import { OurServices } from "./FooterPages/OurServives";
 import Cart from "./Order/Cart";
 import { ErrorPage } from "./ErrorPage/ErrorPage";
 import { CustomerOrder } from "./Order/CustomerOrder";
+import {CartDetail} from "./Order/CartDetail";
 
 function App() {
 
@@ -45,7 +46,9 @@ function App() {
           <Route path="/ourservices" element={<OurServices />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/my-order" element={<CustomerOrder />} />
+          <Route path="cart-detail" element={<CartDetail/>}/>
           <Route path="/*" element={<ErrorPage />} />
+
         </Routes>
       </Router>
     </>
