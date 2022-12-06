@@ -1,156 +1,85 @@
-import React from 'react' 
-import {Table, TableBody,TableCell, TableHead ,TableRow, Input, Paper, IconButton } from '@mui/material';
-
-// Icons
-
-import EditIcon from '@mui/icons-material/Edit';
-import DoneIcon from '@mui/icons-material/Done';
-
-import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-
-
-
-
-const createData = (name, calories, fat, carbs, protein) => ({
-  id: name.replace(" ", "_"),
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-  isEditMode: false
-});
-
-const CustomTableCell = ({ row, name, onChange }) => {
- 
-  const { isEditMode } = row;
-  return (
-    <TableCell align="left" >
-      {isEditMode ? (
-        <Input
-          value={row[name]}
-          name={name}
-          onChange={e => onChange(e, row)}
-          style={{width: 130,height: 40}}
-        />
-      ) : (
-        row[name]
-      )}
-    </TableCell>
-  );
-};
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Input,
+  Paper,
+  IconButton,
+} from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
+import { GetLoggedSeller } from "../Auth/Logged-Seller";
+import { Fetch } from "../dbFetch.js";
+import { toast } from "react-toastify";
 
 export const ViewTiffin = () => {
- 
-    const [rows, setRows] = React.useState([
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0)
-  ]);
+  const [tiffin, setTiffinList] = useState([]);
   const [previous, setPrevious] = React.useState({});
-  
 
-  const onToggleEditMode = id => {
-    setRows(state => {
-      return rows.map(row => {
-        if (row.id === id) {
-          return { ...row, isEditMode: !row.isEditMode };
-        }
-        return row;
-      });
-    });
-  };
+  // getting data from backend
+  const getTiffinList = async function getTiffinList() {
+    const path = "/api/get-seller-tiffin";
 
-  const onChange = (e, row) => {
-    if (!previous[row.id]) {
-      setPrevious(state => ({ ...state, [row.id]: row }));
+    // Get name of user to show
+    let user = GetLoggedSeller().token;
+    if (user != null) {
+      user = user._id;
+    } else {
+      toast.info("Session Expired");
+      return;
     }
-    const value = e.target.value;
-    const name = e.target.name;
-    const { id } = row;
-    const newRows = rows.map(row => {
-      if (row.id === id) {
-        return { ...row, [name]: value };
-      }
-      return row;
-    });
-    setRows(newRows);
+
+    let data = {
+      sellerId: user,
+    };
+    console.log(data);
+    const response = await Fetch(path, data);
+    if (response.success) {
+      setTiffinList(response.data);
+      console.log(response.data);
+    } else {
+      toast.error(response.message, response);
+    }
   };
 
-  const onRevert = id => {
-    const newRows = rows.map(row => {
-      if (row.id === id) {
-        return previous[id] ? previous[id] : row;
-      }
-      return row;
-    });
-    setRows(newRows);
-    setPrevious(state => {
-      delete state[id];
-      return state;
-    });
-    onToggleEditMode(id);
-  };
+  useEffect(() => {
+    getTiffinList();
+  }, []);
+
   return (
     <>
-    <Paper  style={{    width: "100%", marginTop: '30px',overflowX: "auto"}}>
-      <Table style={{minWidth: 650}} aria-label="caption table">
-        <caption>A barbone structure table example with a caption</caption>
-        <TableHead>
-          <TableRow>
-            <TableCell align="left" />
-            <TableCell align="left">Your Service Name</TableCell>
-            <TableCell align="left">Price</TableCell>
-            <TableCell align="left">Category&nbsp;</TableCell>
-            <TableCell align="left">Food Items&nbsp;</TableCell>
-            <TableCell align="left">Adress&nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell style={{width: 60}}>
-                {row.isEditMode ? (
-                  <>
-                    <IconButton
-                      aria-label="done"
-                      onClick={() => onToggleEditMode(row.id)}
-                    >
-                      <DoneIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="revert"
-                      onClick={() => onRevert(row.id)}
-                    >
-                      <SettingsBackupRestoreIcon />
-                    </IconButton>
-                  </>
-                ) : (
-                  <IconButton
-                    aria-label="delete"
-                    onClick={() => onToggleEditMode(row.id)}
-                  >
-                    <EditIcon />
-                  </IconButton>
-                )}
-              </TableCell>
-              <CustomTableCell {...{ row, name: "name", onChange }} />
-              <CustomTableCell {...{ row, name: "calories", onChange }} />
-              <CustomTableCell {...{ row, name: "fat", onChange }} />
-              <CustomTableCell {...{ row, name: "carbs", onChange }} />
-              <CustomTableCell {...{ row, name: "protein", onChange }} />
+      <Paper style={{ width: "100%", marginTop: "30px", overflowX: "auto" }}>
+        <Table style={{ minWidth: 650 }} aria-label="caption table">
+          <caption>Details of Orders</caption>
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Customer Name</TableCell>
+              <TableCell align="left">Price</TableCell>
+              <TableCell align="left">Category</TableCell>
+              <TableCell align="left">Food Items</TableCell>
+              <TableCell align="left">Contact</TableCell>
+              <TableCell align="left">Adress</TableCell>
+              <TableCell align="left">Payment Status</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+          </TableHead>
+          <TableBody>
+            {tiffin.map((row) => (
+              <TableRow key={row._id}>
+                <TableCell>{row.brandName}</TableCell>
+                <TableCell>{row.price}</TableCell>
+                <TableCell>{row.category}</TableCell>
+                <TableCell>{row.dishWithCount}</TableCell>
+                <TableCell>7999744848</TableCell>
+                <TableCell>{row.location.name}</TableCell>
+                <TableCell>Done</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
     </>
-  )
-}
-
-
-
-
-
-
-
+  );
+};

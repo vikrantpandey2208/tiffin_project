@@ -45,16 +45,18 @@ export default function SellerProfileMenu() {
   const openDashboard = () => {
     setDashboard(true);
   };
+
   useEffect(() => {
     if (goToOrders) {
       navigate("/seller-order");
     }
-  });
+  }, [goToOrders]);
+
   useEffect(() => {
     if (dashboard) {
-      navigate("/adminlogged");
+      navigate("/seller-logged");
     }
-  }, []);
+  }, [dashboard]);
 
   const logout = async () => {
     const obj = getFromStorage("tiffin_app_seller");

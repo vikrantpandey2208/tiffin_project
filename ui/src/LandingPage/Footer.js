@@ -54,7 +54,7 @@ export const Footer = () => {
         </div>
         <div className="credit designer">
           <h6 className="normal-text">
-            Designed and Developed by Karan and Vikrant
+            Designed and Developed by Vikrant and Karan
           </h6>
         </div>
       </footer>

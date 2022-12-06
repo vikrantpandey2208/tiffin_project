@@ -1,12 +1,12 @@
 import React from "react";
-import { AppBar, Typography,Toolbar, Grid } from "@mui/material";
+import { AppBar, Typography, Toolbar, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import CustomerProfileMenu from "./CustomerProfileMenu";
 import TiffinSectionForOrder from "./TiffinSectionForOrder";
 import { Footer } from "../LandingPage/Footer";
 
 const CustomerAfterLogin = () => {
-//Customer After Login 
+  //Customer After Login
   return (
     <>
       <Grid container>
@@ -31,8 +31,8 @@ const CustomerAfterLogin = () => {
         </AppBar>
       </Grid>
       {/* Tiifin Section cart */}
-      <Grid container>        
-      <TiffinSectionForOrder />
+      <Grid container>
+        <TiffinSectionForOrder />
       </Grid>
       <Footer />
     </>

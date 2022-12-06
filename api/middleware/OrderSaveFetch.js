@@ -10,6 +10,7 @@ module.exports = (app) => {
     const { body } = req;
     const { data } = body;
     const { sellerId } = data;
+    console.log(data);
 
     if (!sellerId) {
       return res.send({
@@ -27,7 +28,7 @@ module.exports = (app) => {
       } else {
         return res.send({
           success: false,
-          message: "Error: Internal Server error while searching orders",
+          message: "Error: Internal Server Error",
         });
       }
     });

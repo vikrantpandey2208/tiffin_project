@@ -7,13 +7,14 @@ function getSellersTiffin(sellerId, callback) {
     },
     (err, tiffins) => {
       if (err) {
-        callback(err);
+        callback(err, false);
       } else {
-        callback(tiffins);
+        callback(tiffins, true);
       }
     },
   );
 }
+
 function searchTiffin(longitude, latitude, callback) {
   Tiffin.aggregate(
     [
@@ -90,6 +91,7 @@ function getSellerOrders(sellerId, callback) {
         $project: {
           _id: 1,
           b_id: { $toObjectId: "$tiffinId" },
+          paymentId: 1,
           dateofentry: 1,
         },
       },

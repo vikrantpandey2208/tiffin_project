@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./LandingPage/HomeComponent";
-import CustomerLogin from './CustomerLoginSignup/CustomerLogin'
+import CustomerLogin from "./CustomerLoginSignup/CustomerLogin";
 import CustomerSignUp from "./CustomerLoginSignup/CustomerSignUp";
 import AddYourTiffin from "./SellerLoginSignup/AddYourTiffin";
 import TiffinSellerLogin from "./SellerLoginSignup/TiffinSellerLogin";
@@ -19,16 +19,20 @@ import { OurServices } from "./FooterPages/OurServives";
 import Cart from "./Order/Cart";
 import { ErrorPage } from "./ErrorPage/ErrorPage";
 import { CustomerOrder } from "./Order/CustomerOrder";
-import {CartDetail} from "./Order/CartDetail";
+import CartDetail from "./Order/CartDetail";
+import SellerMyOrder from "./SellerAfterLogin/SellerMyOrder";
 
 function App() {
-
   return (
     <>
-    {/* Routing Tables  */}
+      {/* Routing Tables  */}
       <Router>
         <Routes>
-          <Route exact path="/customer-login" element={<CustomerLogin />}></Route>
+          <Route
+            exact
+            path="/customer-login"
+            element={<CustomerLogin />}
+          ></Route>
           <Route exact path="/customer-signup" element={<CustomerSignUp />} />
           <Route exact path="/" element={<HomeComponent />} />
           <Route exact path="/addyourtiffin" element={<AddYourTiffin />} />
@@ -46,9 +50,9 @@ function App() {
           <Route path="/ourservices" element={<OurServices />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/my-order" element={<CustomerOrder />} />
-          <Route path="cart-detail" element={<CartDetail/>}/>
+          <Route path="/seller-order" element={<SellerMyOrder />} />
+          <Route path="cart-detail" element={<CartDetail />} />
           <Route path="/*" element={<ErrorPage />} />
-
         </Routes>
       </Router>
     </>

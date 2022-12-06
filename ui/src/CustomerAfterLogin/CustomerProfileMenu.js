@@ -1,10 +1,10 @@
-import * as React from 'react'
-import Button from '@mui/material/Button'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import { useNavigate } from 'react-router-dom'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { toast } from 'react-toastify'
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { toast } from "react-toastify";
 
 import {
   Dialog,
@@ -12,81 +12,81 @@ import {
   DialogActions,
   Paper,
   Zoom,
-} from '@mui/material'
+} from "@mui/material";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
-import { Get } from '../dbFetch.js'
-import { getFromStorage } from '../storage'
-import { CustomerProfile, getUserDetails } from '../Profile/CustomerProfile.js'
+import { Get } from "../dbFetch.js";
+import { getFromStorage } from "../storage";
+import { CustomerProfile, getUserDetails } from "../Profile/CustomerProfile.js";
 
 export default function CustomerProfileMenu() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // profile dialog
-  const [showDialogLogin, setShowDialogLogin] = React.useState(false)
+  const [showDialogLogin, setShowDialogLogin] = React.useState(false);
   const closeDialogLogin = () => {
-    setShowDialogLogin(false)
-  }
+    setShowDialogLogin(false);
+  };
   const openProfileDialog = () => {
-    setShowDialogLogin(true)
-    setAnchorEl(null)
-  }
+    setShowDialogLogin(true);
+    setAnchorEl(null);
+  };
 
   // menu pupulate
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   // my order
-  const [goToOrders, setGoToOrders] = React.useState(false)
+  const [goToOrders, setGoToOrders] = React.useState(false);
   const openMyOrder = () => {
-    setGoToOrders(true)
-  }
-  const [dashboard, setDashboard] = React.useState(false)
+    setGoToOrders(true);
+  };
+  const [dashboard, setDashboard] = React.useState(false);
   const openDashboard = () => {
-    setDashboard(true)
-  }
+    setDashboard(true);
+  };
   useEffect(() => {
     if (goToOrders) {
-      navigate('/my-order')
+      navigate("/my-order");
     }
-  })
+  }, [goToOrders]);
   useEffect(() => {
     if (dashboard) {
-      navigate('/logged')
+      navigate("/customer-logged");
     }
-  })
+  }, [dashboard]);
 
   const logout = async () => {
-    const obj = getFromStorage('tiffin_app_user')
+    const obj = getFromStorage("tiffin_app_user");
     if (obj && obj.token._id) {
-      const { token } = obj
-      const response = await Get('/api/logout?token=' + token._id)
-      localStorage.removeItem('tiffin_app_user')
+      const { token } = obj;
+      const response = await Get("/api/logout?token=" + token._id);
+      localStorage.removeItem("tiffin_app_user");
 
       if (response.success) {
-        toast.info('Logout Success')
-        navigate('/')
+        toast.info("Logout Success");
+        navigate("/");
       } else {
-        toast.error(response.message)
+        toast.error(response.message);
       }
     } else {
-      toast.info('Session Expired')
+      toast.info("Session Expired");
     }
-  }
+  };
 
   // Get name of user to show
-  let user = getUserDetails()
+  let user = getUserDetails();
   if (user != null) {
-    user = user.firstname
+    user = user.firstname;
   } else {
-    toast.info('Session Expired')
+    toast.info("Session Expired");
   }
 
   return (
@@ -95,9 +95,9 @@ export default function CustomerProfileMenu() {
         {/* User name link */}
         <Button
           id="basic-button"
-          aria-controls={open ? 'basic-menu' : undefined}
+          aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
           color="inherit"
           startIcon={<AccountCircleIcon />}
@@ -111,7 +111,7 @@ export default function CustomerProfileMenu() {
           open={open}
           onClose={handleClose}
           MenuListProps={{
-            'aria-labelledby': 'basic-button',
+            "aria-labelledby": "basic-button",
           }}
         >
           <MenuItem onClick={openDashboard}>Dashboard</MenuItem>
@@ -139,5 +139,5 @@ export default function CustomerProfileMenu() {
         </Paper>
       </div>
     </>
-  )
+  );
 }

@@ -17,23 +17,21 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <App />
+    <ToastContainer
+      position="top-right"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+    />
+  </ThemeProvider>,
 );
 
 reportWebVitals();
