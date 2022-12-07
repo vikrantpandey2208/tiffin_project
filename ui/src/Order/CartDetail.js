@@ -11,6 +11,8 @@ import { Fetch } from "../dbFetch.js";
 import { toast } from "react-toastify";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { useEffect } from "react";
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+
 
 export default function CartDetail() {
   const [tiffin, setTiffinList] = useState([]);
@@ -48,61 +50,59 @@ export default function CartDetail() {
     <>
       {tiffin.map((product) => {
         return (
-          <Paper style={{ height: "80vh" }} key={product._id}>
+          <Paper style={{ height: "90vh", width:'1800px' }} key={product._id}>
             <Grid
               container
-              mt={10}
-              ml={5}
+              mt={5}
+                            
               direction="row"
               justifyContent="center"
               alignItems="center"
             >
-              <Grid item xs={4} pl={15} pt={10}>
-                <ImageList>
-                  <ImageListItem>
-                    <img src={product.photo1} className="images" />
+              <Grid item xs={4} pt={1} mr={90}>
+                <ImageList  sx={{ width: 1100, height: 320 }} style={{overflow:'hidden'}} variant="quilted"  cols={4}>
+                  <ImageListItem >
+                    <img src={product.photo1} alt='img'  />
                   </ImageListItem>
-                  <ImageListItem>
-                    <img src={product.photo2} className="images" />
+                  <ImageListItem >
+                    <img src={product.photo2}  alt='img'  />
                   </ImageListItem>
-                  <ImageListItem>
-                    <img src={product.photo3} className="images" />
+                  <ImageListItem  >
+                    <img src={product.photo3} alt='img' />
                   </ImageListItem>
-                  <ImageListItem>
-                    <img src={product.photo4} className="images" />
+                  <ImageListItem >
+                    <img src={product.photo4} alt='img'  />
                   </ImageListItem>
-                </ImageList>
-              </Grid>
-
-              <Grid item xs={8} pl={10} pt={10}>
+                </ImageList><br/>                
                 <Typography style={{ fontWeight: "bold" }} variant="h4">
                   {product.brandName}
                 </Typography>
                 <Rating name="simple-controlled" value={product.rating} />
-                <Typography>{product.price}</Typography>
+                <Typography >{product.price}<CurrencyRupeeIcon style={{fontSize:'14px',PaddingTop:'12px',marginLeft:'1px'}}/></Typography>
                 <Typography>{product.category}</Typography>
-                <Typography>{product.location.name}</Typography>
-                <br />
-                <Typography ml={15}>{product.dishWithCount}</Typography>
-                <Typography ml={15}>{product.detailsOfTiffin}</Typography>
-                <Typography ml={15}>{product.additionalDetail}</Typography>
-                <Typography ml={15}>feedback</Typography>
+                <Typography>{product.location.name}</Typography>                
+                <Typography >{product.dishWithCount}</Typography>
+                <Typography >{product.detailsOfTiffin}</Typography>
+                <Typography >{product.additionalDetail}</Typography>               
+              </Grid>
+
+              {/* <Grid item xs={8} pl={10} pt={10}>
                 {product.feedback.map((feedback) => {
                   return (
                     <div key={product._id}>
-                      <Typography ml={15}>
+                      <Typography >
                         username: {feedback.userName}
                       </Typography>
-                      <Typography ml={15}>
+                      <Typography >
                         comment {feedback.comment}
                       </Typography>
-                      <Typography ml={15}>
+                      <Typography >
                         comment Date {feedback.date}
                       </Typography>
                     </div>
                   );
                 })}
-              </Grid>
+              </Grid> */}
             </Grid>
           </Paper>
         );

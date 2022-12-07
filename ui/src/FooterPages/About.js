@@ -19,11 +19,7 @@ export const About = () => {
         <Paper elevation={4} style={{ width: "auto" }}>
           <Grid
             container
-            ml={4}
-            mt={3}
-            sm={6}
-            pt={4}
-            pb={4}
+
             alignItems="center"
             alignContent={"center"}
             alignSelf={"center"}
@@ -31,7 +27,7 @@ export const About = () => {
           >
             <Grid item xs={5}>
               <div>
-                <img src={kk} className="pic" />
+                <img src={kk} alt='profile' className="pic" />
               </div>
               <div>
                 <Typography variant="body1">
@@ -51,9 +47,9 @@ export const About = () => {
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item  pt={5} xs={5}>
               <div>
-                <img src={vk} className="pic" />
+                <img src={vk} alt="profile" className="pic" />
               </div>
               <div>
                 <Typography variant="body1" sx={{ fontWeight: "bold" }}>
