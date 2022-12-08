@@ -11,8 +11,7 @@ import { Fetch } from "../dbFetch.js";
 import { toast } from "react-toastify";
 import { GetLoggedSeller } from "../Auth/Logged-Seller";
 import { useEffect } from "react";
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
 export default function CartDetail() {
   const [tiffin, setTiffinList] = useState([]);
@@ -50,40 +49,54 @@ export default function CartDetail() {
     <>
       {tiffin.map((product) => {
         return (
-          <Paper style={{ height: "90vh", width:'1800px' }} key={product._id}>
+          <Paper style={{ height: "90vh", width: "1800px" }} key={product._id}>
             <Grid
               container
               mt={5}
-                            
               direction="row"
               justifyContent="center"
               alignItems="center"
             >
               <Grid item xs={4} pt={1} mr={90}>
-                <ImageList  sx={{ width: 1100, height: 320 }} style={{overflow:'hidden'}} variant="quilted"  cols={4}>
-                  <ImageListItem >
-                    <img src={product.photo1} alt='img'  />
+                <ImageList
+                  sx={{ width: 800, height: 300 }}
+                  style={{ overflow: "hidden" }}
+                  variant="quilted"
+                  cols={4}
+                >
+                  <ImageListItem>
+                    <img src={product.photo1} alt="img" />
                   </ImageListItem>
-                  <ImageListItem >
-                    <img src={product.photo2}  alt='img'  />
+                  <ImageListItem>
+                    <img src={product.photo2} alt="img" />
                   </ImageListItem>
-                  <ImageListItem  >
-                    <img src={product.photo3} alt='img' />
+                  <ImageListItem>
+                    <img src={product.photo3} alt="img" />
                   </ImageListItem>
-                  <ImageListItem >
-                    <img src={product.photo4} alt='img'  />
+                  <ImageListItem>
+                    <img src={product.photo4} alt="img" />
                   </ImageListItem>
-                </ImageList><br/>                
+                </ImageList>
+                <br />
                 <Typography style={{ fontWeight: "bold" }} variant="h4">
                   {product.brandName}
                 </Typography>
                 <Rating name="simple-controlled" value={product.rating} />
-                <Typography >{product.price}<CurrencyRupeeIcon style={{fontSize:'14px',PaddingTop:'12px',marginLeft:'1px'}}/></Typography>
+                <Typography>
+                  {product.price}
+                  <CurrencyRupeeIcon
+                    style={{
+                      fontSize: "14px",
+                      PaddingTop: "12px",
+                      marginLeft: "1px",
+                    }}
+                  />
+                </Typography>
                 <Typography>{product.category}</Typography>
-                <Typography>{product.location.name}</Typography>                
-                <Typography >{product.dishWithCount}</Typography>
-                <Typography >{product.detailsOfTiffin}</Typography>
-                <Typography >{product.additionalDetail}</Typography>               
+                <Typography>{product.location.name}</Typography>
+                <Typography>{product.dishWithCount}</Typography>
+                <Typography>{product.detailsOfTiffin}</Typography>
+                <Typography>{product.additionalDetail}</Typography>
               </Grid>
 
               {/* <Grid item xs={8} pl={10} pt={10}>
