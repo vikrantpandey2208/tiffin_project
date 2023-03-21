@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import NavbarForCustomerSignup from './NavbarForCustomerSignup'
+import NavbarForCustomerSignup from "./NavbarForCustomerSignup";
 import { toast } from "react-toastify";
 import { Footer } from "../LandingPage/Footer";
 
@@ -79,6 +79,7 @@ const CustomerSignUp = () => {
       toast.success("Signup Successful");
       navigate("/");
     } else {
+      console.log(response);
       toast.info(response.message);
     }
   }

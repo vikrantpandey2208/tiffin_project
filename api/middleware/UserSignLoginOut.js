@@ -31,10 +31,12 @@ module.exports = (app) => {
         email: email,
       },
       (err, previousUsers) => {
+        console.log(err);
         if (err) {
           return res.send({
             success: false,
             message: "Error: Server error",
+            error: err,
           });
         } else if (previousUsers.length > 0) {
           return res.send({
@@ -49,8 +51,10 @@ module.exports = (app) => {
         newUser.lastname = data.lastName;
         newUser.phone = data.phone;
         newUser.password = newUser.generateHash(password);
+        console.log(newUser);
         newUser.save((err) => {
           if (err) {
+            console.log(err);
             return res.send({
               success: false,
               message: "Error: Server error",
